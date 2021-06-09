@@ -16,6 +16,12 @@ const Canvas = (props) => {
     return finalArr;
   };
 
+  function addZeroes(num) {
+    const dec = num.split('.')[1];
+    const len = dec && dec.length === 2 ? dec.length : 2;
+    return Number(num).toFixed(len);
+  }
+
   const { layers } = require('./MaptheSecond.json');
   const convertTiles = (array) => {
     for(let i = 0; i < array.length; i++) {
@@ -23,9 +29,14 @@ const Canvas = (props) => {
       if(object.tileset === 'SP-Overworld.png'){
         for(let i = 0; i < object.data.length; i++){
           const a = (Math.trunc(object.data[i]));
-          const b = ((isNaN((object.data[i] + '').split('.')[1]) * 8) ? 0 :
-            ((object.data[i] + '').split('.')[1]) * 8);
-          const tile = a + b;
+          let b = ((isNaN((object.data[i] + '').split('.')[1]) * 8) ? 0 :
+            (((object.data[i] + '').split('.')[1]) * 8));
+            // ((((object.data[i] + '').split('.')).length === 2) ? 
+            //   (((object.data[i] + '').split('.')[1]) * 8).toFixed(2) : 
+            //   (((object.data[i] + '').split('.')[1]) * 8)));
+            if(`${object.data[i]}`.endsWith('0')) b = Number(`${b}0`).toFixed(1);
+            console.log(object.data[i]);
+            const tile = a + b;
           object.data[i] = tile;
         }
       }else{
@@ -50,28 +61,8 @@ const Canvas = (props) => {
   // const b = (6.12= + '').split('.')[1];
   // console.log(a, 'the whole number\n', b, 'the decimal number')
   
-  const changernumber = (object) => {
-    for (let i = 0; i < object.data.length; i++) {
-      if(object.data[i] === 0.1) object.data[i] = 8;
-      if(object.data[i] === 6.1) object.data[i] = 14;
-      if(object.data[i] === 1.2) object.data[i] = 17;
-      if(object.data[i] === 6.2) object.data[i] = 22;
-      if(object.data[i] === 0.2) object.data[i] = 16;
-      if(object.data[i] === 0.5) object.data[i] = 40; 
-      if(object.data[i] === 3.2) object.data[i] = 19;  
-      if(object.data[i] === 7.1) object.data[i] = 15;
-      if(object.data[i] === 3.5) object.data[i] = 43;
-      if(object.data[i] === 2.3) object.data[i] = 26;
-      if(object.data[i] === 0.3) object.data[i] = 24;
-      if(object.data[i] === 6.5) object.data[i] = 46;
-      if(object.data[i] === 3.3) object.data[i] = 27;
-      if(object.data[i] === 1.3) object.data[i] = 25;
-      if(object.data[i] === 4.2) object.data[i] = 20;
-      if(object.data[i] === 4.3) object.data[i] = 28;
-      
-    }
-    return object;
-  };
+
+  
   
   // console.log(JSON.stringify(changernumber(testGround)));
   // const newGroundArray = spliceyBoi(building);
