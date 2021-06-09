@@ -2,10 +2,6 @@
 import React, { useRef, useEffect } from 'react';
 import style from '../style.css';
 
-// const tilesetImage = new Image();
-// tilesetImage.src = '../../../../public/tileset_marked.png'
-// tilesetImage.onload = drawImage;
-
 const Canvas = (props) => {
   const canvasRef = useRef(null);
 
@@ -16,11 +12,6 @@ const Canvas = (props) => {
     return finalArr;
   };
 
-  function addZeroes(num) {
-    const dec = num.split('.')[1];
-    const len = dec && dec.length === 2 ? dec.length : 2;
-    return Number(num).toFixed(len);
-  }
 
   const { layers } = require('./MaptheSecond.json');
   const convertTiles = (array) => {
@@ -32,10 +23,10 @@ const Canvas = (props) => {
           JSON.stringify(object.data[i]);
           const b = ((isNaN((object.data[i] + '').split('.')[1]) * 8) ? 0 :
             (((object.data[i] + '').split('.')[1]) * 8));
-            const tile = a + b;
+          const tile = a + b;
           object.data[i] = tile;
         }
-      }else{
+      } else {
         for(let i = 0; i < object.data.length; i++){
           const a = (Math.trunc(object.data[i]));
           const b = ((object.data[i] + '').split('.')[1]) * 16;
@@ -50,19 +41,26 @@ const Canvas = (props) => {
   const testGround = convertTiles(layers);
   const tester = testGround[0];
   const tester1 = testGround[2];
-  // console.log(testGround[0], 'look over here');
-  // const b = ((6.0 + '').split('.')[1]) * 8;
-  // console.log(b, 'this is the problem tile');
-  // const a = (Math.trunc(6.1));
-  // const b = (6.12= + '').split('.')[1];
-  // console.log(a, 'the whole number\n', b, 'the decimal number')
-  
-
-  
-  
-  // console.log(JSON.stringify(changernumber(testGround)));
-  // const newGroundArray = spliceyBoi(building);
-  // console.log(JSON.stringify(newGroundArray));
+  const building = testGround[3];
+  const building1 = testGround[4];
+  const building2 = testGround[5];
+  const building3 = testGround[6];
+  const building4 = testGround[7];
+  const building5 = testGround[8];
+  const building6 = testGround[9];
+  const building7 = testGround[10];
+  const building8 = testGround[11];
+  const building9 = testGround[12];
+  const road = testGround[13];
+  const road1 = testGround[14];
+  const road2 = testGround[15];
+  const road3 = testGround[16];
+  const road4 = testGround[17];
+  const road5 = testGround[18];
+  const road6 = testGround[19];
+  const road7 = testGround[20];
+  const road8 = testGround[21];
+  const road9 = testGround[22];
 
   const tilesetImage = new Image();
   const tilesetImage2 = new Image();
@@ -72,12 +70,8 @@ const Canvas = (props) => {
   const rowTileCount = 38; // The number of tiles in a row of our background
   const colTileCount = 50; // The number of tiles in a column of our background
   const imageNumTiles = 8; // The number of tiles per row in the tileset image
-  const tileSize32 = 32; // The size of a tile (32×32)
-  const rowTileCount32 = 19; // The number of tiles in a row of our background
-  const colTileCount32 = 25; // The number of tiles in a column of our background
-  const imageNumTiles32 = 8; // The number of tiles per row in the tileset image
+  const imageNumTiles2 = 16; // The number of tiles per row in the tileset image
 
-  // const { data } = ground.layers[0];
   const draw = (ctx, array) => {
     for (let r = 0; r < rowTileCount; r++) {
       for (let c = 0; c < colTileCount; c++) {
@@ -99,22 +93,22 @@ const Canvas = (props) => {
     }
   };
 
-  const draw32 = (ctx, array) => {
-    for (let r = 0; r < rowTileCount32; r++) {
-      for (let c = 0; c < colTileCount32; c++) {
+  const draw2 = (ctx, array) => {
+    for (let r = 0; r < rowTileCount; r++) {
+      for (let c = 0; c < colTileCount; c++) {
         const tile = array[r][c];
-        const tileRow = (tile / imageNumTiles32) | 0; // Bitwise OR operation
-        const tileCol = tile % imageNumTiles32 | 0;
+        const tileRow = (tile / imageNumTiles2) | 0; // Bitwise OR operation
+        const tileCol = tile % imageNumTiles2 | 0;
         ctx.drawImage(
           tilesetImage2,
-          tileCol * tileSize32,
-          tileRow * tileSize32,
-          tileSize32,
-          tileSize32,
-          c * tileSize32,
-          r * tileSize32,
-          tileSize32,
-          tileSize32
+          tileCol * tileSize,
+          tileRow * tileSize,
+          tileSize,
+          tileSize,
+          c * tileSize,
+          r * tileSize,
+          tileSize,
+          tileSize
         );
       }
     }
@@ -131,7 +125,26 @@ const Canvas = (props) => {
       // frameCount++;
       draw(context, tester);
       draw(context, tester1);
-      // draw32(context, building);
+      draw(context, road);
+      draw(context, road1);
+      draw(context, road2);
+      draw(context, road3);
+      draw(context, road4);
+      draw(context, road5);
+      draw(context, road6);
+      draw(context, road7);
+      draw(context, road8);
+      draw(context, road9);
+      draw2(context, building);
+      draw2(context, building1);
+      draw2(context, building2);
+      draw2(context, building3);
+      draw2(context, building4);
+      draw2(context, building5);
+      draw2(context, building6);
+      draw2(context, building7);
+      draw2(context, building8);
+      draw2(context, building9);
       animationFrameId = window.requestAnimationFrame(render);
     };
     render();
