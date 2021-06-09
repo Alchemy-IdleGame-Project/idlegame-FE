@@ -14,7 +14,13 @@ export const useGameStatus = (init) => {
   const [numClicks, setNumClicks] = useState(0);
 
   const [save, setSave] = useState('');
-  
+
+  const [user, setUser] = useState({
+    house: true,
+    lumberyard: true,
+    windmill: true,
+  });
+
   function addToClicks(){
     setNumClicks((prevClicks) => ++prevClicks);
   }
@@ -73,14 +79,15 @@ export const useGameStatus = (init) => {
   } 
 
 
-  return { gold, numClicks, addToClicks,  mineGold, addGoldPerClick };
+  return { gold, numClicks, user, addToClicks,  mineGold, addGoldPerClick };
 };
 
 export default function App() {
-  const { gold, numClicks, addToClicks,  mineGold, addGoldPerClick } = useGameStatus(0);
+  const { gold, numClicks, user, addToClicks,  mineGold, addGoldPerClick } = useGameStatus(0);
   return (
     
     <>
+    {console.log(user)}
       <GameControls 
       handleMineClick={mineGold}
       handleClicks={addToClicks} 
@@ -89,7 +96,7 @@ export default function App() {
       clicks={numClicks} />
       <h1>Coolest Idle Game</h1>
       <p>current gold is { gold }</p>
-      <Canvas />
+      <Canvas user={user}/>
       
     </>
   );

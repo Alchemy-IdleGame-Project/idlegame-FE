@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import style from '../style.css';
 
 const Canvas = (props) => {
+  const {house, lumberyard, windmill} = props.user;
   const canvasRef = useRef(null);
 
   const spliceyBoi = (array) => {
@@ -113,38 +114,55 @@ const Canvas = (props) => {
       }
     }
   };
-
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     // let frameCount = 0;
     let animationFrameId;
-
+    
     //Our draw came here
     const render = () => {
       // frameCount++;
       draw(context, tester);
       draw(context, tester1);
-      draw(context, road);
-      draw(context, road1);
-      draw(context, road2);
-      draw(context, road3);
-      draw(context, road4);
-      draw(context, road5);
-      draw(context, road6);
-      draw(context, road7);
-      draw(context, road8);
-      draw(context, road9);
-      draw2(context, building);
-      draw2(context, building1);
-      draw2(context, building2);
-      draw2(context, building3);
-      draw2(context, building4);
-      draw2(context, building5);
-      draw2(context, building6);
-      draw2(context, building7);
-      draw2(context, building8);
-      draw2(context, building9);
+      
+      if(house){
+        draw(context, road);
+        draw2(context, building);
+      }
+
+      if(lumberyard){
+        draw(context, road1);
+        draw2(context, building1);
+      }
+
+      if(windmill){
+        draw(context, road2);
+        draw2(context, building2);
+      }
+
+      
+      // draw(context, road);
+      // draw(context, road1);
+      // draw(context, road2);
+      // draw(context, road3);
+      // draw(context, road4);
+      // draw(context, road5);
+      // draw(context, road6);
+      // draw(context, road7);
+      // draw(context, road8);
+      // draw(context, road9);
+      // draw2(context, building);
+      // draw2(context, building1);
+      // draw2(context, building2);
+      // draw2(context, building3);
+      // draw2(context, building4);
+      // draw2(context, building5);
+      // draw2(context, building6);
+      // draw2(context, building7);
+      // draw2(context, building8);
+      // draw2(context, building9);
       animationFrameId = window.requestAnimationFrame(render);
     };
     render();
@@ -163,5 +181,7 @@ const Canvas = (props) => {
     />
   );
 };
+
+
 
 export default Canvas;
