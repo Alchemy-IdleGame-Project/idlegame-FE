@@ -1,9 +1,22 @@
 /* eslint-disable max-len */
 import React, { useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import style from '../style.css';
 
 const Canvas = (props) => {
-  const {house, lumberyard, windmill} = props.user;
+  const {
+    house, 
+    lumberyard, 
+    windmill,
+    mine,
+    watermill,
+    sawmill,
+    farm,
+    blacksmith,
+    tavern,
+    castle
+  } = props.user;
+
   const canvasRef = useRef(null);
 
   const spliceyBoi = (array) => {
@@ -37,29 +50,31 @@ const Canvas = (props) => {
     }
     return array;
   };
-  const testGround = convertTiles(layers);
-  const tester = testGround[0];
-  const tester1 = testGround[2];
-  const building = testGround[3];
-  const building1 = testGround[4];
-  const building2 = testGround[5];
-  const building3 = testGround[6];
-  const building4 = testGround[7];
-  const building5 = testGround[8];
-  const building6 = testGround[9];
-  const building7 = testGround[10];
-  const building8 = testGround[11];
-  const building9 = testGround[12];
-  const road = testGround[13];
-  const road1 = testGround[14];
-  const road2 = testGround[15];
-  const road3 = testGround[16];
-  const road4 = testGround[17];
-  const road5 = testGround[18];
-  const road6 = testGround[19];
-  const road7 = testGround[20];
-  const road8 = testGround[21];
-  const road9 = testGround[22];
+
+  const convertedLayers = convertTiles(layers);
+
+  const tester = convertedLayers[0];
+  const tester1 = convertedLayers[2];
+  const houseLayer = convertedLayers[3];
+  const lumberyardLayer = convertedLayers[4];
+  const windmillLayer = convertedLayers[5];
+  const mineLayer = convertedLayers[6];
+  const watermillLayer = convertedLayers[7];
+  const sawmillLayer = convertedLayers[8];
+  const farmLayer = convertedLayers[9];
+  const blacksmithLayer = convertedLayers[10];
+  const tavernLayer = convertedLayers[11];
+  const castleLayer = convertedLayers[12];
+  const roadHouseLayer = convertedLayers[13];
+  const roadLumberyardLayer = convertedLayers[14];
+  const roadWindmillLayer = convertedLayers[15];
+  const roadMineLayer = convertedLayers[16];
+  const roadWatermillLayer = convertedLayers[17];
+  const roadSawmillLayer = convertedLayers[18];
+  const roadFarmLayer = convertedLayers[19];
+  const roadBlacksmithLayer = convertedLayers[20];
+  const roadTavernLayer = convertedLayers[21];
+  const roadCastleLayer = convertedLayers[22];
 
   const tilesetImage = new Image();
   const tilesetImage2 = new Image();
@@ -72,8 +87,8 @@ const Canvas = (props) => {
   const imageNumTiles2 = 16; // The number of tiles per row in the tileset image
 
   const draw = (ctx, array) => {
-    for (let r = 0; r < rowTileCount; r++) {
-      for (let c = 0; c < colTileCount; c++) {
+    for(let r = 0; r < rowTileCount; r++) {
+      for(let c = 0; c < colTileCount; c++) {
         const tile = array[r][c];
         const tileRow = (tile / imageNumTiles) | 0; // Bitwise OR operation
         const tileCol = tile % imageNumTiles | 0;
@@ -93,8 +108,8 @@ const Canvas = (props) => {
   };
 
   const draw2 = (ctx, array) => {
-    for (let r = 0; r < rowTileCount; r++) {
-      for (let c = 0; c < colTileCount; c++) {
+    for(let r = 0; r < rowTileCount; r++) {
+      for(let c = 0; c < colTileCount; c++) {
         const tile = array[r][c];
         const tileRow = (tile / imageNumTiles2) | 0; // Bitwise OR operation
         const tileCol = tile % imageNumTiles2 | 0;
@@ -117,7 +132,7 @@ const Canvas = (props) => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     // let frameCount = 0;
-    let animationFrameId;
+    // let animationFrameId;
     
     //Our draw came here
     const render = () => {
@@ -126,42 +141,51 @@ const Canvas = (props) => {
       draw(context, tester1);
       
       if(house){
-        draw(context, road);
-        draw2(context, building);
+        draw(context, roadHouseLayer);
+        draw2(context, houseLayer);
       }
 
       if(lumberyard){
-        draw(context, road1);
-        draw2(context, building1);
+        draw(context, roadLumberyardLayer);
+        draw2(context, lumberyardLayer);
       }
 
       if(windmill){
-        draw(context, road2);
-        draw2(context, building2);
+        draw(context, roadWindmillLayer);
+        draw2(context, windmillLayer);
       }
 
-      
-      // draw(context, road);
-      // draw(context, road1);
-      // draw(context, road2);
-      // draw(context, road3);
-      // draw(context, road4);
-      // draw(context, road5);
-      // draw(context, road6);
-      // draw(context, road7);
-      // draw(context, road8);
-      // draw(context, road9);
-      // draw2(context, building);
-      // draw2(context, building1);
-      // draw2(context, building2);
-      // draw2(context, building3);
-      // draw2(context, building4);
-      // draw2(context, building5);
-      // draw2(context, building6);
-      // draw2(context, building7);
-      // draw2(context, building8);
-      // draw2(context, building9);
-      animationFrameId = window.requestAnimationFrame(render);
+      if(mine){
+        draw(context, roadMineLayer);
+        draw2(context, mineLayer);
+      }
+      if(watermill){
+        draw(context, roadWatermillLayer);
+        draw2(context, watermillLayer);
+      }
+      if(sawmill){
+        draw(context, roadSawmillLayer);
+        draw2(context, sawmillLayer);
+      }
+      if(farm){
+        draw(context, roadFarmLayer);
+        draw2(context, farmLayer);
+      }
+      if(blacksmith){
+        draw(context, roadBlacksmithLayer);
+        draw2(context, blacksmithLayer);
+      }
+      if(tavern){
+        draw(context, roadTavernLayer);
+        draw2(context, tavernLayer);
+      }
+      if(castle){
+        draw(context, roadCastleLayer);
+        draw2(context, castleLayer);
+      }
+
+      // eslint-disable-next-line no-unused-vars
+      const animationFrameId = window.requestAnimationFrame(render);
     };
     render();
 
@@ -180,6 +204,19 @@ const Canvas = (props) => {
   );
 };
 
-
+Canvas.propTypes = {
+  user: PropTypes.shape({
+    house: PropTypes.bool.isRequired,
+    lumberyard: PropTypes.bool.isRequired,
+    windmill: PropTypes.bool.isRequired,
+    mine: PropTypes.bool.isRequired,
+    watermill: PropTypes.bool.isRequired,
+    sawmill: PropTypes.bool.isRequired,
+    farm: PropTypes.bool.isRequired,
+    blacksmith: PropTypes.bool.isRequired,
+    tavern: PropTypes.bool.isRequired,
+    castle: PropTypes.bool.isRequired,
+  }).isRequired,
+};
 
 export default Canvas;
