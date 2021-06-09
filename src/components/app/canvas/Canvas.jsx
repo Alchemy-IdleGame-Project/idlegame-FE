@@ -29,20 +29,16 @@ const Canvas = (props) => {
       if(object.tileset === 'SP-Overworld.png'){
         for(let i = 0; i < object.data.length; i++){
           const a = (Math.trunc(object.data[i]));
-          let b = ((isNaN((object.data[i] + '').split('.')[1]) * 8) ? 0 :
+          JSON.stringify(object.data[i]);
+          const b = ((isNaN((object.data[i] + '').split('.')[1]) * 8) ? 0 :
             (((object.data[i] + '').split('.')[1]) * 8));
-            // ((((object.data[i] + '').split('.')).length === 2) ? 
-            //   (((object.data[i] + '').split('.')[1]) * 8).toFixed(2) : 
-            //   (((object.data[i] + '').split('.')[1]) * 8)));
-            if(`${object.data[i]}`.endsWith('0')) b = Number(`${b}0`).toFixed(1);
-            console.log(object.data[i]);
             const tile = a + b;
           object.data[i] = tile;
         }
       }else{
         for(let i = 0; i < object.data.length; i++){
           const a = (Math.trunc(object.data[i]));
-          const b = ((object.data[i] + '').split('.')[1])*16;
+          const b = ((object.data[i] + '').split('.')[1]) * 16;
           const tile = a + b;
           object.data[i] = tile;
         }
