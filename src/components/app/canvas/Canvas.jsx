@@ -13,15 +13,13 @@ const Canvas = (props) => {
     return finalArr;
   };
 
-
-  const { layers } = require('./MaptheSecond.json');
+  const { layers } = require('../../../../assets/MaptheSecond.json');
   const convertTiles = (array) => {
     for(let i = 0; i < array.length; i++) {
       const object = array[i];
       if(object.tileset === 'SP-Overworld.png'){
         for(let i = 0; i < object.data.length; i++){
           const a = (Math.trunc(object.data[i]));
-          JSON.stringify(object.data[i]);
           const b = ((isNaN((object.data[i] + '').split('.')[1]) * 8) ? 0 :
             (((object.data[i] + '').split('.')[1]) * 8));
           const tile = a + b;
@@ -65,8 +63,8 @@ const Canvas = (props) => {
 
   const tilesetImage = new Image();
   const tilesetImage2 = new Image();
-  tilesetImage.src = '../../../public/SP-Overworld.png';
-  tilesetImage2.src = '../../../public/Compilation-Building32x32.png';
+  tilesetImage.src = '../../../../assets/SP-Overworld.png';
+  tilesetImage2.src = '../../../../assets/Compilation-Building32x32.png';
   const tileSize = 16; // The size of a tile (32×32)
   const rowTileCount = 38; // The number of tiles in a row of our background
   const colTileCount = 50; // The number of tiles in a column of our background
