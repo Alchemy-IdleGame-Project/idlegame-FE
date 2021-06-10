@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useGameStatus } from '../App.jsx';
+import style from '../style.css';
 
 const GameControls = ({
   handleMineClick, 
@@ -14,7 +15,7 @@ const GameControls = ({
     handleMineClick();
     handleClicks();
   }
-  return <>
+  return <div className={style.controls}>
     <button>New Game</button>
     <button>Save Game</button>
     <button>Load Game</button>
@@ -24,7 +25,7 @@ const GameControls = ({
     <p>Current Gold: {gold} </p>
     <p>Num of clicks: {clicks}</p>
 
-  </>;
+  </div>;
 
 };
 

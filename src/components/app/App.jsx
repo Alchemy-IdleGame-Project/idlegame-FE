@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import GameControls from '../app/controls/GameControls';
 import Canvas from '../app/canvas/Canvas';
 
-// import style from './style.css';
+import style from './style.css';
 
 export const useGameStatus = (init) => {
   const [gold, setGold] = useState(init);
@@ -20,11 +20,11 @@ export const useGameStatus = (init) => {
     house: true,
     lumberyard: true,
     windmill: true,
-    mine: false,
+    mine: true,
     watermill: false,
     sawmill: false,
     farm: false,
-    blacksmith: false,
+    blacksmith: true,
     tavern: false,
     castle: false
   });
@@ -94,17 +94,17 @@ export default function App() {
   const { gold, numClicks, user, addToClicks,  mineGold, addGoldPerClick } = useGameStatus(0);
   return (
     
-    <>
+    <div className={style.tester}>
+      <h1>Coolest Idle Game</h1>
+      <p>current gold is { gold }</p>
       <GameControls 
         handleMineClick={mineGold}
         handleClicks={addToClicks} 
         handleSmithClick={addGoldPerClick} 
         gold={gold} 
         clicks={numClicks} />
-      <h1>Coolest Idle Game</h1>
-      <p>current gold is { gold }</p>
       <Canvas user={user}/>
       
-    </>
+    </div>
   );
 }

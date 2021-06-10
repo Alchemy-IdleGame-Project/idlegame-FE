@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
+import convertedLayers from './canvasUtils';
 
 const Canvas = (props) => {
   const {
@@ -19,39 +20,8 @@ const Canvas = (props) => {
 
   const canvasRef = useRef(null);
 
-  const spliceyBoi = (array) => {
-    const finalArr = [],
-      size = 50;
-    while(array.length > 0) finalArr.push(array.splice(0, size));
-    return finalArr;
-  };
-
-  const { layers } = require('../../../../assets/MaptheSecond.json');
-  const convertTiles = (array) => {
-    for(let i = 0; i < array.length; i++) {
-      const object = array[i];
-      if(object.tileset === 'SP-Overworld.png'){
-        for(let i = 0; i < object.data.length; i++){
-          const a = (Math.trunc(object.data[i]));
-          const b = ((isNaN((object.data[i] + '').split('.')[1]) * 8) ? 0 :
-            (((object.data[i] + '').split('.')[1]) * 8));
-          const tile = a + b;
-          object.data[i] = tile;
-        }
-      } else {
-        for(let i = 0; i < object.data.length; i++){
-          const a = (Math.trunc(object.data[i]));
-          const b = ((object.data[i] + '').split('.')[1]) * 16;
-          const tile = a + b;
-          object.data[i] = tile;
-        }
-      }
-      array[i] = spliceyBoi(object.data);
-    }
-    return array;
-  };
-
-  const convertedLayers = convertTiles(layers);
+  // const { layers } = require('../../../../assets/MaptheSecond.json');
+  // const convertedLayers = convertTiles(layers);
 
   const tester = convertedLayers[0];
   const tester1 = convertedLayers[2];

@@ -1,5 +1,18 @@
 .canvas{
-    z-index: -1;
-    position: absolute;
-    top: 0;
+    
 }
+
+.tester{
+    background-color: rgb(185, 185, 185);
+    /* display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr/1fr/1fr;
+    grid-template-rows: 1fr/1fr/1fr; */
+    display: flex;
+}
+
+.controls{
+    float: left;
+    display: flex;
+}
+
