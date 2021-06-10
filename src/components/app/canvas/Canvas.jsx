@@ -106,6 +106,7 @@ const Canvas = (props) => {
     
     //Our draw came here
     const render = () => {
+      // console.log(props.user);
       // frameCount++;
       draw(context, tester);
       draw(context, tester1);
@@ -162,7 +163,8 @@ const Canvas = (props) => {
     // return () => {
     //   window.cancelAnimationFrame(animationFrameId);
     // };
-  }, [draw]);
+  }, [props.user]);
+
   return (
     <canvas
       className={style.canvas}
