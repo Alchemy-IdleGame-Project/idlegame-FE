@@ -7,28 +7,32 @@ import { useInterval } from '../../hooks/hooks.js';
 import style from './style.css';
 
 export default function App() {
-  
-  const [gold, setGold] = useState(0);
-  const [goldPerClick, setGoldPerClick] = useState(1);
-  const [active, setActive] = useState(false);
-  // const [activeUser, setActiveUser] = useState();
-  // const [signInPrompt, setSignInPrompt] = useState(false); 
-  const [numClicks, setNumClicks] = useState(0);
-  // const [save, setSave] = useState('');
 
-  // eslint-disable-next-line no-unused-vars
-  const [user, setUser] = useState({
-    house: true,
-    lumberyard: true,
-    windmill: true,
-    mine: false,
-    watermill: false,
-    sawmill: false,
-    farm: false,
-    blacksmith: false,
-    tavern: false,
-    castle: false
-  });
+  
+const [gold, setGold] = useState(0);
+const [goldPerClick, setGoldPerClick] = useState(1);
+const [goldPerSecond, setGoldPerSecond] = useState(1);
+const [active, setActive] = useState(false);
+const [numClicks, setNumClicks] = useState(0);
+// const [activeUser, setActiveUser] = useState();
+// const [signInPrompt, setSignInPrompt] = useState(false); 
+// const [save, setSave] = useState('');
+
+// eslint-disable-next-line no-unused-vars
+const [user, setUser] = useState({
+  house: true,
+  lumberyard: true,
+  windmill: true,
+  mine: false,
+  watermill: false,
+  sawmill: false,
+  farm: false,
+  blacksmith: false,
+  tavern: false,
+  castle: false
+});
+
+
 
 
 
@@ -46,7 +50,6 @@ export default function App() {
         setActive(true);
       }
       prevGold += goldPerClick;
-      console.log(user.mine);
       return prevGold;
     });
   }
@@ -94,7 +97,44 @@ export default function App() {
     //     break;
     //   }
     // }
-  }
+
+  } 
+  //upgrades the gold per second
+  function addGoldPerSecond({target}){
+    if(gold > 25){
+      return setGoldPerClick(5);
+    }
+    
+    // switch(target.value) {
+    //   case 'lumberyard' : {
+    //     return setGoldPerClick(5);
+    //   }
+    //   case 'windmill' : {
+    //     return setGoldPerClick(2);
+    //   }
+    //   case 'mine' : {
+    //     return setGoldPerClick(2);
+    //   }
+    //   case 'watermill' : {
+    //     return setGoldPerClick(2);
+    //   }
+    //   case 'sawmill' : {
+    //     return setGoldPerClick(2);
+    //   }
+    //   case 'farm' : {
+    //     return setGoldPerClick(2);
+    //   }
+    //   case 'blacksmith' : {
+    //     return setGoldPerClick(2);
+    //   }
+    //   case 'windmill' : {
+    //     return setGoldPerClick(2);
+    //   }
+    //   default : {
+    //     break;
+    //   }
+    // }
+  } 
 
   function unlockBuilding({ target }) {
     setUser({
@@ -114,13 +154,15 @@ export default function App() {
 
   return (
     <div className={style.tester}>
-      <h1>Coolest Idle Game</h1>
-      <p>current gold is {gold}</p>
-      <GameControls
+      <h1>Coolest Idle Game</h1><br/>
+      <p><img width='40px' src='../../../assets/coin-icon-3830.png'></img>current gold is { gold }</p>
+      <GameControls 
         handleMineClick={mineGold}
-        handleClicks={addToClicks}
-        handleSmithClick={addGoldPerClick}
-        gold={gold}
+        handleClicks={addToClicks} 
+        handleSmithClick={addGoldPerClick} 
+        handleSmithSecond={addGoldPerSecond} 
+        gold={gold} 
+
         clicks={numClicks}
         unlockBuilding={unlockBuilding}
         user={user}

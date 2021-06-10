@@ -29,8 +29,13 @@ const GameControls = ({
     <p>Num of clicks: {clicks}</p>
 
     
-    
-    <button value="mine" onClick={unlockBuilding} disabled={((gold < 5 || user.mine) ? true : false) /*|| (user.mine ? true : false)*/}>mine level</button>
+
+    {
+    (gold > (10 * .66)) ?
+      <button value="mine" onClick={unlockBuilding} 
+        disabled={((gold < 10 || user.mine) ? true : false) /*|| (user.mine ? true : false)*/}>mine level</button> : ''
+    }
+
     <button value="lumberyard" onClick={unlockBuilding} disabled={((gold < 5 || user.lumberyard) ? true : false) /*|| (user.lumberyard ? true : false)*/}>lumberyard level</button>
     <button value="windmill" onClick={unlockBuilding} disabled={((gold < 5 || user.windmill) ? true : false) /*|| (user.windmill ? true : false)*/}>windmill level</button>
     <button value="watermill" onClick={unlockBuilding} disabled={((gold < 5 || user.watermill) ? true : false) /*|| (user.watermill ? true : false)*/}>watermill level</button>
@@ -39,6 +44,7 @@ const GameControls = ({
     <button value="blacksmith" onClick={unlockBuilding} disabled={((gold < 5 || user.blacksmith) ? true : false) /*|| (user.blacksmith ? true : false)*/}>blacksmith level</button>
     <button value="tavern" onClick={unlockBuilding} disabled={((gold < 5 || user.tavern) ? true : false) /*|| (user.tavern ? true : false)*/}>tavern level</button>
     <button value="castle" onClick={unlockBuilding} disabled={((gold < 5 || user.castle) ? true : false) /*|| (user.castle ? true : false)*/}>castle level</button>
+
   </div>;
 
 };
