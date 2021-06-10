@@ -2,53 +2,48 @@
 import React, { useState, useEffect } from 'react';
 import GameControls from '../app/controls/GameControls';
 import Canvas from '../app/canvas/Canvas';
-import { useInterval } from '../../hooks/hooks.js'
+import { useInterval } from '../../hooks/hooks.js';
 
 import style from './style.css';
 
-
-
 export default function App() {
-  
-const [gold, setGold] = useState(0);
-const [goldPerClick, setGoldPerClick] = useState(1);
-const [active, setActive] = useState(false);
-// const [activeUser, setActiveUser] = useState();
-// const [signInPrompt, setSignInPrompt] = useState(false); 
-const [numClicks, setNumClicks] = useState(0);
-// const [save, setSave] = useState('');
+  const [gold, setGold] = useState(0);
+  const [goldPerClick, setGoldPerClick] = useState(1);
+  const [active, setActive] = useState(false);
+  // const [activeUser, setActiveUser] = useState();
+  // const [signInPrompt, setSignInPrompt] = useState(false);
+  const [numClicks, setNumClicks] = useState(0);
+  // const [save, setSave] = useState('');
 
-// eslint-disable-next-line no-unused-vars
-const [user, setUser] = useState({
-  house: true,
-  lumberyard: true,
-  windmill: true,
-  mine: false,
-  watermill: false,
-  sawmill: false,
-  farm: false,
-  blacksmith: false,
-  tavern: false,
-  castle: false
-});
-
-
+  // eslint-disable-next-line no-unused-vars
+  const [user, setUser] = useState({
+    house: true,
+    lumberyard: true,
+    windmill: true,
+    mine: false,
+    watermill: false,
+    sawmill: false,
+    farm: false,
+    blacksmith: false,
+    tavern: false,
+    castle: false,
+  });
 
   //anytime we refresh make sure to push the state to the DB
   //window.onbeforeunload= ourFunctionToUpdateDB(user);
 
-  function addToClicks(){
+  function addToClicks() {
     setNumClicks((prevClicks) => ++prevClicks);
   }
 
-  function mineGold(){
+  function mineGold() {
     setGold((prevGold) => {
       //starts game if one is not going
-      if(!active) {
+      if (!active) {
         setActive(true);
       }
       prevGold += goldPerClick;
-      console.log(user.mine);  
+      console.log(user.mine);
       return prevGold;
     });
   }
@@ -74,17 +69,17 @@ const [user, setUser] = useState({
       useInterval(mineGold, 1000);
     }
   }, [active]);
- */ 
+ */
 
   //starts the mine gold per second loop on load
   useInterval(mineGold, 1000);
 
   //upgrades the gold per click
-  function addGoldPerClick(/*buildType*/){
-    if(gold > 25){
+  function addGoldPerClick(/*buildType*/) {
+    if (gold > 25) {
       return setGoldPerClick(5);
     }
-    
+
     // switch(buildType) {
     //   case 'smith' : {
     //     return setGoldPerClick(5);
@@ -96,40 +91,38 @@ const [user, setUser] = useState({
     //     break;
     //   }
     // }
-  } 
+  }
 
-  function unlockBuilding({ target }){
+  function unlockBuilding({ target }) {
     setUser({
       ...user,
-      [target.value] : true, 
+      [target.value]: true,
     });
-    switch(target.value){
+    switch (target.value) {
       case 'smith': {
         break;
       }
-      case 'mine' : {
-        setGold(prevGold => prevGold - 5);
+      case 'mine': {
+        setGold((prevGold) => prevGold - 5);
         break;
       }
     }
   }
 
-
   return (
-    
     <div className={style.tester}>
       <h1>Coolest Idle Game</h1>
-      <p>current gold is { gold }</p>
-      <GameControls 
+      <p>current gold is {gold}</p>
+      <GameControls
         handleMineClick={mineGold}
-        handleClicks={addToClicks} 
-        handleSmithClick={addGoldPerClick} 
-        gold={gold} 
+        handleClicks={addToClicks}
+        handleSmithClick={addGoldPerClick}
+        gold={gold}
         clicks={numClicks}
         unlockBuilding={unlockBuilding}
-        user={user} />
-      <Canvas user={user}/>
-      
+        user={user}
+      />
+      <Canvas user={user} />
     </div>
   );
 }
