@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import GameControls from '../app/controls/GameControls';
 import Canvas from '../app/canvas/Canvas';
-import { useInterval } from '../../hooks/hooks.js'
+import { useInterval } from '../../hooks/hooks.js';
 
 import style from './style.css';
 
@@ -10,27 +10,27 @@ import style from './style.css';
 
 export default function App() {
   
-const [gold, setGold] = useState(0);
-const [goldPerClick, setGoldPerClick] = useState(1);
-const [active, setActive] = useState(false);
-// const [activeUser, setActiveUser] = useState();
-// const [signInPrompt, setSignInPrompt] = useState(false); 
-const [numClicks, setNumClicks] = useState(0);
-// const [save, setSave] = useState('');
+  const [gold, setGold] = useState(0);
+  const [goldPerClick, setGoldPerClick] = useState(1);
+  const [active, setActive] = useState(false);
+  // const [activeUser, setActiveUser] = useState();
+  // const [signInPrompt, setSignInPrompt] = useState(false); 
+  const [numClicks, setNumClicks] = useState(0);
+  // const [save, setSave] = useState('');
 
-// eslint-disable-next-line no-unused-vars
-const [user, setUser] = useState({
-  house: true,
-  lumberyard: true,
-  windmill: true,
-  mine: false,
-  watermill: false,
-  sawmill: false,
-  farm: false,
-  blacksmith: false,
-  tavern: false,
-  castle: false
-});
+  // eslint-disable-next-line no-unused-vars
+  const [user, setUser] = useState({
+    house: true,
+    lumberyard: true,
+    windmill: true,
+    mine: false,
+    watermill: false,
+    sawmill: false,
+    farm: false,
+    blacksmith: false,
+    tavern: false,
+    castle: false
+  });
 
 
 
