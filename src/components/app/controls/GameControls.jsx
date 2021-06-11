@@ -33,8 +33,12 @@ const GameControls = ({
     {/* display for the mine button */}
     {
       (gold > (goldRequired.lumberyard * revealPercent)) ?
-        <button className={(gold < goldRequired.lumberyard) ? style.almost : ''} value="lumberyard" onClick={unlockBuilding} 
-          disabled={((gold < goldRequired.lumberyard || user.lumberyard) ? true : false)}>Purchase Lumberyard ({`${goldRequired.lumberyard}`}g)</button> : ''
+        <button 
+          value="lumberyard" 
+          className={(gold < goldRequired.lumberyard && !user.lumberyard) ? style.almost : ''} 
+          onClick={unlockBuilding} 
+          disabled={((gold < goldRequired.lumberyard || user.lumberyard) ? true : false)}>Purchase Lumberyard ({`${goldRequired.lumberyard}`}g)
+        </button> : ''
     }
     
     {
@@ -90,15 +94,16 @@ GameControls.propTypes = {
   unlockBuilding: PropTypes.func.isRequired,
   revealPercent: PropTypes.number.isRequired,
   goldRequired: PropTypes.shape({
-    lumberyard: 25,
-    windmill: 250,
-    mine: 500,
-    watermill: 1500,
-    sawmill: 2000,
-    farm: 2500,
-    blacksmith: 3000,
-    tavern: 3500,
-    castle: 5000
+    house: PropTypes.bool.isRequired,
+    lumberyard: PropTypes.bool.isRequired,
+    windmill: PropTypes.bool.isRequired,
+    mine: PropTypes.bool.isRequired,
+    watermill: PropTypes.bool.isRequired,
+    sawmill: PropTypes.bool.isRequired,
+    farm: PropTypes.bool.isRequired,
+    blacksmith: PropTypes.bool.isRequired,
+    tavern: PropTypes.bool.isRequired,
+    castle: PropTypes.bool.isRequired,
   }),
   user: PropTypes.shape({
     house: PropTypes.bool.isRequired,
