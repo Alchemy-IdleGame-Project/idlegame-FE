@@ -19,7 +19,7 @@ const GameControls = ({
   const goldRequired = {
     lumberyard: 25,
     windmill: 250,
-    mine: 1000,
+    mine: 50,
     watermill: 1500,
     sawmill: 2000,
     farm: 2500,

@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
 import convertedLayers from './canvasUtils';
+import { render } from 'react-dom';
 
 const Canvas = (props) => {
   const {
@@ -18,8 +19,7 @@ const Canvas = (props) => {
     castle
   } = props.user;
 
-  
-
+ 
   const canvasRef = useRef(null);
 
   // const { layers } = require('../../../../assets/MaptheSecond.json');
@@ -59,6 +59,7 @@ const Canvas = (props) => {
   const imageNumTiles2 = 16; // The number of tiles per row in the tileset image
 
   const draw = (ctx, array) => {
+    ctx.restore();
     for(let r = 0; r < rowTileCount; r++) {
       for(let c = 0; c < colTileCount; c++) {
         const tile = array[r][c];
@@ -77,9 +78,11 @@ const Canvas = (props) => {
         );
       }
     }
+    ctx.save();
   };
 
   const draw2 = (ctx, array) => {
+    ctx.restore();
     for(let r = 0; r < rowTileCount; r++) {
       for(let c = 0; c < colTileCount; c++) {
         const tile = array[r][c];
@@ -98,8 +101,9 @@ const Canvas = (props) => {
         );
       }
     }
+    ctx.save();
   };
-  
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
@@ -108,7 +112,6 @@ const Canvas = (props) => {
     
     //Our draw came here
     const render = () => {
-      // console.log(props.user);
       // frameCount++;
       draw(context, tester);
       draw(context, tester1);
@@ -156,17 +159,76 @@ const Canvas = (props) => {
         draw(context, roadCastleLayer);
         draw2(context, castleLayer);
       }
-      console.log('hello');
-      // eslint-disable-next-line no-unused-vars
-      const animationFrameId = window.requestAnimationFrame(render);
     };
-    render(); 
+    render();
+  }, [props.active]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    // let frameCount = 0;
+    // let animationFrameId;
     
-    // return () => {
-    //   window.cancelAnimationFrame(animationFrameId);
-    // };
+    //Our draw came here
+    const render = () => {
+      // frameCount++;
+      draw(context, tester);
+      draw(context, tester1);
+      
+      if(house){
+        draw(context, roadHouseLayer);
+        draw2(context, houseLayer);
+      }
+
+      if(lumberyard){
+        draw(context, roadLumberyardLayer);
+        draw2(context, lumberyardLayer);
+      }
+
+      if(windmill){
+        draw(context, roadWindmillLayer);
+        draw2(context, windmillLayer);
+      }
+
+      if(mine){
+        draw(context, roadMineLayer);
+        draw2(context, mineLayer);
+      }
+      if(watermill){
+        draw(context, roadWatermillLayer);
+        draw2(context, watermillLayer);
+      }
+      if(sawmill){
+        draw(context, roadSawmillLayer);
+        draw2(context, sawmillLayer);
+      }
+      if(farm){
+        draw(context, roadFarmLayer);
+        draw2(context, farmLayer);
+      }
+      if(blacksmith){
+        draw(context, roadBlacksmithLayer);
+        draw2(context, blacksmithLayer);
+      }
+      if(tavern){
+        draw(context, roadTavernLayer);
+        draw2(context, tavernLayer);
+      }
+      if(castle){
+        draw(context, roadCastleLayer);
+        draw2(context, castleLayer);
+      }
+
+      // eslint-disable-next-line no-unused-vars
+    };
+    // const animationFrameId = window.requestAnimationFrame(render);
+    
+    return () => {
+      render();
+      // window.cancelAnimationFrame(animationFrameId);
+    };
   }, [props.user]);
-    
+  
   return (
     <canvas
       className={style.canvas}
@@ -191,6 +253,7 @@ Canvas.propTypes = {
     tavern: PropTypes.bool.isRequired,
     castle: PropTypes.bool.isRequired,
   }).isRequired,
+  active: PropTypes.bool.isRequired
 };
 
 export default Canvas;

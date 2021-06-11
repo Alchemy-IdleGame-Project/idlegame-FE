@@ -9,28 +9,28 @@ import style from './style.css';
 export default function App() {
 
   
-const [gold, setGold] = useState(0);
-const [goldPerClick, setGoldPerClick] = useState(1);
-const [goldPerSecond, setGoldPerSecond] = useState(1);
-const [active, setActive] = useState(false);
-const [numClicks, setNumClicks] = useState(0);
-// const [activeUser, setActiveUser] = useState();
-// const [signInPrompt, setSignInPrompt] = useState(false); 
-// const [save, setSave] = useState('');
+  const [gold, setGold] = useState(0);
+  const [goldPerClick, setGoldPerClick] = useState(1);
+  const [goldPerSecond, setGoldPerSecond] = useState(1);
+  const [active, setActive] = useState(false);
+  const [numClicks, setNumClicks] = useState(0);
+  // const [activeUser, setActiveUser] = useState();
+  // const [signInPrompt, setSignInPrompt] = useState(false); 
+  // const [save, setSave] = useState('');
 
-// eslint-disable-next-line no-unused-vars
-const [user, setUser] = useState({
-  house: true,
-  lumberyard: true,
-  windmill: true,
-  mine: false,
-  watermill: false,
-  sawmill: false,
-  farm: false,
-  blacksmith: false,
-  tavern: false,
-  castle: false
-});
+  // eslint-disable-next-line no-unused-vars
+  const [user, setUser] = useState({
+    house: true,
+    lumberyard: true,
+    windmill: true,
+    mine: false,
+    watermill: false,
+    sawmill: false,
+    farm: false,
+    blacksmith: false,
+    tavern: false,
+    castle: false
+  });
 
 
 
@@ -44,7 +44,7 @@ const [user, setUser] = useState({
   function mineGold() {
     setGold((prevGold) => {
       //starts game if one is not going
-      if (!active) {
+      if(!active) {
         setActive(true);
       }
       prevGold += goldPerClick;
@@ -74,6 +74,9 @@ const [user, setUser] = useState({
     }
   }, [active]);
  */
+useEffect(() =>{
+
+})
 
   //starts the mine gold per second loop on load
   useInterval(mineGold, 1000);
@@ -176,7 +179,11 @@ const [user, setUser] = useState({
   return (
     <div className={style.tester}>
       <h1>Coolest Idle Game</h1><br/>
-      <p><img width='40px' src='../../../assets/coin-icon-3830.png'></img>current gold is { gold }</p>
+      <hr></hr>
+      <p>
+        <img width='40px' src='../../../assets/coin-icon-3830.png'/>
+          current gold: 
+      </p> 
       <GameControls 
         handleMineClick={mineGold}
         handleClicks={addToClicks} 
@@ -188,7 +195,8 @@ const [user, setUser] = useState({
         unlockBuilding={unlockBuilding}
         user={user}
       />
-      <Canvas user={user} />
+      
+      <Canvas user={user} active={active}/>
     </div>
   );
 }
