@@ -186,6 +186,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.lumberyard);
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.lumberyard * .1) - .5);
         break;
       }
       case 'windmill': {
@@ -195,6 +196,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.windmill);
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.windmill * .1));
         break;
       }
       case 'mine': {
@@ -204,6 +206,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.mine);
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.mine * .1));
         break;
       }
       case 'watermill': {
@@ -213,6 +216,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.watermill);
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.watermill * .1));
         break;
       }
       case 'sawmill': {
@@ -222,6 +226,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.sawmill);
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.sawmill * .1));
         break;
       }
       case 'farm': {
@@ -231,6 +236,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.farm);
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.farm * .1));
         break;
       }
       case 'blacksmith': {
@@ -240,6 +246,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.blacksmith);
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.blacksmith * .1));
         break;
       }
       case 'tavern': {
@@ -249,6 +256,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.tavern);
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.tavern * .1));
         break;
       }
       case 'castle': {
@@ -258,6 +266,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.castle);
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.castle * .1));
         break;
       }
     }
