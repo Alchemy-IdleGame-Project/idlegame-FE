@@ -18,6 +18,8 @@ const Canvas = (props) => {
     castle
   } = props.user;
 
+  
+
   const canvasRef = useRef(null);
 
   // const { layers } = require('../../../../assets/MaptheSecond.json');
@@ -154,17 +156,17 @@ const Canvas = (props) => {
         draw(context, roadCastleLayer);
         draw2(context, castleLayer);
       }
-
+      console.log('hello');
       // eslint-disable-next-line no-unused-vars
       const animationFrameId = window.requestAnimationFrame(render);
     };
-    render();
-
+    render(); 
+    
     // return () => {
     //   window.cancelAnimationFrame(animationFrameId);
     // };
   }, [props.user]);
-
+    
   return (
     <canvas
       className={style.canvas}
