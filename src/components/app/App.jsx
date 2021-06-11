@@ -82,6 +82,7 @@ export default function App() {
 
 
   //upgrades the gold per click
+<<<<<<< HEAD
   function addGoldPerClick(/*buildType*/) {
     if(gold > 25) {
       return setGoldPerClick(5);
@@ -97,11 +98,49 @@ export default function App() {
     //   default : {
     //     break;
     //   }
+=======
+  function addGoldPerClick({ target }) {
+    // if (gold > 25) {
+    //   return setGoldPerClick(5);
+>>>>>>> feat/00-sandbox-background
     // }
 
+    switch(target.value) {
+      case 'lumberyard' : {
+        return setGoldPerClick(2);
+      }
+      case 'windmill' : {
+        return setGoldPerClick(3);
+      }
+      case 'mine' : {
+        return setGoldPerClick(4);
+      }
+      case 'watermill' : {
+        return setGoldPerClick(5);
+      }
+      case 'sawmill' : {
+        return setGoldPerClick(6);
+      }
+      case 'farm' : {
+        return setGoldPerClick(7);
+      }
+      case 'blacksmith' : {
+        return setGoldPerClick(8);
+      }
+      case 'tavern' : {
+        return setGoldPerClick(9);
+      }
+      case 'castle' : {
+        return setGoldPerClick(10);
+      }
+      default : {
+        break;
+      }
+    }
   } 
   //upgrades the gold per second
   function addGoldPerSecond({ target }){
+<<<<<<< HEAD
     if(gold > 25){
       return setGoldPerClick(5);
     }
@@ -134,13 +173,51 @@ export default function App() {
     //   default : {
     //     break;
     //   }
+=======
+    // if(gold > 25){
+    //   return setGoldPerClick(5);
+>>>>>>> feat/00-sandbox-background
     // }
+    
+    switch(target.value) {
+      case 'lumberyard' : {
+        return setGoldPerClick(2);
+      }
+      case 'windmill' : {
+        return setGoldPerClick(3);
+      }
+      case 'mine' : {
+        return setGoldPerClick(4);
+      }
+      case 'watermill' : {
+        return setGoldPerClick(5);
+      }
+      case 'sawmill' : {
+        return setGoldPerClick(6);
+      }
+      case 'farm' : {
+        return setGoldPerClick(7);
+      }
+      case 'blacksmith' : {
+        return setGoldPerClick(8);
+      }
+      case 'tavern' : {
+        return setGoldPerClick(9);
+      }
+      case 'castle' : {
+        return setGoldPerClick(10);
+      }
+      default : {
+        break;
+      }
+    }
   } 
 
   function unlockBuilding({ target }) {
     setUser(prevUser => ({
       ...prevUser,
       [target.value]: true,
+<<<<<<< HEAD
     }));
     // switch(target.value) {
     //   case 'smith': {
@@ -152,6 +229,18 @@ export default function App() {
     //   }
     // }
     return;
+=======
+    });
+    switch(target.value) {
+      case 'smith': {
+        break;
+      }
+      case 'mine': {
+        setGold((prevGold) => prevGold - 5);
+        break;
+      }
+    }
+>>>>>>> feat/00-sandbox-background
   }
 
   return (
@@ -161,7 +250,7 @@ export default function App() {
       <GameControls 
         handleMineClick={mineGold}
         handleClicks={addToClicks} 
-        handleSmithClick={addGoldPerClick} 
+        handleBuildingClick={addGoldPerClick} 
         handleSmithSecond={addGoldPerSecond} 
         gold={gold} 
 

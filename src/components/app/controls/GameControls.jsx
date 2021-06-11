@@ -6,14 +6,28 @@ import style from '../style.css';
 
 const GameControls = ({
   handleMineClick, 
-  handleSmithClick, 
+  handleBuildingClick, 
   handleClicks, 
   gold, 
   clicks,
   unlockBuilding, 
   user
 }) => {
-  
+
+  const revealPercent = .66;
+
+  const goldRequired = {
+    lumberyard: 25,
+    windmill: 250,
+    mine: 1000,
+    watermill: 1500,
+    sawmill: 2000,
+    farm: 2500,
+    blacksmith: 3000,
+    tavern: 3500,
+    castle: 5000
+  };
+
   function handleMineButtonClick(){
     handleMineClick();
     handleClicks();
@@ -24,19 +38,31 @@ const GameControls = ({
     <button>Load Game</button>
     <br/>
     <button onClick={handleMineButtonClick}>Mine Gold</button>
-    <button onClick={handleSmithClick}>Smith</button>
+    <button value='blacksmith' onClick={handleBuildingClick}>Smith</button>
     <p>Current Gold: {gold} </p>
     <p>Num of clicks: {clicks}</p>
 
     
-
+    {/* display for the mine button */}
     {
+<<<<<<< HEAD
       (gold > (10 * .66)) ?
         <button value="mine" onClick={unlockBuilding} 
           disabled={((gold < 10 || user.mine) ? true : false) /*|| (user.mine ? true : false)*/}>mine level</button> : ''
+=======
+      (gold > (goldRequired.mine * revealPercent)) ?
+        <button 
+          className={(gold < goldRequired.mine) ? 
+            style.almost : ''} 
+          value="mine" 
+          onClick={unlockBuilding} 
+          disabled={((gold < goldRequired.mine || user.mine) ? 
+            true : false)}
+        >mine level</button> : ''
+>>>>>>> feat/00-sandbox-background
     }
 
-    <button value="lumberyard" onClick={unlockBuilding} disabled={((gold < 5 || user.lumberyard) ? true : false) /*|| (user.lumberyard ? true : false)*/}>lumberyard level</button>
+    <button value="lumberyard" onClick={unlockBuilding, handleBuildingClick} disabled={((gold < 5 || user.lumberyard) ? true : false) /*|| (user.lumberyard ? true : false)*/}>lumberyard level</button>
     <button value="windmill" onClick={unlockBuilding} disabled={((gold < 5 || user.windmill) ? true : false) /*|| (user.windmill ? true : false)*/}>windmill level</button>
     <button value="watermill" onClick={unlockBuilding} disabled={((gold < 5 || user.watermill) ? true : false) /*|| (user.watermill ? true : false)*/}>watermill level</button>
     <button value="sawmill" onClick={unlockBuilding} disabled={((gold < 5 || user.sawmill) ? true : false) /*|| (user.sawmill ? true : false)*/}>sawmill level</button>
@@ -54,7 +80,7 @@ GameControls.propTypes = {
   clicks: PropTypes.number.isRequired,
   handleClicks: PropTypes.func.isRequired,
   handleMineClick: PropTypes.func.isRequired,
-  handleSmithClick: PropTypes.func.isRequired,
+  handleBuildingClick: PropTypes.func.isRequired,
   unlockBuilding: PropTypes.func.isRequired,
   user: PropTypes.shape({
     house: PropTypes.bool.isRequired,

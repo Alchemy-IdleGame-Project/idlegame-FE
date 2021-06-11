@@ -19,6 +19,8 @@ const Canvas = (props) => {
     castle
   } = props.user;
 
+  
+
   const canvasRef = useRef(null);
 
   // const { layers } = require('../../../../assets/MaptheSecond.json');
@@ -171,6 +173,7 @@ const Canvas = (props) => {
         draw(context, roadCastleLayer);
         draw2(context, castleLayer);
       }
+<<<<<<< HEAD
       console.log('this here');
       // eslint-disable-next-line no-unused-vars
       const animationFrameId = window.requestAnimationFrame(render);
@@ -254,6 +257,19 @@ const Canvas = (props) => {
     tavern,
     castle]);
 
+=======
+      console.log('hello');
+      // eslint-disable-next-line no-unused-vars
+      const animationFrameId = window.requestAnimationFrame(render);
+    };
+    render(); 
+    
+    // return () => {
+    //   window.cancelAnimationFrame(animationFrameId);
+    // };
+  }, [props.user]);
+    
+>>>>>>> feat/00-sandbox-background
   return (
     <canvas
       className={style.canvas}
