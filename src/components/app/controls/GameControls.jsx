@@ -11,22 +11,14 @@ const GameControls = ({
   gold, 
   clicks,
   unlockBuilding, 
+  revealPercent,
+  goldRequired,
   user
 }) => {
 
-  const revealPercent = .66;
+  
 
-  const goldRequired = {
-    lumberyard: 25,
-    windmill: 250,
-    mine: 50,
-    watermill: 1500,
-    sawmill: 2000,
-    farm: 2500,
-    blacksmith: 3000,
-    tavern: 3500,
-    castle: 5000
-  };
+ 
 
   function handleMineButtonClick(){
     handleMineClick();
@@ -50,7 +42,7 @@ const GameControls = ({
     {
       (gold > (goldRequired.mine * revealPercent)) ?
         <button 
-          className={(gold < goldRequired.mine) ? 
+          className={(gold < goldRequired.mine ) ? 
             style.almost : ''} 
           value="mine" 
           onClick={unlockBuilding} 
@@ -79,6 +71,18 @@ GameControls.propTypes = {
   handleMineClick: PropTypes.func.isRequired,
   handleBuildingClick: PropTypes.func.isRequired,
   unlockBuilding: PropTypes.func.isRequired,
+  revealPercent: PropTypes.number.isRequired,
+  goldRequired: PropTypes.shape({
+    lumberyard: 25,
+    windmill: 250,
+    mine: 500,
+    watermill: 1500,
+    sawmill: 2000,
+    farm: 2500,
+    blacksmith: 3000,
+    tavern: 3500,
+    castle: 5000
+  }),
   user: PropTypes.shape({
     house: PropTypes.bool.isRequired,
     lumberyard: PropTypes.bool.isRequired,

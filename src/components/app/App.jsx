@@ -32,6 +32,18 @@ export default function App() {
     castle: false
   });
 
+  const goldRequired = {
+    lumberyard: 25,
+    windmill: 250,
+    mine: 500,
+    watermill: 1500,
+    sawmill: 2000,
+    farm: 2500,
+    blacksmith: 3000,
+    tavern: 3500,
+    castle: 5000
+  };
+  const revealPercent = .66;
 
 
   //anytime we refresh make sure to push the state to the DB
@@ -81,10 +93,6 @@ export default function App() {
 
   //upgrades the gold per click
   function addGoldPerClick({ target }) {
-    // if (gold > 25) {
-    //   return setGoldPerClick(5);
-    // }
-
     switch(target.value) {
       case 'lumberyard' : {
         return setGoldPerClick(2);
@@ -120,13 +128,10 @@ export default function App() {
   } 
   //upgrades the gold per second
   function addGoldPerSecond({ target }){
-    // if(gold > 25){
-    //   return setGoldPerClick(5);
-    // }
-    
     switch(target.value) {
       case 'lumberyard' : {
-        return setGoldPerClick(2);
+        setGoldPerClick(2);
+        return;
       }
       case 'windmill' : {
         return setGoldPerClick(3);
@@ -159,21 +164,89 @@ export default function App() {
   } 
 
   function unlockBuilding({ target }) {
-    setUser({
-      ...user,
-      [target.value]: true,
-    });
-    console.log(user);
-
-    // switch(target.value) {
-    //   case 'smith': {
-    //     break;
-    //   }
-    //   case 'mine': {
-    //     setGold((prevGold) => prevGold - 5);
-    //     break;
-    //   }
-    // }
+    switch(target.value) {
+      case 'lumberyard': {
+        if(gold < goldRequired.lumberyard) return;
+        setUser({
+          ...user,
+          [target.value]: true,
+        });
+        setGold((prevGold) => prevGold - goldRequired.lumberyard);
+        break;
+      }
+      case 'windmill': {
+        if(gold < goldRequired.windmill) return;
+        setUser({
+          ...user,
+          [target.value]: true,
+        });
+        setGold((prevGold) => prevGold - goldRequired.windmill);
+        break;
+      }
+      case 'mine': {
+        if(gold < goldRequired.mine) return;
+        setUser({
+          ...user,
+          [target.value]: true,
+        });
+        setGold((prevGold) => prevGold - goldRequired.mine);
+        break;
+      }
+      case 'watermill': {
+        if(gold < goldRequired.watermill) return;
+        setUser({
+          ...user,
+          [target.value]: true,
+        });
+        setGold((prevGold) => prevGold - goldRequired.watermill);
+        break;
+      }
+      case 'sawmill': {
+        if(gold < goldRequired.sawmill) return;
+        setUser({
+          ...user,
+          [target.value]: true,
+        });
+        setGold((prevGold) => prevGold - goldRequired.sawmill);
+        break;
+      }
+      case 'farm': {
+        if(gold < goldRequired.farm) return;
+        setUser({
+          ...user,
+          [target.value]: true,
+        });
+        setGold((prevGold) => prevGold - goldRequired.farm);
+        break;
+      }
+      case 'blacksmith': {
+        if(gold < goldRequired.blacksmith) return;
+        setUser({
+          ...user,
+          [target.value]: true,
+        });
+        setGold((prevGold) => prevGold - goldRequired.blacksmith);
+        break;
+      }
+      case 'tavern': {
+        if(gold < goldRequired.tavern) return;
+        setUser({
+          ...user,
+          [target.value]: true,
+        });
+        setGold((prevGold) => prevGold - goldRequired.tavern);
+        break;
+      }
+      case 'castle': {
+        if(gold < goldRequired.castle) return;
+        setUser({
+          ...user,
+          [target.value]: true,
+        });
+        setGold((prevGold) => prevGold - goldRequired.castle);
+        break;
+      }
+    }
   }
 
   return (
@@ -181,7 +254,7 @@ export default function App() {
       <h1>Coolest Idle Game</h1><br/>
       <hr></hr>
       <p>
-        <img width='40px' src='../../../assets/coin-icon-3830.png'/>
+        <img width="40px" src="../../../assets/coin-icon-3830.png"/>
           current gold: 
       </p> 
       <GameControls 
@@ -190,7 +263,8 @@ export default function App() {
         handleBuildingClick={addGoldPerClick} 
         handleSmithSecond={addGoldPerSecond} 
         gold={gold} 
-
+        revealPercent={revealPercent}
+        goldRequired={goldRequired}
         clicks={numClicks}
         unlockBuilding={unlockBuilding}
         user={user}
