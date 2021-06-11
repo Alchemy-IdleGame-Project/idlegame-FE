@@ -11,7 +11,10 @@
     display: flex;
 }
 
-.controls{}
+.controls{
+    float: left;
+    display: flex;
+}
 
 button{
     height: 100px;
