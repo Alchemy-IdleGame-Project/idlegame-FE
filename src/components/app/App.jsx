@@ -82,27 +82,9 @@ export default function App() {
 
 
   //upgrades the gold per click
-<<<<<<< HEAD
-  function addGoldPerClick(/*buildType*/) {
-    if(gold > 25) {
-      return setGoldPerClick(5);
-    }
-
-    // switch(buildType) {
-    //   case 'smith' : {
-    //     return setGoldPerClick(5);
-    //   }
-    //   case 'lumber' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   default : {
-    //     break;
-    //   }
-=======
   function addGoldPerClick({ target }) {
     // if (gold > 25) {
     //   return setGoldPerClick(5);
->>>>>>> feat/00-sandbox-background
     // }
 
     switch(target.value) {
@@ -140,43 +122,8 @@ export default function App() {
   } 
   //upgrades the gold per second
   function addGoldPerSecond({ target }){
-<<<<<<< HEAD
-    if(gold > 25){
-      return setGoldPerClick(5);
-    }
-    
-    // switch(target.value) {
-    //   case 'lumberyard' : {
-    //     return setGoldPerClick(5);
-    //   }
-    //   case 'windmill' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'mine' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'watermill' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'sawmill' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'farm' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'blacksmith' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'windmill' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   default : {
-    //     break;
-    //   }
-=======
     // if(gold > 25){
     //   return setGoldPerClick(5);
->>>>>>> feat/00-sandbox-background
     // }
     
     switch(target.value) {
@@ -217,20 +164,7 @@ export default function App() {
     setUser(prevUser => ({
       ...prevUser,
       [target.value]: true,
-<<<<<<< HEAD
     }));
-    // switch(target.value) {
-    //   case 'smith': {
-    //     break;
-    //   }
-    //   case 'mine': {
-    //     setGold((prevGold) => prevGold - 5);
-    //     break;
-    //   }
-    // }
-    return;
-=======
-    });
     switch(target.value) {
       case 'smith': {
         break;
@@ -240,7 +174,6 @@ export default function App() {
         break;
       }
     }
->>>>>>> feat/00-sandbox-background
   }
 
   return (

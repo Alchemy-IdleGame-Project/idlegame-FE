@@ -102,20 +102,20 @@ const Canvas = (props) => {
     }
   };
 
-  useEffect(() => {
-    canvas = canvasRef.current;
-    context = canvas.getContext('2d');
-    const rendertest = () => {
-      // console.log(props.user);
-      // frameCount++;
-      draw(context, tester);
-      draw(context, tester1);
+  // useEffect(() => {
+  //   canvas = canvasRef.current;
+  //   context = canvas.getContext('2d');
+  //   const rendertest = () => {
+  //     // console.log(props.user);
+  //     // frameCount++;
+  //     draw(context, tester);
+  //     draw(context, tester1);
             
-      // eslint-disable-next-line no-unused-vars
-      const animationFrameId = window.requestAnimationFrame(rendertest);
-    };
-    rendertest();
-  }, []);
+  //     // eslint-disable-next-line no-unused-vars
+  //     const animationFrameId = window.requestAnimationFrame(rendertest);
+  //   };
+  //   rendertest();
+  // }, []);
 
 
   const renderMemo = useMemo(() => {
@@ -173,91 +173,6 @@ const Canvas = (props) => {
         draw(context, roadCastleLayer);
         draw2(context, castleLayer);
       }
-<<<<<<< HEAD
-      console.log('this here');
-      // eslint-disable-next-line no-unused-vars
-      const animationFrameId = window.requestAnimationFrame(render);
-    };
-    
-    return render;
-
-    // return () => {
-    //   window.cancelAnimationFrame(animationFrameId);
-    // };
-  }, [canvas, context, props.user]);
-
-
-  useEffect(() => {
-    canvas = canvasRef.current;
-    context = canvas.getContext('2d');
-    const render = () => {
-      // console.log(props.user);
-      // frameCount++;
-      draw(context, tester);
-      draw(context, tester1);
-      
-      if(house){
-        draw(context, roadHouseLayer);
-        draw2(context, houseLayer);
-      }
-
-      if(lumberyard){
-        draw(context, roadLumberyardLayer);
-        draw2(context, lumberyardLayer);
-      }
-
-      if(windmill){
-        draw(context, roadWindmillLayer);
-        draw2(context, windmillLayer);
-      }
-
-      if(mine){
-        draw(context, roadMineLayer);
-        draw2(context, mineLayer);
-      }
-      if(watermill){
-        draw(context, roadWatermillLayer);
-        draw2(context, watermillLayer);
-      }
-      if(sawmill){
-        draw(context, roadSawmillLayer);
-        draw2(context, sawmillLayer);
-      }
-      if(farm){
-        draw(context, roadFarmLayer);
-        draw2(context, farmLayer);
-      }
-      if(blacksmith){
-        draw(context, roadBlacksmithLayer);
-        draw2(context, blacksmithLayer);
-      }
-      if(tavern){
-        draw(context, roadTavernLayer);
-        draw2(context, tavernLayer);
-      }
-      if(castle){
-        draw(context, roadCastleLayer);
-        draw2(context, castleLayer);
-      }
-      console.log('this here');
-
-     
-      window.requestAnimationFrame(render);
-    };
-
-    render();
-  }, [house, 
-    lumberyard, 
-    windmill,
-    mine,
-    watermill,
-    sawmill,
-    farm,
-    blacksmith,
-    tavern,
-    castle]);
-
-=======
       console.log('hello');
       // eslint-disable-next-line no-unused-vars
       const animationFrameId = window.requestAnimationFrame(render);
@@ -269,7 +184,10 @@ const Canvas = (props) => {
     // };
   }, [props.user]);
     
->>>>>>> feat/00-sandbox-background
+  useEffect(() => {
+    
+  });
+
   return (
     <canvas
       className={style.canvas}

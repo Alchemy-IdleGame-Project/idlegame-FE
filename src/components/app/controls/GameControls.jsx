@@ -45,11 +45,6 @@ const GameControls = ({
     
     {/* display for the mine button */}
     {
-<<<<<<< HEAD
-      (gold > (10 * .66)) ?
-        <button value="mine" onClick={unlockBuilding} 
-          disabled={((gold < 10 || user.mine) ? true : false) /*|| (user.mine ? true : false)*/}>mine level</button> : ''
-=======
       (gold > (goldRequired.mine * revealPercent)) ?
         <button 
           className={(gold < goldRequired.mine) ? 
@@ -59,7 +54,6 @@ const GameControls = ({
           disabled={((gold < goldRequired.mine || user.mine) ? 
             true : false)}
         >mine level</button> : ''
->>>>>>> feat/00-sandbox-background
     }
 
     <button value="lumberyard" onClick={unlockBuilding, handleBuildingClick} disabled={((gold < 5 || user.lumberyard) ? true : false) /*|| (user.lumberyard ? true : false)*/}>lumberyard level</button>
