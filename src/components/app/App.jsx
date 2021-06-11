@@ -9,28 +9,28 @@ import style from './style.css';
 export default function App() {
 
   
-const [gold, setGold] = useState(0);
-const [goldPerClick, setGoldPerClick] = useState(1);
-const [goldPerSecond, setGoldPerSecond] = useState(1);
-const [active, setActive] = useState(false);
-const [numClicks, setNumClicks] = useState(0);
-// const [activeUser, setActiveUser] = useState();
-// const [signInPrompt, setSignInPrompt] = useState(false); 
-// const [save, setSave] = useState('');
+  const [gold, setGold] = useState(0);
+  const [goldPerClick, setGoldPerClick] = useState(1);
+  const [goldPerSecond, setGoldPerSecond] = useState(1);
+  const [active, setActive] = useState(false);
+  const [numClicks, setNumClicks] = useState(0);
+  // const [activeUser, setActiveUser] = useState();
+  // const [signInPrompt, setSignInPrompt] = useState(false); 
+  // const [save, setSave] = useState('');
 
-// eslint-disable-next-line no-unused-vars
-const [user, setUser] = useState({
-  house: true,
-  lumberyard: true,
-  windmill: true,
-  mine: false,
-  watermill: false,
-  sawmill: false,
-  farm: false,
-  blacksmith: false,
-  tavern: false,
-  castle: false
-});
+  // eslint-disable-next-line no-unused-vars
+  const [user, setUser] = useState({
+    house: true,
+    lumberyard: true,
+    windmill: true,
+    mine: false,
+    watermill: false,
+    sawmill: false,
+    farm: false,
+    blacksmith: false,
+    tavern: false,
+    castle: false
+  });
 
 
 
@@ -41,19 +41,20 @@ const [user, setUser] = useState({
 
   function addToClicks() {
     setNumClicks((prevClicks) => ++prevClicks);
+    return;
   }
 
   function mineGold() {
     setGold((prevGold) => {
       //starts game if one is not going
-      if (!active) {
-        setActive(true);
-      }
-      prevGold += goldPerClick;
-      return prevGold;
+      // if(!active) {
+      //   setActive(true);
+      // }
+      const newGold = prevGold + goldPerClick;
+      return newGold;
     });
   }
-
+  useInterval(mineGold, 1000);
   /*
   function userAutoSave(){
     const user = localStorage.getItem('user'); 
@@ -78,11 +79,11 @@ const [user, setUser] = useState({
  */
 
   //starts the mine gold per second loop on load
-  useInterval(mineGold, 1000);
+
 
   //upgrades the gold per click
   function addGoldPerClick(/*buildType*/) {
-    if (gold > 25) {
+    if(gold > 25) {
       return setGoldPerClick(5);
     }
 
@@ -100,7 +101,7 @@ const [user, setUser] = useState({
 
   } 
   //upgrades the gold per second
-  function addGoldPerSecond({target}){
+  function addGoldPerSecond({ target }){
     if(gold > 25){
       return setGoldPerClick(5);
     }
@@ -137,25 +138,26 @@ const [user, setUser] = useState({
   } 
 
   function unlockBuilding({ target }) {
-    setUser({
-      ...user,
+    setUser(prevUser => ({
+      ...prevUser,
       [target.value]: true,
-    });
-    switch (target.value) {
-      case 'smith': {
-        break;
-      }
-      case 'mine': {
-        setGold((prevGold) => prevGold - 5);
-        break;
-      }
-    }
+    }));
+    // switch(target.value) {
+    //   case 'smith': {
+    //     break;
+    //   }
+    //   case 'mine': {
+    //     setGold((prevGold) => prevGold - 5);
+    //     break;
+    //   }
+    // }
+    return;
   }
 
   return (
     <div className={style.tester}>
       <h1>Coolest Idle Game</h1><br/>
-      <p><img width='40px' src='../../../assets/coin-icon-3830.png'></img>current gold is { gold }</p>
+      <p><img width="40px" src="../../../assets/coin-icon-3830.png"></img>current gold is { gold }</p>
       <GameControls 
         handleMineClick={mineGold}
         handleClicks={addToClicks} 
