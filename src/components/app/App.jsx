@@ -81,59 +81,82 @@ const [user, setUser] = useState({
   useInterval(mineGold, 1000);
 
   //upgrades the gold per click
-  function addGoldPerClick(/*buildType*/) {
-    if (gold > 25) {
-      return setGoldPerClick(5);
-    }
-
-    // switch(buildType) {
-    //   case 'smith' : {
-    //     return setGoldPerClick(5);
-    //   }
-    //   case 'lumber' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   default : {
-    //     break;
-    //   }
+  function addGoldPerClick({ target }) {
+    // if (gold > 25) {
+    //   return setGoldPerClick(5);
     // }
 
+    switch(target.value) {
+      case 'lumberyard' : {
+        return setGoldPerClick(2);
+      }
+      case 'windmill' : {
+        return setGoldPerClick(3);
+      }
+      case 'mine' : {
+        return setGoldPerClick(4);
+      }
+      case 'watermill' : {
+        return setGoldPerClick(5);
+      }
+      case 'sawmill' : {
+        return setGoldPerClick(6);
+      }
+      case 'farm' : {
+        return setGoldPerClick(7);
+      }
+      case 'blacksmith' : {
+        return setGoldPerClick(8);
+      }
+      case 'tavern' : {
+        return setGoldPerClick(9);
+      }
+      case 'castle' : {
+        return setGoldPerClick(10);
+      }
+      default : {
+        break;
+      }
+    }
   } 
   //upgrades the gold per second
-  function addGoldPerSecond({target}){
-    if(gold > 25){
-      return setGoldPerClick(5);
-    }
-    
-    // switch(target.value) {
-    //   case 'lumberyard' : {
-    //     return setGoldPerClick(5);
-    //   }
-    //   case 'windmill' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'mine' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'watermill' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'sawmill' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'farm' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'blacksmith' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   case 'windmill' : {
-    //     return setGoldPerClick(2);
-    //   }
-    //   default : {
-    //     break;
-    //   }
+  function addGoldPerSecond({ target }){
+    // if(gold > 25){
+    //   return setGoldPerClick(5);
     // }
+    
+    switch(target.value) {
+      case 'lumberyard' : {
+        return setGoldPerClick(2);
+      }
+      case 'windmill' : {
+        return setGoldPerClick(3);
+      }
+      case 'mine' : {
+        return setGoldPerClick(4);
+      }
+      case 'watermill' : {
+        return setGoldPerClick(5);
+      }
+      case 'sawmill' : {
+        return setGoldPerClick(6);
+      }
+      case 'farm' : {
+        return setGoldPerClick(7);
+      }
+      case 'blacksmith' : {
+        return setGoldPerClick(8);
+      }
+      case 'tavern' : {
+        return setGoldPerClick(9);
+      }
+      case 'castle' : {
+        return setGoldPerClick(10);
+      }
+      default : {
+        break;
+      }
+    }
   } 
 
   function unlockBuilding({ target }) {
@@ -141,7 +164,7 @@ const [user, setUser] = useState({
       ...user,
       [target.value]: true,
     });
-    switch (target.value) {
+    switch(target.value) {
       case 'smith': {
         break;
       }
@@ -159,7 +182,7 @@ const [user, setUser] = useState({
       <GameControls 
         handleMineClick={mineGold}
         handleClicks={addToClicks} 
-        handleSmithClick={addGoldPerClick} 
+        handleBuildingClick={addGoldPerClick} 
         handleSmithSecond={addGoldPerSecond} 
         gold={gold} 
 
