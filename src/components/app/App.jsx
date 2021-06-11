@@ -29,7 +29,7 @@ export default function App() {
     farm: false,
     blacksmith: false,
     tavern: false,
-    castle: true
+    castle: false
   });
 
 
