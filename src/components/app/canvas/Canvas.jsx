@@ -5,6 +5,7 @@ import style from '../style.css';
 import convertedLayers from './canvasUtils';
 import { render } from 'react-dom';
 
+
 const Canvas = (props) => {
   const {
     house, 
@@ -59,7 +60,7 @@ const Canvas = (props) => {
   const imageNumTiles2 = 16; // The number of tiles per row in the tileset image
 
   const draw = (ctx, array) => {
-    ctx.restore();
+    
     for(let r = 0; r < rowTileCount; r++) {
       for(let c = 0; c < colTileCount; c++) {
         const tile = array[r][c];
@@ -78,11 +79,11 @@ const Canvas = (props) => {
         );
       }
     }
-    ctx.save();
+   
   };
 
   const draw2 = (ctx, array) => {
-    ctx.restore();
+   
     for(let r = 0; r < rowTileCount; r++) {
       for(let c = 0; c < colTileCount; c++) {
         const tile = array[r][c];
@@ -101,8 +102,10 @@ const Canvas = (props) => {
         );
       }
     }
-    ctx.save();
+    
   };
+
+  
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -159,8 +162,11 @@ const Canvas = (props) => {
         draw(context, roadCastleLayer);
         draw2(context, castleLayer);
       }
+      
     };
+    
     render();
+
   }, [props.active]);
 
   useEffect(() => {
@@ -172,8 +178,8 @@ const Canvas = (props) => {
     //Our draw came here
     const render = () => {
       // frameCount++;
-      draw(context, tester);
-      draw(context, tester1);
+      // draw(context, tester);
+      // draw(context, tester1);
       
       if(house){
         draw(context, roadHouseLayer);
@@ -223,8 +229,8 @@ const Canvas = (props) => {
     };
     // const animationFrameId = window.requestAnimationFrame(render);
     
+    render();
     return () => {
-      render();
       // window.cancelAnimationFrame(animationFrameId);
     };
   }, [props.user]);

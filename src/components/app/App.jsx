@@ -21,15 +21,15 @@ export default function App() {
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({
     house: true,
-    lumberyard: true,
-    windmill: true,
+    lumberyard: false,
+    windmill: false,
     mine: false,
     watermill: false,
     sawmill: false,
     farm: false,
     blacksmith: false,
     tavern: false,
-    castle: false
+    castle: true
   });
 
 
@@ -50,7 +50,7 @@ export default function App() {
       prevGold += goldPerClick;
       return prevGold;
     });
-  }
+}
 
   /*
   function userAutoSave(){
@@ -74,9 +74,7 @@ export default function App() {
     }
   }, [active]);
  */
-useEffect(() =>{
 
-})
 
   //starts the mine gold per second loop on load
   useInterval(mineGold, 1000);
@@ -165,15 +163,17 @@ useEffect(() =>{
       ...user,
       [target.value]: true,
     });
-    switch(target.value) {
-      case 'smith': {
-        break;
-      }
-      case 'mine': {
-        setGold((prevGold) => prevGold - 5);
-        break;
-      }
-    }
+    console.log(user);
+
+    // switch(target.value) {
+    //   case 'smith': {
+    //     break;
+    //   }
+    //   case 'mine': {
+    //     setGold((prevGold) => prevGold - 5);
+    //     break;
+    //   }
+    // }
   }
 
   return (
@@ -195,7 +195,7 @@ useEffect(() =>{
         unlockBuilding={unlockBuilding}
         user={user}
       />
-      
+      <br/>
       <Canvas user={user} active={active}/>
     </div>
   );

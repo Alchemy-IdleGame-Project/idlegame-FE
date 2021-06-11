@@ -32,13 +32,16 @@ const GameControls = ({
     handleMineClick();
     handleClicks();
   }
+
+
+
   return <div className={style.controls}>
     <button>New Game</button>
     <button>Save Game</button>
     <button>Load Game</button>
     <br/>
     <button onClick={handleMineButtonClick}>Mine Gold</button>
-    <button value='blacksmith' onClick={handleBuildingClick}>Smith</button>
+    <button value="blacksmith" onClick={handleBuildingClick}>Smith</button>
     <p>Current Gold: {gold} </p>
     <p>Num of clicks: {clicks}</p>
 
@@ -56,7 +59,7 @@ const GameControls = ({
         >mine level</button> : ''
     }
 
-    <button value="lumberyard" onClick={unlockBuilding, handleBuildingClick} disabled={((gold < 5 || user.lumberyard) ? true : false) /*|| (user.lumberyard ? true : false)*/}>lumberyard level</button>
+    <button value="lumberyard" onClick={unlockBuilding} disabled={((gold < 5 || user.lumberyard) ? true : false) /*|| (user.lumberyard ? true : false)*/}>lumberyard level</button>
     <button value="windmill" onClick={unlockBuilding} disabled={((gold < 5 || user.windmill) ? true : false) /*|| (user.windmill ? true : false)*/}>windmill level</button>
     <button value="watermill" onClick={unlockBuilding} disabled={((gold < 5 || user.watermill) ? true : false) /*|| (user.watermill ? true : false)*/}>watermill level</button>
     <button value="sawmill" onClick={unlockBuilding} disabled={((gold < 5 || user.sawmill) ? true : false) /*|| (user.sawmill ? true : false)*/}>sawmill level</button>
