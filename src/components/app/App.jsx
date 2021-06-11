@@ -163,17 +163,45 @@ export default function App() {
       ...user,
       [target.value]: true,
     });
-    console.log(user);
 
-    // switch(target.value) {
-    //   case 'smith': {
-    //     break;
-    //   }
-    //   case 'mine': {
-    //     setGold((prevGold) => prevGold - 5);
-    //     break;
-    //   }
-    // }
+    switch(target.value) {
+      case 'mine': {
+        setGold((prevGold) => prevGold - 5);
+        break;
+      }
+      case 'lumberyard': {
+        setGold((prevGold) => prevGold - 5);
+        break;
+      }
+      case 'windmill': {
+        setGold((prevGold) => prevGold - 5);
+        break;
+      }
+      case 'watermill': {
+        setGold((prevGold) => prevGold - 5);
+        break;
+      }
+      case 'sawmill': {
+        setGold((prevGold) => prevGold - 5);
+        break;
+      }
+      case 'farm': {
+        setGold((prevGold) => prevGold - 5);
+        break;
+      }
+      case 'blacksmith': {
+        setGold((prevGold) => prevGold - 5);
+        break;
+      }
+      case 'tavern': {
+        setGold((prevGold) => prevGold - 5);
+        break;
+      }
+      case 'castle': {
+        setGold((prevGold) => prevGold - 5);
+        break;
+      }
+    }
   }
 
   return (
