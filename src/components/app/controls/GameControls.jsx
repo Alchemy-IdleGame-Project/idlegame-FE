@@ -31,9 +31,9 @@ const GameControls = ({
     
 
     {
-    (gold > (10 * .66)) ?
-      <button value="mine" onClick={unlockBuilding} 
-        disabled={((gold < 10 || user.mine) ? true : false) /*|| (user.mine ? true : false)*/}>mine level</button> : ''
+      (gold > (10 * .66)) ?
+        <button value="mine" onClick={unlockBuilding} 
+          disabled={((gold < 10 || user.mine) ? true : false) /*|| (user.mine ? true : false)*/}>mine level</button> : ''
     }
 
     <button value="lumberyard" onClick={unlockBuilding} disabled={((gold < 5 || user.lumberyard) ? true : false) /*|| (user.lumberyard ? true : false)*/}>lumberyard level</button>
