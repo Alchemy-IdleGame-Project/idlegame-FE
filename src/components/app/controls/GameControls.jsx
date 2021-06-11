@@ -42,14 +42,14 @@ const GameControls = ({
     }
     
     {
-      (gold > (goldRequired.mine * revealPercent)) ?
-        <button className={(gold < goldRequired.mine) ? style.almost : ''} value="mine" onClick={unlockBuilding} 
-          disabled={((gold < goldRequired.mine || user.mine) ? true : false)}>Purchase Mine ({`${goldRequired.mine}`}g)</button> : ''
-    }
-    {
       (gold > (goldRequired.windmill * revealPercent)) ?
         <button className={(gold < goldRequired.windmill) ? style.almost : ''} value="windmill" onClick={unlockBuilding} 
           disabled={((gold < goldRequired.windmill || user.windmill) ? true : false)}>Purchase Windmill ({`${goldRequired.windmill}`}g)</button> : ''
+    }
+    {
+      (gold > (goldRequired.mine * revealPercent)) ?
+        <button className={(gold < goldRequired.mine) ? style.almost : ''} value="mine" onClick={unlockBuilding} 
+          disabled={((gold < goldRequired.mine || user.mine) ? true : false)}>Purchase Mine ({`${goldRequired.mine}`}g)</button> : ''
     }
     {
       (gold > (goldRequired.watermill * revealPercent)) ?
