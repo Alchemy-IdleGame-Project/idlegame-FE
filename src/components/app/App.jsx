@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import GameControls from '../app/controls/GameControls';
 import Canvas from '../app/canvas/Canvas';
-import Clock from './hud/Clock'
+import Clock from './hud/Clock';
 import { useInterval } from '../../hooks/hooks.js';
 
 import style from './style.css';
@@ -58,7 +58,7 @@ export default function App() {
   function mineGold() {
     setGold((prevGold) => {
       //starts game if one is not going
-      if(!active) {
+      if(active === false) {
         setActive(true);
       }
       prevGold += goldPerClick;
@@ -73,29 +73,7 @@ export default function App() {
     });
   }
 
-  
-  /*
-  function userAutoSave(){
-    const user = localStorage.getItem('user'); 
-    return (!user ? 
-      //if there is not a user, show login prompt in addition to game
-      setSignInPrompt(true)
-      : setActiveUser(user));
-  }
-  
-  useEffect(() => {
-    if(active){
-      useInterval(mineGold, 1000);
-      // userAutoSave();
-    }
-  }, []);
 
-  useEffect(() => {
-    if(active){
-      useInterval(mineGold, 1000);
-    }
-  }, [active]);
- */
 
   
 
