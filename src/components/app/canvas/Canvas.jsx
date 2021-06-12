@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
 import convertedLayers from './canvasUtils';
-import { render } from 'react-dom';
+
 
 
 const Canvas = (props) => {
@@ -223,6 +223,7 @@ const Canvas = (props) => {
       if(castle){
         draw(context, roadCastleLayer);
         draw2(context, castleLayer);
+        context.drawImage(12, 12);
       }
 
       // eslint-disable-next-line no-unused-vars

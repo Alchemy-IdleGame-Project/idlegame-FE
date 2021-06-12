@@ -61,6 +61,11 @@ const GameControls = ({
         </div> : ''
     }
     {
+      (gold > (goldRequired.mine * revealPercent)) ?
+        <button className={(gold < goldRequired.mine) ? style.almost : ''} value="mine" onClick={unlockBuilding} 
+          disabled={((gold < goldRequired.mine || user.mine) ? true : false)}>Purchase Mine ({`${goldRequired.mine}`}g)</button> : ''
+    }
+    {
       (gold > (goldRequired.watermill * revealPercent)) ?
         <button className={(gold < goldRequired.watermill) && !user.watermill ? style.almost : ''} value="watermill" onClick={unlockBuilding} 
           disabled={((gold < goldRequired.watermill || user.watermill) ? true : false)}>Purchase Watermill ({`${goldRequired.watermill}`}g)</button> : ''

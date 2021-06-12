@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import GameControls from '../app/controls/GameControls';
 import Canvas from '../app/canvas/Canvas';
+import Clock from './hud/Clock';
 import { useInterval } from '../../hooks/hooks.js';
 
 import style from './style.css';
@@ -14,6 +15,7 @@ export default function App() {
   const [goldPerSecond, setGoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
   const [numClicks, setNumClicks] = useState(0);
+  const [gameTime, setGameTime] = useState(0);
   // const [activeUser, setActiveUser] = useState();
   // const [signInPrompt, setSignInPrompt] = useState(false); 
   // const [save, setSave] = useState('');
@@ -56,40 +58,30 @@ export default function App() {
   function mineGold() {
     setGold((prevGold) => {
       //starts game if one is not going
-      if(!active) {
+      if(active === false) {
         setActive(true);
       }
       prevGold += goldPerClick;
       return prevGold;
     });
-}
-
-  /*
-  function userAutoSave(){
-    const user = localStorage.getItem('user'); 
-    return (!user ? 
-      //if there is not a user, show login prompt in addition to game
-      setSignInPrompt(true)
-      : setActiveUser(user));
   }
+
+  function gameClock(){
+    setGameTime((prevTime) => {
+      console.log(prevTime++);
+      return prevTime++;
+    });
+  }
+
+
+
   
-  useEffect(() => {
-    if(active){
-      useInterval(mineGold, 1000);
-      // userAutoSave();
-    }
-  }, []);
-
-  useEffect(() => {
-    if(active){
-      useInterval(mineGold, 1000);
-    }
-  }, [active]);
- */
-
 
   //starts the mine gold per second loop on load
   useInterval(mineGold, 1000);
+
+  //starts the gameClock
+  useInterval(gameClock, 1000);
 
   //upgrades the gold per click
   function addGoldPerClick({ target }) {
@@ -266,6 +258,8 @@ export default function App() {
         <img width="40px" src="../../../assets/coin-icon-3830.png"/>
           current gold: 
       </p> 
+
+      <Clock gameTime={gameTime} />
       <GameControls 
         handleMineClick={mineGold}
         handleClicks={addToClicks} 
