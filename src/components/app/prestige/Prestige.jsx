@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 const Prestige = ({ handlePrestige, prestige, castle }) => {
 
   return (
-      <div>
-          {
-              ((castle) ? <button onClick={handlePrestige}>Prestige</button>: '' )
-          }
-          
-          <p>Prestige level: {prestige} <i>Hover for prestige info</i> </p>
-
-      </div>
+    <div>
+      {
+        ((castle) ? <button onClick={handlePrestige}>Prestige</button> : '')
+      }
+      <p>Prestige level: {prestige} <i>Hover for prestige info</i> </p>
+    </div>
   );
 };
 
