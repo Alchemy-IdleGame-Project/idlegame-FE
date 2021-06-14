@@ -143,11 +143,9 @@ export const drawUnlocked = (ctx, ps) => {
   const user = Object.keys(ps.user);
 
   user.map(item => {
-    // console.log(item);
-    console.log(ps.user[item]);
+
     if(ps.user[item] === true){
-      console.log();
-      console.log(`road${firstToUpper(item)}Layer`);
+
 
       
       draw(ctx, eval(`road${firstToUpper(item)}Layer`));    
