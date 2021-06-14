@@ -26,8 +26,6 @@ const GameControls = ({
     <button>Load Game</button>
     <br/>
     <button onClick={handleMineButtonClick}>Mine Gold</button>
-    <p>Current Gold: {gold} </p>
-    <p>Number of Clicks: {clicks}</p>
 
     
     {/* display for the mine button */}
