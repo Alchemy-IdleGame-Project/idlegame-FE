@@ -42,7 +42,7 @@ const GameControls = ({
           >
             Purchase Lumberyard ({`${goldRequired.lumberyard}`}g)
           </button>
-          <img className={style.hovertest} src="../../../../assets/SP-Overworld.png" alt="Italian Trulli" /> 
+          <img className={style.hovertest} src="../../../../assets/test-border.png" alt="Lumberyard" /> 
         </div> : ''
     }
 
