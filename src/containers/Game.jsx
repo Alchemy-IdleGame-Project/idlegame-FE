@@ -1,18 +1,22 @@
 /* eslint-disable max-len */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import GameControls from '../components/app/controls/GameControls';
 import Canvas from '../components/app/canvas/Canvas';
 import Clock from '../components/app/hud/Clock';
 import { useInterval } from '../hooks/hooks.js';
 import style from '../components/app/style.css';
+import Prestige from '../components/app/prestige/Prestige';
+import Gold from '../components/app/hud/Gold';
+import Clicks from '../components/app/hud/Clicks';
 
-const Game = () => {
+export default function App() {
   const [gold, setGold] = useState(0);
-  const [goldPerClick, setGoldPerClick] = useState(1);
-  const [goldPerSecond, setGoldPerSecond] = useState(1);
+  const [goldPerSecond, setgoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
   const [numClicks, setNumClicks] = useState(0);
   const [gameTime, setGameTime] = useState(0);
+  const [prestige, setPrestige] = useState(0);
+
   // const [activeUser, setActiveUser] = useState();
   // const [signInPrompt, setSignInPrompt] = useState(false);
   // const [save, setSave] = useState('');
@@ -33,15 +37,16 @@ const Game = () => {
   });
 
   const goldRequired = {
-    lumberyard: 25,
-    windmill: 250,
-    mine: 500,
-    watermill: 1500,
-    sawmill: 2000,
-    farm: 2500,
-    blacksmith: 3000,
-    tavern: 3500,
-    castle: 5000,
+    lumberyard: 25 * (prestige + .1 * 10),
+    windmill: 250 * (prestige + .1 * 10),
+    mine: 2000 * (prestige + .1 * 10),
+    watermill: 10000 * (prestige + .1 * 10),
+    sawmill: 50000 * (prestige + .1 * 10),
+    farm: 100000 * (prestige + .1 * 10),
+    blacksmith: 500000 * (prestige + .1 * 10),
+    tavern: 1000000 * (prestige + .1 * 10),
+    castle: 10000000 * (prestige + .1 * 10)
+
   };
   const revealPercent = 0.66;
 
@@ -52,14 +57,22 @@ const Game = () => {
     setNumClicks((prevClicks) => ++prevClicks);
   }
 
-  function mineGold() {
+  function mineGold(prestige) {
+    
     setGold((prevGold) => {
       //starts game if one is not going
       if(active === false) {
         setActive(true);
       }
-      prevGold += goldPerClick;
-      return prevGold;
+
+      if(prestige > 0){
+        prevGold += goldPerSecond;
+        return prevGold;
+      } else {
+        prevGold += goldPerSecond;
+        return prevGold;
+      }
+
     });
   }
 
@@ -77,76 +90,76 @@ const Game = () => {
   useInterval(gameClock, 1000);
 
   //upgrades the gold per click
-  function addGoldPerClick({ target }) {
-    switch(target.value) {
-      case 'lumberyard': {
-        return setGoldPerClick(2);
-      }
-      case 'windmill': {
-        return setGoldPerClick(3);
-      }
-      case 'mine': {
-        return setGoldPerClick(4);
-      }
-      case 'watermill': {
-        return setGoldPerClick(5);
-      }
-      case 'sawmill': {
-        return setGoldPerClick(6);
-      }
-      case 'farm': {
-        return setGoldPerClick(7);
-      }
-      case 'blacksmith': {
-        return setGoldPerClick(8);
-      }
-      case 'tavern': {
-        return setGoldPerClick(9);
-      }
-      case 'castle': {
-        return setGoldPerClick(10);
-      }
-      default: {
-        break;
-      }
-    }
-  }
+  // function addgoldPerSecond({ target }) {
+  //   switch (target.value) {
+  //     case 'lumberyard': {
+  //       return setgoldPerSecond(2);
+  //     }
+  //     case 'windmill': {
+  //       return setgoldPerSecond(3);
+  //     }
+  //     case 'mine': {
+  //       return setgoldPerSecond(4);
+  //     }
+  //     case 'watermill': {
+  //       return setgoldPerSecond(5);
+  //     }
+  //     case 'sawmill': {
+  //       return setgoldPerSecond(6);
+  //     }
+  //     case 'farm': {
+  //       return setgoldPerSecond(7);
+  //     }
+  //     case 'blacksmith': {
+  //       return setgoldPerSecond(8);
+  //     }
+  //     case 'tavern': {
+  //       return setgoldPerSecond(9);
+  //     }
+  //     case 'castle': {
+  //       return setgoldPerSecond(10);
+  //     }
+  //     default: {
+  //       break;
+  //     }
+  //   }
+  // }
   //upgrades the gold per second
-  function addGoldPerSecond({ target }) {
-    switch(target.value) {
-      case 'lumberyard': {
-        setGoldPerClick(2);
-        return;
-      }
-      case 'windmill': {
-        return setGoldPerClick(3);
-      }
-      case 'mine': {
-        return setGoldPerClick(4);
-      }
-      case 'watermill': {
-        return setGoldPerClick(5);
-      }
-      case 'sawmill': {
-        return setGoldPerClick(6);
-      }
-      case 'farm': {
-        return setGoldPerClick(7);
-      }
-      case 'blacksmith': {
-        return setGoldPerClick(8);
-      }
-      case 'tavern': {
-        return setGoldPerClick(9);
-      }
-      case 'castle': {
-        return setGoldPerClick(10);
-      }
-      default: {
-        break;
-      }
-    }
-  }
+  // function addGoldPerSecond({ target }) {
+  //   switch (target.value) {
+  //     case 'lumberyard': {
+  //       setgoldPerSecond(2);
+  //       return;
+  //     }
+  //     case 'windmill': {
+  //       return setgoldPerSecond(3);
+  //     }
+  //     case 'mine': {
+  //       return setgoldPerSecond(4);
+  //     }
+  //     case 'watermill': {
+  //       return setgoldPerSecond(5);
+  //     }
+  //     case 'sawmill': {
+  //       return setgoldPerSecond(6);
+  //     }
+  //     case 'farm': {
+  //       return setgoldPerSecond(7);
+  //     }
+  //     case 'blacksmith': {
+  //       return setgoldPerSecond(8);
+  //     }
+  //     case 'tavern': {
+  //       return setgoldPerSecond(9);
+  //     }
+  //     case 'castle': {
+  //       return setgoldPerSecond(10);
+  //     }
+  //     default: {
+  //       break;
+  //     }
+  //   }
+  // }
 
   function unlockBuilding({ target }) {
     switch(target.value) {
@@ -157,7 +170,7 @@ const Game = () => {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.lumberyard);
-        setGoldPerClick(
+        setgoldPerSecond(
           (prevGold) => prevGold + goldRequired.lumberyard * 0.1 - 0.5
         );
         break;
@@ -169,7 +182,7 @@ const Game = () => {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.windmill);
-        setGoldPerClick((prevGold) => prevGold + goldRequired.windmill * 0.01);
+        setgoldPerSecond((prevGold) => prevGold + goldRequired.windmill * 0.06);
         break;
       }
       case 'mine': {
@@ -179,7 +192,7 @@ const Game = () => {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.mine);
-        setGoldPerClick((prevGold) => prevGold + goldRequired.mine * 0.01);
+        setgoldPerSecond((prevGold) => prevGold + goldRequired.mine * 0.01);
         break;
       }
       case 'watermill': {
@@ -189,7 +202,9 @@ const Game = () => {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.watermill);
-        setGoldPerClick((prevGold) => prevGold + goldRequired.watermill * 0.01);
+        setgoldPerSecond(
+          (prevGold) => prevGold + goldRequired.watermill * 0.003
+        );
         break;
       }
       case 'sawmill': {
@@ -199,7 +214,7 @@ const Game = () => {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.sawmill);
-        setGoldPerClick((prevGold) => prevGold + goldRequired.sawmill * 0.01);
+        setgoldPerSecond((prevGold) => prevGold + goldRequired.sawmill * 0.001);
         break;
       }
       case 'farm': {
@@ -209,7 +224,7 @@ const Game = () => {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.farm);
-        setGoldPerClick((prevGold) => prevGold + goldRequired.farm * 0.01);
+        setgoldPerSecond((prevGold) => prevGold + goldRequired.farm * 0.002);
         break;
       }
       case 'blacksmith': {
@@ -219,8 +234,8 @@ const Game = () => {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.blacksmith);
-        setGoldPerClick(
-          (prevGold) => prevGold + goldRequired.blacksmith * 0.01
+        setgoldPerSecond(
+          (prevGold) => prevGold + goldRequired.blacksmith * 0.001
         );
         break;
       }
@@ -231,7 +246,7 @@ const Game = () => {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.tavern);
-        setGoldPerClick((prevGold) => prevGold + goldRequired.tavern * 0.01);
+        setgoldPerSecond((prevGold) => prevGold + goldRequired.tavern * 0.002);
         break;
       }
       case 'castle': {
@@ -241,28 +256,54 @@ const Game = () => {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.castle);
-        setGoldPerClick((prevGold) => prevGold + goldRequired.castle * 0.1);
+        setgoldPerSecond((prevGold) => prevGold + goldRequired.castle * 0.1);
         break;
       }
     }
   }
+
+  function incrementPrestige(){
+    if(user.castle){
+      setPrestige(prevPrestige => {
+        prevPrestige++;
+        return prevPrestige;
+      });
+      setUser({
+        house: true,
+        lumberyard: false,
+        windmill: false,
+        mine: false,
+        watermill: false,
+        sawmill: false,
+        farm: false,
+        blacksmith: false,
+        tavern: false,
+        castle: false
+      });
+      setGameTime(0);
+    }
+  }
+
+
+  const user1 = {
+    ...user
+  };
+  delete user1.wahoo;
 
   return (
     <div className={style.tester}>
       <h1>Coolest Idle Game</h1>
       <br />
       <hr></hr>
-      <p>
-        <img width="40px" src="../../../assets/coin-icon-3830.png" />
-        current gold:
-      </p>
-
+      <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
       <Clock gameTime={gameTime} />
-      <GameControls
+      <Gold gold={gold} />
+      <Clicks clicks={numClicks} />
+      <GameControls 
         handleMineClick={mineGold}
         handleClicks={addToClicks}
-        handleBuildingClick={addGoldPerClick}
-        handleSmithSecond={addGoldPerSecond}
+        // handleBuildingClick={addgoldPerSecond}
+        // handleSmithSecond={addGoldPerSecond}
         gold={gold}
         revealPercent={revealPercent}
         goldRequired={goldRequired}
@@ -272,13 +313,12 @@ const Game = () => {
       />
       <br />
       {/* experimenting with being able to have more properties in the user but not passing properties that arent necessary */}
-      <Canvas
-        gameTime={gameTime}
-        user={{ ...user, wahoo: undefined }}
-        active={active}
-      />
+      <Canvas 
+        gameTime={gameTime} 
+        user={{ ...user, wahoo : undefined }} 
+        active={active} 
+        prestige={prestige}/>
+     
     </div>
   );
-};
-
-export default Game;
+}

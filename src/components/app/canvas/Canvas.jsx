@@ -37,6 +37,50 @@ const Canvas = (props) => {
     const context = canvas.getContext('2d');
     // let frameCount = 0;
     // let animationFrameId;
+    
+    //draw starts here
+    const render = () => {
+
+      //perhaps we can make implimentation to optionally increase frames per second
+      // frameCount++;
+      // draw(context, tester);
+      // draw(context, tester1);
+      drawMap(context);
+      drawUnlocked(context, props);  //function in canvas
+      // drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
+      drawClouds(context);
+    };
+    render();
+ 
+  }, [props.active]); 
+  
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    // let frameCount = 0;
+    // let animationFrameId;
+    
+    //draw starts here
+    const render = () => {
+
+      //perhaps we can make implimentation to optionally increase frames per second
+      // frameCount++;
+      // draw(context, tester);
+      // draw(context, tester1);
+      drawMap(context);
+      drawUnlocked(context, props);  //function in canvas utils,
+      // drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
+      drawClouds(context);
+    };
+    render();
+ 
+  }, [props.prestige]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    // let frameCount = 0;
+    // let animationFrameId;
     //Our draw came here
     const render = () => {
       // frameCount++;
@@ -47,7 +91,6 @@ const Canvas = (props) => {
     };
     // const animationFrameId = window.requestAnimationFrame(render);
     render();
-  //  console.log(render(), 'coordinates of each cloud thats been rendered');
   }, [props.user]);
   
   return (

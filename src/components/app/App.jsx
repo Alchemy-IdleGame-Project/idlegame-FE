@@ -5,7 +5,6 @@ import TitlePage from '../../containers/TitlePage';
 
 export default function App() {
   return (
-    <Router>
       <Switch>
         <Route
           path="/"
@@ -18,6 +17,5 @@ export default function App() {
           render={(routerProps) => <Game {...routerProps} />}
         />
       </Switch>
-    </Router>
   );
 }
