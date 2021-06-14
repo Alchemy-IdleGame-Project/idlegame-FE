@@ -91,7 +91,6 @@ const Canvas = (props) => {
     };
     // const animationFrameId = window.requestAnimationFrame(render);
     render();
-  //  console.log(render(), 'coordinates of each cloud thats been rendered');
   }, [props.user]);
   
   return (

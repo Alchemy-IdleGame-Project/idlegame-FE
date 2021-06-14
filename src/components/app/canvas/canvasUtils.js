@@ -23,7 +23,7 @@ export const drawClouds = (ctx, amount) => {
  
 
   
-// Create circular clipping region
+  // Create circular clipping region
 
   const radiusX = 5 + Math.random() * 50;
   const radiusY = 5 + Math.random() * 50;
@@ -156,25 +156,25 @@ export const drawUnlocked = (ctx, ps) => {
 export const convertedLayers = convertTiles(layers);
 
 const tester = convertedLayers[0];
-  const tester1 = convertedLayers[2];
-  const houseLayer = convertedLayers[3];
-  const lumberyardLayer = convertedLayers[4];
-  const windmillLayer = convertedLayers[5];
-  const mineLayer = convertedLayers[6];
-  const watermillLayer = convertedLayers[7];
-  const sawmillLayer = convertedLayers[8];
-  const farmLayer = convertedLayers[9];
-  const blacksmithLayer = convertedLayers[10];
-  const tavernLayer = convertedLayers[11];
-  const castleLayer = convertedLayers[12];
-  const roadHouseLayer = convertedLayers[13];
-  const roadLumberyardLayer = convertedLayers[14];
-  const roadWindmillLayer = convertedLayers[15];
-  const roadMineLayer = convertedLayers[16];
-  const roadWatermillLayer = convertedLayers[17];
-  const roadSawmillLayer = convertedLayers[18];
-  const roadFarmLayer = convertedLayers[19];
-  const roadBlacksmithLayer = convertedLayers[20];
-  const roadTavernLayer = convertedLayers[21];
-  const roadCastleLayer = convertedLayers[22];
+const tester1 = convertedLayers[2];
+const houseLayer = convertedLayers[3];
+const lumberyardLayer = convertedLayers[4];
+const windmillLayer = convertedLayers[5];
+const mineLayer = convertedLayers[6];
+const watermillLayer = convertedLayers[7];
+const sawmillLayer = convertedLayers[8];
+const farmLayer = convertedLayers[9];
+const blacksmithLayer = convertedLayers[10];
+const tavernLayer = convertedLayers[11];
+const castleLayer = convertedLayers[12];
+const roadHouseLayer = convertedLayers[13];
+const roadLumberyardLayer = convertedLayers[14];
+const roadWindmillLayer = convertedLayers[15];
+const roadMineLayer = convertedLayers[16];
+const roadWatermillLayer = convertedLayers[17];
+const roadSawmillLayer = convertedLayers[18];
+const roadFarmLayer = convertedLayers[19];
+const roadBlacksmithLayer = convertedLayers[20];
+const roadTavernLayer = convertedLayers[21];
+const roadCastleLayer = convertedLayers[22];
   
