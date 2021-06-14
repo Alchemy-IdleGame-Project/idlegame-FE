@@ -1,6 +1,20 @@
 import React from 'react';
+import background from '../../assets/titlebackground.png';
 
 const TitlePage = () => {
-  return <div>IDLE ISLE</div>;
+  const titleStyle = {
+    backgroundImage: `url(${background})`,
+    backgroundRepeat: 'no-repeat',
+    display: 'flex',
+    overflow: 'hidden',
+    height: '3000px',
+    width: '3000px',
+
+  };
+  return (
+    <div style={titleStyle}>
+    </div>
+  );
 };
+
 export default TitlePage;
