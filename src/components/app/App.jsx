@@ -31,7 +31,8 @@ export default function App() {
     farm: false,
     blacksmith: false,
     tavern: false,
-    castle: false
+    castle: false,
+    wahoo: '6785099'
   });
 
   const goldRequired = {
@@ -68,8 +69,8 @@ export default function App() {
 
   function gameClock(){
     setGameTime((prevTime) => {
-      console.log(prevTime++);
-      return prevTime++;
+      prevTime++;
+      return prevTime;
     });
   }
 
@@ -174,7 +175,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.windmill);
-        setGoldPerClick((prevGold) => prevGold + (goldRequired.windmill * .1));
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.windmill * .01));
         break;
       }
       case 'mine': {
@@ -184,7 +185,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.mine);
-        setGoldPerClick((prevGold) => prevGold + (goldRequired.mine * .1));
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.mine * .01));
         break;
       }
       case 'watermill': {
@@ -194,7 +195,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.watermill);
-        setGoldPerClick((prevGold) => prevGold + (goldRequired.watermill * .1));
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.watermill * .01));
         break;
       }
       case 'sawmill': {
@@ -204,7 +205,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.sawmill);
-        setGoldPerClick((prevGold) => prevGold + (goldRequired.sawmill * .1));
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.sawmill * .01));
         break;
       }
       case 'farm': {
@@ -214,7 +215,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.farm);
-        setGoldPerClick((prevGold) => prevGold + (goldRequired.farm * .1));
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.farm * .01));
         break;
       }
       case 'blacksmith': {
@@ -224,7 +225,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.blacksmith);
-        setGoldPerClick((prevGold) => prevGold + (goldRequired.blacksmith * .1));
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.blacksmith * .01));
         break;
       }
       case 'tavern': {
@@ -234,7 +235,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.tavern);
-        setGoldPerClick((prevGold) => prevGold + (goldRequired.tavern * .1));
+        setGoldPerClick((prevGold) => prevGold + (goldRequired.tavern * .01));
         break;
       }
       case 'castle': {
@@ -250,8 +251,11 @@ export default function App() {
     }
   }
 
+console.log(user);
   return (
+    
     <div className={style.tester}>
+     
       <h1>Coolest Idle Game</h1><br/>
       <hr></hr>
       <p>
@@ -273,7 +277,9 @@ export default function App() {
         user={user}
       />
       <br/>
-      <Canvas user={user} active={active}/>
+      {/* experimenting with being able to have more properties in the user but not passing properties that arent necessary */}
+      <Canvas gameTime={gameTime} user={ { ...user, wahoo : undefined } } active={active}/>
+     
     </div>
   );
 }
