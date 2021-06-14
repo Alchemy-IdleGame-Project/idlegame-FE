@@ -8,6 +8,7 @@ import style from '../components/app/style.css';
 import Prestige from '../components/app/prestige/Prestige';
 import Gold from '../components/app/hud/Gold';
 import Clicks from '../components/app/hud/Clicks';
+import UserControls from '../components/app/controls/UserControls'
 
 export default function App() {
   const [gold, setGold] = useState(0);
@@ -291,34 +292,40 @@ export default function App() {
   delete user1.wahoo;
 
   return (
-    <div className={style.tester}>
-      <h1>Coolest Idle Game</h1>
-      <br />
-      <hr></hr>
-      <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
-      <Clock gameTime={gameTime} />
-      <Gold gold={gold} />
-      <Clicks clicks={numClicks} />
-      <GameControls 
-        handleMineClick={mineGold}
-        handleClicks={addToClicks}
-        // handleBuildingClick={addgoldPerSecond}
-        // handleSmithSecond={addGoldPerSecond}
-        gold={gold}
-        revealPercent={revealPercent}
-        goldRequired={goldRequired}
-        clicks={numClicks}
-        unlockBuilding={unlockBuilding}
-        user={user}
-      />
-      <br />
+    <div >
+      <div className={style.tester}>
+        <h1>Idle Isle</h1>
+        <br />
+        <hr></hr>
+        <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
+        <UserControls handleMineClick={mineGold}
+          handleClicks={addToClicks} />
+        <Clock gameTime={gameTime} />
+        <Gold gold={gold} />
+        <Clicks clicks={numClicks} />
+      
+        <br />
+
+      </div>
       {/* experimenting with being able to have more properties in the user but not passing properties that arent necessary */}
       <Canvas 
         gameTime={gameTime} 
         user={{ ...user, wahoo : undefined }} 
         active={active} 
-        prestige={prestige}/>
-     
+        prestige={prestige}
+      />
+      <div className={style.bigbam}>
+        <GameControls 
+          handleMineClick={mineGold}
+          handleClicks={addToClicks}
+          gold={gold}
+          revealPercent={revealPercent}
+          goldRequired={goldRequired}
+          clicks={numClicks}
+          unlockBuilding={unlockBuilding}
+          user={user}
+        />
+      </div>
     </div>
   );
 }
