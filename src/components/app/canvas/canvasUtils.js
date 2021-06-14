@@ -10,6 +10,45 @@ const colTileCount = 50; // The number of tiles in a column of our background
 const imageNumTiles = 8; // The number of tiles per row in the tileset image
 const imageNumTiles2 = 16; // The number of tiles per row in the tileset image
 
+export const drawClouds = (ctx, amount) => {
+  ctx.strokeStyle = 'rgba(255,255,255,.5)';
+  const x = 5 + Math.random() * 800;
+  const y = amount * Math.random()  ;
+
+  const a = amount * Math.random()  ;
+  const b = amount * Math.random()  ;
+
+  const l = amount * Math.random()  ;
+  const m = amount * Math.random()  ;
+ 
+
+  
+// Create circular clipping region
+
+  const radiusX = 5 + Math.random() * 50;
+  const radiusY = 5 + Math.random() * 50;
+  const width = Math.random() * 40;
+  const rotation = 5;
+  const startAngle = 45;
+  
+  ctx.fillStyle = 'rgba(255,255,255,.5)';
+  ctx.beginPath();
+  ctx.ellipse(x, y, radiusX, radiusY, Math.PI * .25, 0, Math.PI * 1.5);
+  ctx.stroke();
+  ctx.ellipse(a, b, 100, 200, rotation, startAngle, false);
+  ctx.ellipse(l, m, 100, 200, rotation, startAngle, false);
+  // ctx.fillRect(25, 25, 100, 100);
+  // ctx.clearRect(45, 45, 60, 60);
+  // ctx.strokeRect(x, y, width, width);
+  // ctx.strokeRect(x, y, width, width);
+  // ctx.strokeRect(x, y, width, width);
+  // ctx.strokeRect(x, y, width, width);
+  // ctx.strokeRect(x, y, width, width);
+  // ctx.strokeRect(x, y, width, width);
+  
+  return { x, y, a, b, l, m }; 
+};
+
 const draw = (ctx, array) => {
   
   for(let r = 0; r < rowTileCount; r++) {

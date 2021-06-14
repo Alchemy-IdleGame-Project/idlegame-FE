@@ -2,8 +2,7 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
-import {convertedLayers, drawUnlocked, drawMap} from './canvasUtils';
-
+import { drawUnlocked, drawMap, drawClouds } from './canvasUtils';
 
 
 const Canvas = (props) => {
@@ -11,26 +10,26 @@ const Canvas = (props) => {
   // const { layers } = require('../../../../assets/MaptheSecond.json');
   // const convertedLayers = convertTiles(layers);
   //layers needed to be drawn regardless of user status
-  const tester = convertedLayers[0];
-  const tester1 = convertedLayers[2];
-
+ 
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     // let frameCount = 0;
     // let animationFrameId;
     
-
     //draw starts here
     const render = () => {
+
+      //perhaps we can make implimentation to optionally increase frames per second
       // frameCount++;
       // draw(context, tester);
       // draw(context, tester1);
       drawMap(context);
-      drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
+      // drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
+      drawClouds(context);
     };
     render();
-
+ 
   }, [props.active]);
 
   useEffect(() => {
@@ -42,11 +41,13 @@ const Canvas = (props) => {
     const render = () => {
       // frameCount++;
       drawUnlocked(context, props);  //function in canvas utils, renders each layer that is unlocked by the user
+      const cloudCoords = drawClouds(context, props.gameTime);
       // eslint-disable-next-line no-unused-vars
+      return cloudCoords;
     };
     // const animationFrameId = window.requestAnimationFrame(render);
     render();
-   
+  //  console.log(render(), 'coordinates of each cloud thats been rendered');
   }, [props.user]);
   
   return (
@@ -61,19 +62,8 @@ const Canvas = (props) => {
 };
 
 Canvas.propTypes = {
-  user: PropTypes.shape({
-    house: PropTypes.bool.isRequired,
-    lumberyard: PropTypes.bool.isRequired,
-    windmill: PropTypes.bool.isRequired,
-    mine: PropTypes.bool.isRequired,
-    watermill: PropTypes.bool.isRequired,
-    sawmill: PropTypes.bool.isRequired,
-    farm: PropTypes.bool.isRequired,
-    blacksmith: PropTypes.bool.isRequired,
-    tavern: PropTypes.bool.isRequired,
-    castle: PropTypes.bool.isRequired,
-  }).isRequired,
-  active: PropTypes.bool.isRequired
+  user: PropTypes.shape({}).isRequired,
+  gameTime: PropTypes.number.isRequired
 };
 
 export default Canvas;
