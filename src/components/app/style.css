@@ -37,7 +37,7 @@
 
 .something .hovertest{
 visibility: hidden;
-  width: 120px;
+  width: 128px;
   background-color: black;
   color: #fff;
   position: absolute;
@@ -47,19 +47,6 @@ visibility: hidden;
 .something:hover .hovertest {
     visibility: visible;
 }
-
-.something .hovertest1{
-    visibility: hidden;
-      width: 120px;
-      background-color: black;
-      color: #fff;
-      position: absolute;
-      z-index: 1;
-    }
-    
-    .something:hover .hovertest1 {
-        visibility: visible;
-    }
 
 .bigButton{
     color: white;
