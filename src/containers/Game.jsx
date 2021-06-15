@@ -9,11 +9,11 @@ import Prestige from '../components/app/prestige/Prestige';
 import Gold from '../components/app/hud/Gold';
 import Clicks from '../components/app/hud/Clicks';
 import UserControls from '../components/app/controls/UserControls';
-// import Detriment from '../components/app/detriment/Detriment';
+import Detriment from '../components/app/detriment/Detriment';
 
 export default function App() {
   const [gold, setGold] = useState(0);
-  const [goldPerSecond, setgoldPerSecond] = useState(1);
+  const [goldPerSecond, setGoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
   const [numClicks, setNumClicks] = useState(0);
   const [gameTime, setGameTime] = useState(0);
@@ -75,49 +75,190 @@ export default function App() {
   function detrimentRoll(){
     // console.log(detriment, ' detriment object');
     Object.keys(detriment).map(item => {
-      // console.log([item].value);
+      // console.log(detriment);
+      // console.log(item);
       if (detriment[item].unlocked && !detriment[item].active){
-        //if detr is active we keep waiting until timeout and set to not active, if its not active we proceed and roll to maybe set active
-        // if (!detriment[item].active){
+        const roll = Math.ceil(Math.random() * 10);
+        if (roll >= 8){
+          // console.log(detriment[item]);  
+          detriment[item].active = true;
           switch (item) {
-            case 'termites' : {
-              const roll = Math.ceil(Math.random() * 10);
-              if (roll > 7.9){
-                setDetriment({
-                  ...detriment,
-                  [item] :{
-                    ...detriment[item],
-                    active : true
-                  }
-                });
-                setgoldPerSecond(2);
-                setGold(prevGold => {
-                  prevGold - 100;
-                  return prevGold;
-                });
-                setActiveTime(gameTime);
-                // setTimeout(setgoldPerSecond(prevGoldPerSecond => {
-                  //   prevGoldPerSecond = prevGoldPerSecond + 1;
-                  //   return prevGoldPerSecond;
-                  // }), 5000);
-                }
-                // console.log(goldPerSecond, 'should be two now');
+            case 'termites': {
+              setGoldPerSecond(prevGold => {
+                prevGold--;
+                return prevGold;
+              });
+              setActiveTime(gameTime + 5);
+              console.log(item, 'insided of roll case', goldPerSecond, 'this is the gold per second');
+              break;
+            }
+            case 'failedCrops': {
+              setGoldPerSecond(prevGold => {
+                prevGold--;
+                return prevGold;
+              });
+              setActiveTime(gameTime + 5);
+              console.log(item, 'insided of roll case', goldPerSecond, 'this is the gold per second');
+              break;
+            }
+            case 'caveIn': {
+              setGoldPerSecond(prevGold => {
+                prevGold--;
+                return prevGold;
+              });
+              setActiveTime(gameTime + 5);
+              console.log(item, 'insided of roll case', goldPerSecond, 'this is the gold per second');
+              break;
+            }
+            case 'flood': {
+              setGold(prevGold => {
+                prevGold - 10000;
+                return prevGold;
+              });
+              setActiveTime(gameTime + 5);
+              console.log(item, 'insided of roll case', goldPerSecond, 'this is the gold per second');
+              break;
+            }
+            case 'osha': {
+              setGoldPerSecond(prevGold => {
+                prevGold--;
+                return prevGold;
+              });
+              setActiveTime(gameTime + 5);
+              console.log(item, 'insided of roll case', goldPerSecond, 'this is the gold per second');
+              break;
+            }
+            case 'peta': {
+              setGoldPerSecond(prevGold => {
+                prevGold--;
+                return prevGold;
+              });
+              setActiveTime(gameTime + 5);
+              console.log(item, 'insided of roll case', goldPerSecond, 'this is the gold per second');
+              break;
+            }
+            case 'bandits': {
+              setGoldPerSecond(prevGold => {
+                prevGold--;
+                return prevGold;
+              });
+              setActiveTime(gameTime + 5);
+              console.log(item, 'insided of roll case', goldPerSecond, 'this is the gold per second');
+              break;
+            }
+            case 'arson': {
+              setGoldPerSecond(prevGold => {
+                prevGold--;
+                return prevGold;
+              });
+              setActiveTime(gameTime + 5);
+              console.log(item, 'insided of roll case', goldPerSecond, 'this is the gold per second');
+              break;
             }
           }
-        // }
-      } else if (detriment[item].active && gameTime - activeTime >= 5) {
-        console.log(...item);
-        setDetriment({
-          ...detriment,
-          item:{
-            ...[item],
-            active: false
+        } else {
+          console.log('rolled less than an 8');
+        }
+      } else if (detriment[item].unlocked && detriment[item].active && activeTime === gameTime){
+        switch (item){
+          case 'termites' :{
+            console.log('something');
+            setGoldPerSecond(prevGold => {
+              prevGold++;
+              return prevGold;
+            });
+            setDetriment({
+              ...detriment,
+              termites :  {
+                active: false,
+                unlocked: true
+              }
+            });
+            break;
           }
-        });
+          case 'failedCrops' :{
+            console.log('something');
+            setGoldPerSecond(prevGold => {
+              prevGold++;
+              return prevGold;
+            });
+            setDetriment({
+              ...detriment,
+              failedCrops :  {
+                active: false,
+                unlocked: true
+              }
+            });
+            break;
+          }
+        }
+        return;
       }
     });
   }
   
+
+  if (gameTime % 5 === 0){
+    // const currentTime = gameTime;
+    detrimentRoll();
+   
+    if (gameTime - activeTime >= 5){
+      // console.log(activeTime, 'this is the active time');
+      Object.keys(detriment).map(item => {
+        switch(item){
+          case 'termites' :{
+            setGoldPerSecond(3);
+            break;
+          }
+          case 'failedCrops' :{
+            setGoldPerSecond(3);
+            break;
+          }
+          case 'caveIn' :{
+            setGoldPerSecond(3);
+            break;
+          }
+          case 'flood' :{
+            setGoldPerSecond(3);
+            break;
+          }
+          case 'osha' :{
+            setGoldPerSecond(3);
+            break;
+          }
+          case 'peta' :{
+            setGoldPerSecond(3);
+            break;
+          }
+          case 'bandits' :{
+            setGoldPerSecond(3);
+            break;
+          }
+          case 'arson' :{
+            setGoldPerSecond(3);
+            break;
+          }
+          default : {
+            break;
+          }
+          
+        }
+        if (detriment[item].active){
+          setDetriment({
+            ...detriment,
+            [item] :{
+              ...detriment[item],
+              active : false
+            }
+          });
+        }
+      });
+     
+    }
+  } else {
+    // console.log('modulus not 0');
+  }
+
 
   function mineGold(prestige) {
     
@@ -145,39 +286,7 @@ export default function App() {
     });
   }
 
-  if (gameTime % 5 === 0){
-    // const currentTime = gameTime;
-    detrimentRoll();
-    
-    // console.log(gameTime);
-    // console.log('fires every 3 seconds');
-    if (gameTime - activeTime >= 5){
-      // console.log(activeTime, 'this is the active time');
-      Object.keys(detriment).map(item => {
-        console.log(item, 'iofphdgsuidfgn');
-        switch(item){
-          case 'termites' :{
-            setgoldPerSecond(3);
-          }
-            if (detriment[item].active){
-              setDetriment({
-                ...detriment,
-                [item] :{
-                  ...detriment[item],
-                  active : false
-                }
-              });
   
-            }
-
-        }
-      });
-     
-    }
-  } else {
-    console.log('modulus not 0');
-  }
-
   
   //starts the mine gold per second loop on load
   useInterval(mineGold, 1000);
@@ -195,7 +304,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.lumberyard);
-        setgoldPerSecond(
+        setGoldPerSecond(
           (prevGold) => prevGold + goldRequired.lumberyard * 0.1 - 0.5
         );
         setDetriment({
@@ -214,9 +323,11 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.windmill);
-        setgoldPerSecond((prevGold) => prevGold + goldRequired.windmill * 0.06);
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.windmill * 0.06);
         setDetriment({
+          ...detriment,
           failedCrops : {
+            active: false,
             unlocked: true
           }
         });
@@ -229,9 +340,11 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.mine);
-        setgoldPerSecond((prevGold) => prevGold + goldRequired.mine * 0.01);
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.mine * 0.01);
         setDetriment({
+          ...detriment,
           caveIn : {
+            active: false,
             unlocked: true
           }
         });
@@ -244,11 +357,13 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.watermill);
-        setgoldPerSecond(
+        setGoldPerSecond(
           (prevGold) => prevGold + goldRequired.watermill * 0.003
         );
         setDetriment({
+          ...detriment,
           flood : {
+            active: false,
             unlocked: true
           }
         });
@@ -261,9 +376,11 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.sawmill);
-        setgoldPerSecond((prevGold) => prevGold + goldRequired.sawmill * 0.001);
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.sawmill * 0.001);
         setDetriment({
+          ...detriment,
           osha : {
+            active: false,
             unlocked: true
           }
         });
@@ -276,9 +393,11 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.farm);
-        setgoldPerSecond((prevGold) => prevGold + goldRequired.farm * 0.002);
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.farm * 0.002);
         setDetriment({
+          ...detriment,
           peta : {
+            active: false,
             unlocked: true
           }
         });
@@ -291,11 +410,13 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.blacksmith);
-        setgoldPerSecond(
+        setGoldPerSecond(
           (prevGold) => prevGold + goldRequired.blacksmith * 0.001
         );
         setDetriment({
+          ...detriment,
           bandits : {
+            active: false,
             unlocked: true
           }
         });
@@ -308,9 +429,11 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.tavern);
-        setgoldPerSecond((prevGold) => prevGold + goldRequired.tavern * 0.002);
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.tavern * 0.002);
         setDetriment({
+          ...detriment,
           arson : {
+            active: false,
             unlocked: true
           }
         });
@@ -323,7 +446,7 @@ export default function App() {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.castle);
-        setgoldPerSecond((prevGold) => prevGold + goldRequired.castle * 0.1);
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.castle * 0.1);
         break;
       }
     }
@@ -373,7 +496,9 @@ export default function App() {
         <br />
 
       </div>
-      {/* <Detriment detriment={detriment}/> */}
+
+      <Detriment detriment={detriment}/>
+
       {/* experimenting with being able to have more properties in the user but not passing properties that arent necessary */}
       <Canvas 
         gameTime={gameTime} 
