@@ -67,16 +67,15 @@ const Canvas = (props) => {
     const region = [
       { name: 'house', x: 369, y: 273, w: 32, h: 32 },
       { name: 'lumberyard', x: 499, y: 321, w: 32, h: 32 },
-      { name: 'mine', x: 208, y: 274, w: 32, h: 32 },
+      { name: 'mine', x: 208, y: 272, w: 32, h: 32 },
       { name: 'watermill', x: 400, y: 416, w: 32, h: 32 },
-      { name: 'windmill', x: 406, y: 175, w: 32, h: 32 },
-      { name: 'sawmill', x: 464, y: 324, w: 32, h: 32 },
+      { name: 'windmill', x: 400, y: 175, w: 32, h: 32 },
+      { name: 'sawmill', x: 464, y: 320, w: 32, h: 32 },
       { name: 'farm', x: 448, y: 207, w: 32, h: 32 },
-      { name: 'blacksmith', x: 243, y: 305, w: 32, h: 32 },
-      { name: 'tavern', x: 304, y: 391, w: 32, h: 32 },
-      { name: 'castle', x: 306, y: 208, w: 32, h: 32 },
+      { name: 'blacksmith', x: 240, y: 305, w: 32, h: 32 },
+      { name: 'tavern', x: 304, y: 384, w: 32, h: 32 },
+      { name: 'castle', x: 304, y: 208, w: 32, h: 32 },
       { name: 'tree', x: 332, y: 333, w: 32, h: 32 },
-
     ];
     const building = {};
 
@@ -85,7 +84,7 @@ const Canvas = (props) => {
       user.map((item) => {
         if (props.user[item] === true) {
           //  `road${firstToUpper(item)}Layer`);
-          buildingInfo = `../../../../assets/${item}-info.png`;
+          buildingInfo = `../../../../assets/info-cards/${item}-info.png`;
           for (let i = 0; i < region.length; i++) {
             if (region[i].name === item) {
               if (region[i].name === 'house') break;
