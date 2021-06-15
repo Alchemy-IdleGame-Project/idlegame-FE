@@ -32,11 +32,21 @@ export const drawClouds = (ctx, amount) => {
   const startAngle = 45;
   
   ctx.fillStyle = 'rgba(255,255,255,.5)';
-  ctx.beginPath();
-  ctx.ellipse(x, y, radiusX, radiusY, Math.PI * .25, 0, Math.PI * 1.5);
+  for(let i = x; i < 800; i++){
+    ctx.beginPath();
+    ctx.arc(x, y, radiusX, 0, 2 * Math.PI, false);
+    ctx.fillStyle = 'rgba()';
+    ctx.fill();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = '#000000';
+    // ctx.ellipse(x, y, radiusX, radiusY, Math.PI * .25, 0, Math.PI * 1.5);
+    
+  }
   ctx.stroke();
-  ctx.ellipse(a, b, 100, 200, rotation, startAngle, false);
-  ctx.ellipse(l, m, 100, 200, rotation, startAngle, false);
+  // ctx.ellipse(a, b, 100, 200, rotation, startAngle, false);
+  // ctx.ellipse(l, m, 100, 200, rotation, startAngle, false);
+
+
   // ctx.fillRect(25, 25, 100, 100);
   // ctx.clearRect(45, 45, 60, 60);
   // ctx.strokeRect(x, y, width, width);
