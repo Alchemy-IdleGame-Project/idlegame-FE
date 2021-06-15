@@ -13,14 +13,13 @@ const imageNumTiles2 = 16; // The number of tiles per row in the tileset image
 export const drawClouds = (ctx, amount) => {
   ctx.strokeStyle = 'rgba(255,255,255,.5)';
   const x = 5 + Math.random() * 800;
-  const y = amount * Math.random()  ;
+  const y = amount * Math.random();
 
-  const a = amount * Math.random()  ;
-  const b = amount * Math.random()  ;
+  const a = amount * Math.random();
+  const b = amount * Math.random();
 
-  const l = amount * Math.random()  ;
-  const m = amount * Math.random()  ;
- 
+  const l = amount * Math.random();
+  const m = amount * Math.random();
 
   
   // Create circular clipping region
@@ -30,9 +29,9 @@ export const drawClouds = (ctx, amount) => {
   const width = Math.random() * 40;
   const rotation = 5;
   const startAngle = 45;
-  
+
   ctx.fillStyle = 'rgba(255,255,255,.5)';
-  for(let i = x; i < 800; i++){
+  for (let i = x; i < 800; i++){
     ctx.beginPath();
     ctx.arc(x, y, radiusX, 0, 2 * Math.PI, false);
     ctx.fillStyle = 'rgba()';
@@ -55,14 +54,13 @@ export const drawClouds = (ctx, amount) => {
   // ctx.strokeRect(x, y, width, width);
   // ctx.strokeRect(x, y, width, width);
   // ctx.strokeRect(x, y, width, width);
-  
-  return { x, y, a, b, l, m }; 
+
+  return { x, y, a, b, l, m };
 };
 
 const draw = (ctx, array) => {
-  
-  for(let r = 0; r < rowTileCount; r++) {
-    for(let c = 0; c < colTileCount; c++) {
+  for (let r = 0; r < rowTileCount; r++) {
+    for (let c = 0; c < colTileCount; c++) {
       const tile = array[r][c];
       const tileRow = (tile / imageNumTiles) | 0; // Bitwise OR operation
       const tileCol = tile % imageNumTiles | 0;
@@ -79,13 +77,11 @@ const draw = (ctx, array) => {
       );
     }
   }
- 
 };
 
 const draw2 = (ctx, array) => {
- 
-  for(let r = 0; r < rowTileCount; r++) {
-    for(let c = 0; c < colTileCount; c++) {
+  for (let r = 0; r < rowTileCount; r++) {
+    for (let c = 0; c < colTileCount; c++) {
       const tile = array[r][c];
       const tileRow = (tile / imageNumTiles2) | 0; // Bitwise OR operation
       const tileCol = tile % imageNumTiles2 | 0;
@@ -102,7 +98,6 @@ const draw2 = (ctx, array) => {
       );
     }
   }
-  
 };
 
 export const drawMap = (ctx) => {
@@ -110,29 +105,30 @@ export const drawMap = (ctx) => {
   draw(ctx, tester1);
 };
 
-
 const spliceyBoi = (array) => {
   const finalArr = [],
     size = 50;
-  while(array.length > 0) finalArr.push(array.splice(0, size));
+  while (array.length > 0) finalArr.push(array.splice(0, size));
   return finalArr;
 };
 
 const convertTiles = (array) => {
-  for(let i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
     const object = array[i];
-    if(object.tileset === 'SP-Overworld.png'){
-      for(let i = 0; i < object.data.length; i++){
-        const a = (Math.trunc(object.data[i]));
-        const b = ((isNaN((object.data[i] + '').split('.')[1]) * 8) ? 0 :
-          (((object.data[i] + '').split('.')[1]) * 8));
+    if (object.tileset === 'SP-Overworld.png') {
+      for (let i = 0; i < object.data.length; i++) {
+        const a = Math.trunc(object.data[i]);
+        const b =
+          isNaN((object.data[i] + '').split('.')[1]) * 8
+            ? 0
+            : (object.data[i] + '').split('.')[1] * 8;
         const tile = a + b;
         object.data[i] = tile;
       }
     } else {
-      for(let i = 0; i < object.data.length; i++){
-        const a = (Math.trunc(object.data[i]));
-        const b = ((object.data[i] + '').split('.')[1]) * 16;
+      for (let i = 0; i < object.data.length; i++) {
+        const a = Math.trunc(object.data[i]);
+        const b = (object.data[i] + '').split('.')[1] * 16;
         const tile = a + b;
         object.data[i] = tile;
       }
@@ -142,12 +138,11 @@ const convertTiles = (array) => {
   return array;
 };
 
-function firstToUpper(string){
+function firstToUpper(string) {
   const a = string[0].toUpperCase();
   const b = string.substring(1, string.length);
   return a + b;
 }
-
 
 export const drawUnlocked = (ctx, ps) => {
   const user = Object.keys(ps.user);
@@ -187,4 +182,3 @@ const roadFarmLayer = convertedLayers[19];
 const roadBlacksmithLayer = convertedLayers[20];
 const roadTavernLayer = convertedLayers[21];
 const roadCastleLayer = convertedLayers[22];
-  

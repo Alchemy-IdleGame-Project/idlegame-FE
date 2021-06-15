@@ -1,9 +1,10 @@
+/* eslint-disable no-inner-declarations */
 /* eslint-disable max-len */
+
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
 import { drawUnlocked, drawMap, drawClouds } from './canvasUtils';
-
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);
@@ -18,69 +19,6 @@ const Canvas = (props) => {
     // let frameCount = 0;
     // let animationFrameId;
     
-    
-
-    const ctx = canvas.getContext("2d");
-    const region = {x: 369, y: 263, w: 100, h: 100};
-ctx.fillStyle = "#79f";
-ctx.fillRect(region.x, region.y, region.w, region.h);
-// create a tool-tip instance:
-var t1 = new ToolTip(canvas, region, "This is a tool-tip", 150, 3000);
-// The Tool-Tip instance:
-function ToolTip(canvas, region, text, width, timeout) {
-  var me = this,                                // self-reference for event handlers
-      div = document.createElement("div"),      // the tool-tip div
-      parent = canvas.parentNode,               // parent node for canvas
-      visible = false;                          // current status
-  // set some initial styles, can be replaced by class-name etc.
-  div.style.cssText = "position:fixed;padding:7px;background:gold;pointer-events:none;width:" + width + "px";
-  div.innerHTML = text;
-  // show the tool-tip
-  this.show = function(pos) {
-    if (!visible) {                             // ignore if already shown (or reset time)
-      visible = true;                           // lock so it's only shown once
-      setDivPos(pos);                           // set position
-      parent.appendChild(div);                  // add to parent of canvas
-      setTimeout(hide, timeout);                // timeout for hide
-    }
-  }
-  // hide the tool-tip
-  function hide() {
-    visible = false;                            // hide it after timeout
-    parent.removeChild(div);                    // remove from DOM
-  }
-  // check mouse position, add limits as wanted... just for example:
-  function check(e) {
-    var pos = getPos(e),
-        posAbs = {x: e.clientX, y: e.clientY};  // div is fixed, so use clientX/Y
-    if (!visible &&
-        pos.x >= region.x && pos.x < region.x + region.w &&
-        pos.y >= region.y && pos.y < region.y + region.h) {
-      me.show(posAbs);                          // show tool-tip at this pos
-    }
-    else setDivPos(posAbs);                     // otherwise, update position
-  }
-  // get mouse position relative to canvas
-  function getPos(e) {
-    var r = canvas.getBoundingClientRect();
-    return {x: e.clientX - r.left, y: e.clientY - r.top}
-  }
-  // update and adjust div position if needed (anchor to a different corner etc.)
-  function setDivPos(pos) {
-    if (visible){
-      if (pos.x < 0) pos.x = 0;
-      if (pos.y < 0) pos.y = 0;
-      // other bound checks here
-      div.style.left = pos.x + "px";
-      div.style.top = pos.y + "px";
-    }
-  }
-  // we need to use shared event handlers:
-  canvas.addEventListener("mousemove", check);
-  canvas.addEventListener("click", check);
-}
-
-
     //draw starts here
     const render = () => {
 
@@ -101,10 +39,9 @@ function ToolTip(canvas, region, text, width, timeout) {
     const context = canvas.getContext('2d');
     // let frameCount = 0;
     // let animationFrameId;
-    
+
     //draw starts here
     const render = () => {
-
       //perhaps we can make implimentation to optionally increase frames per second
       // frameCount++;
       // draw(context, tester);
@@ -123,18 +60,123 @@ function ToolTip(canvas, region, text, width, timeout) {
     const context = canvas.getContext('2d');
     // let frameCount = 0;
     // let animationFrameId;
+
+    const buildingInfo = '';
+    // var canvas = document.querySelector("canvas"),
+    const ctx = canvas.getContext('2d');
+    const region = [
+      { name: 'house', x: 369, y: 273, w: 32, h: 32 },
+      { name: 'lumberyard', x: 499, y: 321, w: 32, h: 32 },
+    ];
+    const building = {};
+
+    function unlockToolTip(region, buildingInfo, building) {
+      const user = Object.keys(props.user);
+      user.map((item) => {
+        if (props.user[item] === true) {
+          //  `road${firstToUpper(item)}Layer`);
+          buildingInfo = `../../../../assets/${item}-info.png`;
+          for (let i = 0; i < region.length; i++) {
+            if (region[i].name === item) {
+              if (region[i].name === 'house') break;
+              building = region[i];
+              ctx.fillStyle = 'rgba(255, 255, 255, 0)';
+              ctx.fillRect(building.x, building.y, building.w, building.h);
+
+              // create a tool-tip instance:
+              const t1 = new ToolTip(canvas, building, buildingInfo, 150, 2500);
+              // The Tool-Tip instance:
+              function ToolTip(canvas, building, img, width, timeout) {
+                const me = this, // self-reference for event handlers
+                  div = document.createElement('div'), // the tool-tip div
+                  parent = canvas.parentNode; // parent node for canvas
+                let visible = false; // current status
+
+                // set some initial styles, can be replaced by class-name etc.
+                div.style.cssText =
+                  'position:fixed;padding:7px;pointer-events:none;width:' +
+                  width +
+                  'px';
+                div.innerHTML = `<img src=${img} />`;
+
+                // show the tool-tip
+                this.show = function(pos) {
+                  if (!visible) {
+                    // ctx.addEventListener('mouseover', () => {
+                    // }
+                    // );
+                    // ignore if already shown (or reset time)
+
+                    visible = true; // lock so it's only shown once
+                    setDivPos(pos); // set position
+                    parent.appendChild(div); // add to parent of canvas
+                    setTimeout(hide, timeout); // timeout for hide
+                  }
+                };
+
+                // hide the tool-tip
+                function hide() {
+                  visible = false; // hide it after timeout
+                  parent.removeChild(div); // remove from DOM
+                }
+
+                // check mouse position, add limits as wanted... just for example:
+                function check(e) {
+                  const pos = getPos(e),
+                    posAbs = { x: e.clientX, y: e.clientY }; // div is fixed, so use clientX/Y
+                  if (
+                    !visible &&
+                    pos.x >= building.x &&
+                    pos.x < building.x + building.w &&
+                    pos.y >= building.y &&
+                    pos.y < building.y + building.h
+                  ) {
+                    me.show(posAbs); // show tool-tip at this pos
+                  } else setDivPos(posAbs); // otherwise, update position
+                }
+
+                // get mouse position relative to canvas
+                function getPos(e) {
+                  const r = canvas.getBoundingClientRect();
+                  return { x: e.clientX - r.left, y: e.clientY - r.top };
+                }
+
+                // update and adjust div position if needed (anchor to a different corner etc.)
+                function setDivPos(pos) {
+                  if (visible) {
+                    if (pos.x < 0) pos.x = 0;
+                    if (pos.y < 0) pos.y = 0;
+                    // other bound checks here
+                    div.style.left = pos.x + 'px';
+                    div.style.top = pos.y + 'px';
+                  }
+                }
+
+                // we need to use shared event handlers:
+                canvas.addEventListener('mousemove', check);
+                canvas.addEventListener('click', check);
+              }
+            }
+          }
+        }
+      });
+    }
+
     //Our draw came here
     const render = () => {
       // frameCount++;
-      drawUnlocked(context, props);  //function in canvas utils, renders each layer that is unlocked by the user
-      // const cloudCoords = drawClouds(context, props.gameTime);
+      drawUnlocked(context, props); //function in canvas utils, renders each layer that is unlocked by the user
+      unlockToolTip(region, buildingInfo, building);
+
+      // const cloudCoords = drawClouds(context, props.gametime);
       // eslint-disable-next-line no-unused-vars
       // return cloudCoords;
     };
     // const animationFrameId = window.requestAnimationFrame(render);
     render();
+    //   render(), 'coordinates of each cloud thats been rendered');
   }, [props.user]);
-  
+
   return (
     <canvas
       className={style.canvas}
