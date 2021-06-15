@@ -42,7 +42,7 @@ const GameControls = ({
           >
             Purchase Lumberyard ({`${goldRequired.lumberyard}`}g)
           </button>
-          <img className={style.hovertest} src="../../../../assets/test-border.png" alt="Lumberyard" /> 
+          <img className={style.hovertest} src="../../../../assets/lumberyard-info.png" alt="Lumberyard" /> 
         </div> : ''
     }
 
@@ -59,11 +59,6 @@ const GameControls = ({
             disabled={((gold < goldRequired.mine || user.mine) ? true : false)}>Purchase Mine ({`${goldRequired.mine}`}g)</button>
           <span className={style.hovertest1}>+5 gold/sec</span> 
         </div> : ''
-    }
-    {
-      (gold > (goldRequired.mine * revealPercent)) ?
-        <button className={(gold < goldRequired.mine) ? style.almost : ''} value="mine" onClick={unlockBuilding} 
-          disabled={((gold < goldRequired.mine || user.mine) ? true : false)}>Purchase Mine ({`${goldRequired.mine}`}g)</button> : ''
     }
     {
       (gold > (goldRequired.watermill * revealPercent)) ?
