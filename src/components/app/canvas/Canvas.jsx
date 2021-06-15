@@ -11,7 +11,49 @@ const Canvas = (props) => {
   // const { layers } = require('../../../../assets/MaptheSecond.json');
   // const convertedLayers = convertTiles(layers);
   //layers needed to be drawn regardless of user status
+ 
+  // useEffect(() => {
+  //   const canvas = canvasRef.current;
+  //   const context = canvas.getContext('2d');
+  // let frameCount = 0;
+  // let animationFrameId;
+    
+  //draw starts here
+  //   const render = () => {
 
+  //perhaps we can make implimentation to optionally increase frames per second
+  // frameCount++;
+  // draw(context, tester);
+  // draw(context, tester1);
+  //     drawMap(context);
+  // drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
+  //     drawClouds(context);
+  //   };
+  //   render();
+ 
+  // }, [props.active]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    // let frameCount = 0;
+    // let animationFrameId;
+    
+    //draw starts here
+    const render = () => {
+
+      //perhaps we can make implimentation to optionally increase frames per second
+      // frameCount++;
+      // draw(context, tester);
+      // draw(context, tester1);
+      drawMap(context);
+      drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
+      drawClouds(context);
+    };
+    render();
+ 
+  }, [props.active]); 
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
@@ -25,11 +67,13 @@ const Canvas = (props) => {
       // draw(context, tester);
       // draw(context, tester1);
       drawMap(context);
+      drawUnlocked(context, props);  //function in canvas utils,
       // drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
       // drawClouds(context);
     };
     render();
-  }, [props.active]);
+ 
+  }, [props.prestige]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -166,7 +210,9 @@ const Canvas = (props) => {
 
 Canvas.propTypes = {
   user: PropTypes.shape({}).isRequired,
-  gametime: PropTypes.number.isRequired,
+  gameTime: PropTypes.number.isRequired,
+  prestige: PropTypes.number.isRequired,
+  active: PropTypes.bool.isRequired,
 };
 
 export default Canvas;

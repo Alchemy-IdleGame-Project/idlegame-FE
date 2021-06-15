@@ -21,6 +21,7 @@ export const drawClouds = (ctx, amount) => {
   const l = amount * Math.random();
   const m = amount * Math.random();
 
+  
   // Create circular clipping region
 
   const radiusX = 5 + Math.random() * 50;
@@ -136,14 +137,12 @@ function firstToUpper(string) {
 export const drawUnlocked = (ctx, ps) => {
   const user = Object.keys(ps.user);
 
-  user.map((item) => {
-    //  item);
-    //  ps.user[item]);
-    if (ps.user[item] === true) {
-      //  );
-      //  `road${firstToUpper(item)}Layer`);
-
-      draw(ctx, eval(`road${firstToUpper(item)}Layer`));
+  user.map(item => {
+    
+    if(ps.user[item] === true){
+    
+      
+      draw(ctx, eval(`road${firstToUpper(item)}Layer`));    
       draw2(ctx, eval(`${item}Layer`));
     }
   });
