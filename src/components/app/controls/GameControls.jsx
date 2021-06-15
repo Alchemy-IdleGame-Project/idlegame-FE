@@ -20,15 +20,18 @@ const GameControls = ({
       {/* display for the mine button */}
       {
         (gold > (goldRequired.lumberyard * revealPercent)) ?
-          <button 
-            value="lumberyard" 
-            name="lumberyard"
-            className={((gold < goldRequired.lumberyard && !user.lumberyard) ? style.almost : ''), 
-            style.bigButton
-            } 
-            onClick={unlockBuilding} 
-            disabled={((gold < goldRequired.lumberyard || user.lumberyard) ? true : false)}>Purchase Lumberyard ({`${goldRequired.lumberyard}`}g)
-          </button> : ''
+          <div className={style.something}>
+            <button
+              value="lumberyard"
+              name="lumberyard"
+              className={((gold < goldRequired.lumberyard && !user.lumberyard) ? style.almost : ''),
+              style.bigButton
+              }
+              onClick={unlockBuilding}
+              disabled={((gold < goldRequired.lumberyard || user.lumberyard) ? true : false)}>Purchase Lumberyard ({`${goldRequired.lumberyard}`}g)
+            </button>
+            <img className={style.hovertest} src="../../../../assets/lumberyard-info.png" alt="Lumberyard" />
+          </div> : ''
       }
     
       {
@@ -44,13 +47,16 @@ const GameControls = ({
       }
       {
         (gold > (goldRequired.mine * revealPercent)) ?
-          <button 
-            className={((gold < goldRequired.mine) ? style.almost : ''), 
-            style.bigButton} 
-            value="mine" 
-            onClick={unlockBuilding} 
-            disabled={((gold < goldRequired.mine || user.mine) ? true : false)}>Purchase Mine ({`${goldRequired.mine}`}g)
-          </button> : ''
+          <div className={style.something}>
+            <button
+              className={((gold < goldRequired.mine) ? style.almost : ''),
+              style.bigButton}
+              value="mine"
+              onClick={unlockBuilding}
+              disabled={((gold < goldRequired.mine || user.mine) ? true : false)}>Purchase Mine ({`${goldRequired.mine}`}g)
+            </button>
+            <span className={style.hovertest1}>+5 gold/sec</span>
+          </div> : ''
       }
       {
         (gold > (goldRequired.watermill * revealPercent)) ?
