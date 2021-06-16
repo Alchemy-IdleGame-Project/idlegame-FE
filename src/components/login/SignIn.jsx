@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import * as request from 'superagent';
 
 
-const SignIn = () => {
+const SignIn = (props) => {
   const [userInfo, setUserInfo] = useState({
     username: '',
     password: '',
@@ -13,24 +14,27 @@ const SignIn = () => {
     //this is a placeholder
     const res = await request
       .post(`${url}/auth/signin`)
-      .send({ username, password });
+      .send({ password, email: username });
     return res.body;
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signIn(userInfo.username, userInfo.password);
+    const auth = await signIn(userInfo.username, userInfo.password);
+    props.handleAuth(auth);
     // this.props.history.push('/game');
   };
 
   const handleUsername = (e) => {
     setUserInfo({
+      ...userInfo,
       username: e.target.value,
     });
   };
 
   const handlePassword = (e) => {
     setUserInfo({
+      ...userInfo,
       password: e.target.value,
     });
   };
@@ -52,6 +56,10 @@ const SignIn = () => {
       </form>
     </div>
   );
+};
+
+SignIn.propTypes = {
+  handleAuth: PropTypes.func.isRequired
 };
 
 export default SignIn;

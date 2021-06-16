@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import * as request from 'superagent';
+import PropTypes from 'prop-types';
 
 
-const Register = () => {
+
+const Register = (props) => {
   const [userInfo, setUserInfo] = useState({
     username: '',
     password: '',
@@ -13,24 +15,28 @@ const Register = () => {
     //this is a placeholder
     const res = await request
       .post(`${url}/auth/signup`)
-      .send({ username, password });
+      .send({ password, email: username });
+    console.log(res.body);
     return res.body;
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signUp(userInfo.username, userInfo.password);
+    const auth = await signUp(userInfo.username, userInfo.password);
+    props.handleAuth(auth);
     // this.props.history.push('/game');
   };
 
   const handleUsername = (e) => {
     setUserInfo({
+      ...userInfo,
       username: e.target.value,
     });
   };
 
   const handlePassword = (e) => {
     setUserInfo({
+      ...userInfo,
       password: e.target.value,
     });
   };
@@ -52,6 +58,11 @@ const Register = () => {
       </form>
     </div>
   );
+};
+
+
+Register.propTypes = {
+  handleAuth: PropTypes.func.isRequired
 };
 
 export default Register;

@@ -75,20 +75,27 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
-    padding-left: 20px;
     padding-bottom: 50px;
     color: white;
+    align-items: center;
+    justify-content: center;
     /* float: left; */
     margin: auto;
 }
 .detDiv{
-    width: 25%;
-   
+    width: 20%;
 }
 .canDiv{
     padding-top: 50px;
     text-align: center;
-    width: 50%;
+    width: 42%;
+}
+.gameControls{
+    /* position: relative; */
+    text-align: center;
+    width: 20%;
+    height: 100%;
+    /* left: 5%; */
 }
 .userControls{
    text-align: center;
@@ -96,15 +103,7 @@ body{
     padding: 0;
     margin: 0;
 }
-.gameControls{
-    /* position: relative; */
-    text-align: center;
-    width: 9%;
-    height: 50%;
-    /* left: 5%; */
-    
 
-}
 
 .smallButton{
     color: white;
@@ -137,9 +136,9 @@ visibility: hidden;
 
 .bigButton{
     color: white;
-    width: 250px;
-    height: 100px;
-    background-image: url('~/assets/ui_button2x.png');
+    width: 200px;
+    height: 60px;
+    background-image: url('~/assets/ui_button2xv1.png');
     background-repeat: no-repeat;
     background-position: center;
     background-color: rgba(0,0,0,0);

@@ -13,14 +13,13 @@ import UserControls from '../components/app/controls/UserControls';
 import Detriment from '../components/app/detriment/Detriment';
 
 export default function App() {
-  const [gold, setGold] = useState(50000000);
+  const [gold, setGold] = useState(444444440);
   const [goldPerSecond, setGoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
   const [numClicks, setNumClicks] = useState(0);
   const [gameTime, setGameTime] = useState(0);
   const [prestige, setPrestige] = useState(0);
   const [activeTime, setActiveTime] = useState();
-  
 
   // const [activeUser, setActiveUser] = useState();
   // const [signInPrompt, setSignInPrompt] = useState(false);
@@ -29,40 +28,39 @@ export default function App() {
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({
     house: true,
-    lumberyard: true,
-    windmill: true,
-    mine: true,
-    watermill: true,
-    sawmill: true,
-    farm: true,
-    blacksmith: true,
-    tavern: true,
-    castle: true,
+    lumberyard: false,
+    windmill: false,
+    mine: false,
+    watermill: false,
+    sawmill: false,
+    farm: false,
+    blacksmith: false,
+    tavern: false,
+    castle: false,
     wahoo: '6785099',
   });
 
   const [detriment, setDetriment] = useState({
     termites: { unlocked: false, active: false },
-    failedCrops: { unlocked: false, active: false }, 
+    failedCrops: { unlocked: false, active: false },
     caveIn: { unlocked: false, active: false },
     flood: { unlocked: false, active: false },
     osha: { unlocked: false, active: false },
     peta: { unlocked: false, active: false },
     bandits: { unlocked: false, active: false },
-    arson: { unlocked: false, active: false }
+    arson: { unlocked: false, active: false },
   });
 
   const goldRequired = {
-    lumberyard: 25 * (prestige + .1 * 10),
-    windmill: 250 * (prestige + .1 * 10),
-    mine: 2000 * (prestige + .1 * 10),
-    watermill: 10000 * (prestige + .1 * 10),
-    sawmill: 50000 * (prestige + .1 * 10),
-    farm: 100000 * (prestige + .1 * 10),
-    blacksmith: 500000 * (prestige + .1 * 10),
-    tavern: 1000000 * (prestige + .1 * 10),
-    castle: 10000000 * (prestige + .1 * 10)
-
+    lumberyard: 25 * (prestige + 0.1 * 10),
+    windmill: 250 * (prestige + 0.1 * 10),
+    mine: 2000 * (prestige + 0.1 * 10),
+    watermill: 10000 * (prestige + 0.1 * 10),
+    sawmill: 50000 * (prestige + 0.1 * 10),
+    farm: 100000 * (prestige + 0.1 * 10),
+    blacksmith: 500000 * (prestige + 0.1 * 10),
+    tavern: 1000000 * (prestige + 0.1 * 10),
+    castle: 10000000 * (prestige + 0.1 * 10),
   };
   const revealPercent = 0.66;
 
@@ -73,19 +71,19 @@ export default function App() {
     setNumClicks((prevClicks) => ++prevClicks);
   }
 
-  function detrimentRoll(){
+  function detrimentRoll() {
     console.log(' called here');
-    Object.keys(detriment).map(item => {
+    Object.keys(detriment).map((item) => {
       // console.log(detriment);
       // console.log(item);
-      if (detriment[item].unlocked && !detriment[item].active){
+      if (detriment[item].unlocked && !detriment[item].active) {
         const roll = Math.ceil(Math.random() * 10);
-        if (roll >= 8){
-          // console.log(detriment[item]);  
+        if (roll >= 8) {
+          // console.log(detriment[item]);
           detriment[item].active = true;
           switch (item) {
             case 'termites': {
-              setGoldPerSecond(prevGold => {
+              setGoldPerSecond((prevGold) => {
                 prevGold--;
                 return prevGold;
               });
@@ -93,7 +91,7 @@ export default function App() {
               break;
             }
             case 'failedCrops': {
-              setGoldPerSecond(prevGold => {
+              setGoldPerSecond((prevGold) => {
                 prevGold--;
                 return prevGold;
               });
@@ -101,7 +99,7 @@ export default function App() {
               break;
             }
             case 'caveIn': {
-              setGoldPerSecond(prevGold => {
+              setGoldPerSecond((prevGold) => {
                 prevGold--;
                 return prevGold;
               });
@@ -109,30 +107,29 @@ export default function App() {
               break;
             }
             case 'flood': {
-              setGold(prevGold => {
-                
+              setGold((prevGold) => {
                 prevGold = prevGold - 10000;
-                ((prevGold < 0) ? prevGold = 0 : prevGold = prevGold);
+                prevGold < 0 ? (prevGold = 0) : (prevGold = prevGold);
                 return Math.floor(prevGold);
               });
               setActiveTime(gameTime + 5);
               break;
             }
             case 'osha': {
-              setGold(prevGold => {
+              setGold((prevGold) => {
                 prevGold = prevGold - 50000;
-                ((prevGold < 0) ? prevGold = 0 : prevGold = prevGold);
+                prevGold < 0 ? (prevGold = 0) : (prevGold = prevGold);
                 return Math.floor(prevGold);
               });
-              setGoldPerSecond(prevGoldPerSecond => {
-                prevGoldPerSecond = prevGoldPerSecond * .8;
+              setGoldPerSecond((prevGoldPerSecond) => {
+                prevGoldPerSecond = prevGoldPerSecond * 0.8;
                 return prevGoldPerSecond;
               });
               setActiveTime(gameTime + 30);
               break;
             }
             case 'peta': {
-              setGoldPerSecond(prevGold => {
+              setGoldPerSecond((prevGold) => {
                 prevGold--;
                 return prevGold;
               });
@@ -140,138 +137,152 @@ export default function App() {
               break;
             }
             case 'bandits': {
-              setGoldPerSecond(prevGold => {
+              setGoldPerSecond((prevGold) => {
                 prevGold--;
                 return prevGold;
               });
               setActiveTime(gameTime + 5);
-              console.log(item, 'insided of roll case', goldPerSecond, 'this is the gold per second');
+              console.log(
+                item,
+                'insided of roll case',
+                goldPerSecond,
+                'this is the gold per second'
+              );
               break;
             }
             case 'arson': {
-              setGoldPerSecond(prevGold => {
+              setGoldPerSecond((prevGold) => {
                 prevGold--;
                 return prevGold;
               });
               setActiveTime(gameTime + 5);
-              console.log(item, 'insided of roll case', goldPerSecond, 'this is the gold per second');
+              console.log(
+                item,
+                'insided of roll case',
+                goldPerSecond,
+                'this is the gold per second'
+              );
               break;
             }
           }
         } else {
           console.log('rolled less than an 8');
         }
-      } else if (detriment[item].unlocked && detriment[item].active && activeTime === gameTime){
-        switch (item){
-          case 'termites' :{
-            setGoldPerSecond(prevGold => {
+      } else if (
+        detriment[item].unlocked &&
+        detriment[item].active &&
+        activeTime === gameTime
+      ) {
+        switch (item) {
+          case 'termites': {
+            setGoldPerSecond((prevGold) => {
               prevGold++;
               return prevGold;
             });
             setDetriment({
               ...detriment,
-              termites :  {
+              termites: {
                 active: false,
-                unlocked: true
-              }
+                unlocked: true,
+              },
             });
             break;
           }
-          case 'failedCrops' :{
-            setGoldPerSecond(prevGold => {
+          case 'failedCrops': {
+            setGoldPerSecond((prevGold) => {
               prevGold++;
               return prevGold;
             });
             setDetriment({
               ...detriment,
-              failedCrops :  {
+              failedCrops: {
                 active: false,
-                unlocked: true
-              }
+                unlocked: true,
+              },
             });
             break;
           }
-          case 'caveIn' :{
-            setGoldPerSecond(prevGold => {
+          case 'caveIn': {
+            setGoldPerSecond((prevGold) => {
               prevGold++;
               return prevGold;
             });
             setDetriment({
               ...detriment,
-              caveIn :  {
+              caveIn: {
                 active: false,
-                unlocked: true
-              }
+                unlocked: true,
+              },
             });
             break;
           }
-          case 'flood' :{
-            setGoldPerSecond(prevGold => {
+          case 'flood': {
+            setGoldPerSecond((prevGold) => {
               prevGold++;
               return prevGold;
             });
             setDetriment({
               ...detriment,
-              flood :  {
+              flood: {
                 active: false,
-                unlocked: true
-              }
+                unlocked: true,
+              },
             });
             break;
           }
-          case 'osha' :{
-            setGoldPerSecond(prevGold => {
+          case 'osha': {
+            setGoldPerSecond((prevGold) => {
               prevGold++;
               return prevGold;
             });
             setDetriment({
               ...detriment,
-              osha :  {
+              osha: {
                 active: false,
-                unlocked: true
-              }
+                unlocked: true,
+              },
             });
             break;
           }
-          case 'peta' :{
-            setGoldPerSecond(prevGold => {
+          case 'peta': {
+            setGoldPerSecond((prevGold) => {
               prevGold++;
               return prevGold;
             });
             setDetriment({
               ...detriment,
-              peta :  {
+              peta: {
                 active: false,
-                unlocked: true
-              }
+                unlocked: true,
+              },
             });
             break;
           }
-          case 'bandits' :{
-            setGoldPerSecond(prevGold => {
+          case 'bandits': {
+            setGoldPerSecond((prevGold) => {
               prevGold++;
               return prevGold;
             });
             setDetriment({
               ...detriment,
-              bandits :  {
+              bandits: {
                 active: false,
-                unlocked: true
-              }
+                unlocked: true,
+              },
             });
             break;
           }
-          case 'arson' :{
-            setGoldPerSecond(prevGold => {
+          case 'arson': {
+            setGoldPerSecond((prevGold) => {
               prevGold++;
               return prevGold;
             });
             setDetriment({
               ...detriment,
-              arson :  {
+              arson: {
                 active: false,
-                unlocked: true
-              }
+                unlocked: true,
+              },
             });
             break;
           }
@@ -280,86 +291,80 @@ export default function App() {
       }
     });
   }
-  
 
-  if (gameTime % 5 === 0){
+  if (gameTime % 5 === 0) {
     // const currentTime = gameTime;
     detrimentRoll();
-   
-    if (gameTime - activeTime >= 5){
+
+    if (gameTime - activeTime >= 5) {
       // console.log(activeTime, 'this is the active time');
-      Object.keys(detriment).map(item => {
-        switch (item){
-          case 'termites' :{
+      Object.keys(detriment).map((item) => {
+        switch (item) {
+          case 'termites': {
             setGoldPerSecond(3);
             break;
           }
-          case 'failedCrops' :{
+          case 'failedCrops': {
             setGoldPerSecond(3);
             break;
           }
-          case 'caveIn' :{
+          case 'caveIn': {
             setGoldPerSecond(3);
             break;
           }
-          case 'flood' :{
+          case 'flood': {
             setGoldPerSecond(3);
             break;
           }
-          case 'osha' :{
+          case 'osha': {
             setGoldPerSecond(3);
             break;
           }
-          case 'peta' :{
+          case 'peta': {
             setGoldPerSecond(3);
             break;
           }
-          case 'bandits' :{
+          case 'bandits': {
             setGoldPerSecond(3);
             break;
           }
-          case 'arson' :{
+          case 'arson': {
             setGoldPerSecond(3);
             break;
           }
-          default : {
+          default: {
             break;
           }
-          
         }
-        if (detriment[item].active){
+        if (detriment[item].active) {
           setDetriment({
             ...detriment,
-            [item] :{
+            [item]: {
               ...detriment[item],
-              active : false
-            }
+              active: false,
+            },
           });
         }
       });
-     
     }
   } else {
     // console.log('modulus not 0');
   }
 
-
   function mineGold(prestige) {
-    
     setGold((prevGold) => {
       //starts game if one is not going
       if (active === false) {
         setActive(true);
       }
 
-      if (prestige > 0){
+      if (prestige > 0) {
         prevGold += goldPerSecond;
         return Math.floor(prevGold);
       } else {
         prevGold += goldPerSecond;
         return Math.floor(prevGold);
       }
-
     });
   }
 
@@ -370,14 +375,11 @@ export default function App() {
     });
   }
 
-  
-  
   //starts the mine gold per second loop on load
   useInterval(mineGold, 1000);
 
   //starts the gameClock
   useInterval(gameClock, 1000);
-
 
   function unlockBuilding({ target }) {
     switch (target.value) {
@@ -395,8 +397,8 @@ export default function App() {
           ...detriment,
           termites: {
             active: false,
-            unlocked: true
-          }
+            unlocked: true,
+          },
         });
         break;
       }
@@ -410,10 +412,10 @@ export default function App() {
         setGoldPerSecond((prevGold) => prevGold + goldRequired.windmill * 0.06);
         setDetriment({
           ...detriment,
-          failedCrops : {
+          failedCrops: {
             active: false,
-            unlocked: true
-          }
+            unlocked: true,
+          },
         });
         break;
       }
@@ -427,10 +429,10 @@ export default function App() {
         setGoldPerSecond((prevGold) => prevGold + goldRequired.mine * 0.01);
         setDetriment({
           ...detriment,
-          caveIn : {
+          caveIn: {
             active: false,
-            unlocked: true
-          }
+            unlocked: true,
+          },
         });
         break;
       }
@@ -446,10 +448,10 @@ export default function App() {
         );
         setDetriment({
           ...detriment,
-          flood : {
+          flood: {
             active: false,
-            unlocked: true
-          }
+            unlocked: true,
+          },
         });
         break;
       }
@@ -463,10 +465,10 @@ export default function App() {
         setGoldPerSecond((prevGold) => prevGold + goldRequired.sawmill * 0.001);
         setDetriment({
           ...detriment,
-          osha : {
+          osha: {
             active: false,
-            unlocked: true
-          }
+            unlocked: true,
+          },
         });
         break;
       }
@@ -480,10 +482,10 @@ export default function App() {
         setGoldPerSecond((prevGold) => prevGold + goldRequired.farm * 0.002);
         setDetriment({
           ...detriment,
-          peta : {
+          peta: {
             active: false,
-            unlocked: true
-          }
+            unlocked: true,
+          },
         });
         break;
       }
@@ -499,10 +501,10 @@ export default function App() {
         );
         setDetriment({
           ...detriment,
-          bandits : {
+          bandits: {
             active: false,
-            unlocked: true
-          }
+            unlocked: true,
+          },
         });
         break;
       }
@@ -516,10 +518,10 @@ export default function App() {
         setGoldPerSecond((prevGold) => prevGold + goldRequired.tavern * 0.002);
         setDetriment({
           ...detriment,
-          arson : {
+          arson: {
             active: false,
-            unlocked: true
-          }
+            unlocked: true,
+          },
         });
         break;
       }
@@ -536,9 +538,9 @@ export default function App() {
     }
   }
 
-  function incrementPrestige(){
-    if (user.castle){
-      setPrestige(prevPrestige => {
+  function incrementPrestige() {
+    if (user.castle) {
+      setPrestige((prevPrestige) => {
         prevPrestige++;
         return prevPrestige;
       });
@@ -552,38 +554,39 @@ export default function App() {
         farm: false,
         blacksmith: false,
         tavern: false,
-        castle: false
+        castle: false,
       });
       setGameTime(0);
     }
   }
 
-
-  
   return (
     <div>
       <h1>Idle Isle</h1>
       <div className={style.tester}>
-        <hr/>
-        <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
-        <UserControls handleMineClick={mineGold}
-          handleClicks={addToClicks} />
+        <hr />
+        <Prestige
+          handlePrestige={incrementPrestige}
+          prestige={prestige}
+          castle={user.castle}
+        />
+        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} />
         <Clock gameTime={gameTime} />
         <Gold gold={gold} />
         <Clicks clicks={numClicks} />
       </div>
 
       <div className={style.bigbam}>
-        <Detriment detriment={detriment}/>
+        <Detriment detriment={detriment} />
 
         {/* experimenting with being able to have more properties in the user but not passing properties that arent necessary */}
-        <Canvas 
-          gameTime={gameTime} 
-          user={user} 
-          active={active} 
+        <Canvas
+          gameTime={gameTime}
+          user={user}
+          active={active}
           prestige={prestige}
         />
-        <GameControls 
+        <GameControls
           handleMineClick={mineGold}
           handleClicks={addToClicks}
           gold={gold}
@@ -594,41 +597,58 @@ export default function App() {
           user={user}
         />
         <ul className={style.circles}>
-        <li>
           <li>
-            <li><img width="100px"src="../../assets/gold-coin.png"/></li>
+            <li>
+              <li>
+                <img width="100px" src="../../assets/gold-coin.png" />
+              </li>
+            </li>
           </li>
-        </li>
-        <li></li>
-        <li></li>
-        <li>
-    
-        </li>
-        <li><img width="100px"src="../../assets/gold-coin.png"/></li>
-        <li><img width="100px"src="../../assets/gold-coin.png"/></li>
-        <li><img width="100px"src="../../assets/gold-coin.png"/></li>
-        <li><img width="100px"src="../../assets/gold-coin.png"/></li>
-        <li><img width="100px"src="../../assets/gold-coin.png"/></li>
-        <li><img width="100px"src="../../assets/gold-coin.png"/></li>
-        <li>
+          <li></li>
+          <li></li>
+          <li></li>
           <li>
-            <li><img width="100px"src="../../assets/gold-coin.png"/></li>
+            <img width="100px" src="../../assets/gold-coin.png" />
           </li>
-        </li>
-        <li><img width="100px"src="../../assets/gold-coin.png"/></li>
-        <li><img width="100px"src="../../assets/gold-coin.png"/></li>
-        <li>
-    
-        </li>
-        <li><img width="100px"src="../../assets/gold-coin.png"/></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+          <li>
+            <img width="100px" src="../../assets/gold-coin.png" />
+          </li>
+          <li>
+            <img width="100px" src="../../assets/gold-coin.png" />
+          </li>
+          <li>
+            <img width="100px" src="../../assets/gold-coin.png" />
+          </li>
+          <li>
+            <img width="100px" src="../../assets/gold-coin.png" />
+          </li>
+          <li>
+            <img width="100px" src="../../assets/gold-coin.png" />
+          </li>
+          <li>
+            <li>
+              <li>
+                <img width="100px" src="../../assets/gold-coin.png" />
+              </li>
+            </li>
+          </li>
+          <li>
+            <img width="100px" src="../../assets/gold-coin.png" />
+          </li>
+          <li>
+            <img width="100px" src="../../assets/gold-coin.png" />
+          </li>
+          <li></li>
+          <li>
+            <img width="100px" src="../../assets/gold-coin.png" />
+          </li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
-      
     </div>
   );
 }
