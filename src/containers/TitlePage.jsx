@@ -9,6 +9,8 @@ const TitlePage = () => {
     overflow: 'hidden',
     height: '3000px',
     width: '3000px',
+    backgroundBlendMode: 'lighten',
+
 
   };
   return (
