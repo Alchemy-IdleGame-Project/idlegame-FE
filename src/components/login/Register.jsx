@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import * as request from 'superagent';
 
+
 const Register = () => {
   const [userInfo, setUserInfo] = useState({
     username: '',
     password: '',
   });
-  const url = 'placeholder';
+  const url = process.env.DATABASE_URL;
 
   async function signUp(username, password) {
     //this is a placeholder

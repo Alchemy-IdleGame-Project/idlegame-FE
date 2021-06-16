@@ -6,12 +6,11 @@ const TitlePage = () => {
     backgroundImage: `url(${background})`,
     backgroundRepeat: 'no-repeat',
     display: 'flex',
+    backgroundPosition: 'center',
     overflow: 'hidden',
-    height: '3000px',
-    width: '3000px',
-    backgroundBlendMode: 'lighten',
-
-
+    height: '100vh',
+    width: '100vw',
+    backgroundSize: '100%'
   };
   return (
     <div style={titleStyle}>
