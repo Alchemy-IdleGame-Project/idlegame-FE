@@ -12,7 +12,7 @@ import Clicks from '../components/app/hud/Clicks';
 import UserControls from '../components/app/controls/UserControls';
 import Detriment from '../components/app/detriment/Detriment';
 
-export default function App() {
+export default function Game() {
   const [gold, setGold] = useState(444444440);
   const [goldPerSecond, setGoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
@@ -72,7 +72,6 @@ export default function App() {
   }
 
   function detrimentRoll() {
-    console.log(' called here');
     Object.keys(detriment).map((item) => {
       // console.log(detriment);
       // console.log(item);
