@@ -13,7 +13,7 @@ import UserControls from '../components/app/controls/UserControls';
 import Detriment from '../components/app/detriment/Detriment';
 
 export default function App() {
-  const [gold, setGold] = useState(50000);
+  const [gold, setGold] = useState(50000000);
   const [goldPerSecond, setGoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
   const [numClicks, setNumClicks] = useState(0);
@@ -29,15 +29,15 @@ export default function App() {
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({
     house: true,
-    lumberyard: false,
-    windmill: false,
-    mine: false,
-    watermill: false,
-    sawmill: false,
-    farm: false,
-    blacksmith: false,
-    tavern: false,
-    castle: false,
+    lumberyard: true,
+    windmill: true,
+    mine: true,
+    watermill: true,
+    sawmill: true,
+    farm: true,
+    blacksmith: true,
+    tavern: true,
+    castle: true,
     wahoo: '6785099',
   });
 

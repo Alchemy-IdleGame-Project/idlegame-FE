@@ -1,10 +1,27 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap'); */
 
 body{
-    background-image: url('../../../assets/mesh.jpg');
-    background-repeat: no-repeat;
+    /* background-image: url('../../../assets/mesh.jpg'); */
+    /* background-repeat: no-repeat;
     background-position: center;
-    background-size:cover;
+    background-size:cover; */
+    /* background-color:rgb(100, 100, 100); */
+    /* background-image: url('../../../assets/titlebackground.png'); */
+    background: 
+    linear-gradient(
+        rgba(58, 58, 58, 0.35), 
+        rgba(58, 58, 58, 0.9)
+      ),
+    url('../../../assets/titlebackgroundnologo.jpg');
+    background-repeat: no-repeat;
+    /* display: flex; */
+    
+    background-position: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    background-size: 100%;
+    margin: 0;
     color: white;
 }
 
@@ -131,13 +148,13 @@ visibility: hidden;
 
 .smallButton:active{
     position: relative;
-    top: -1px;
+    top: 1px;
     background-image: url('~/assets/ui_button_pressed.png');
 }
 .bigButton:active{
     position: relative;
-    top: -1px;
-    background-image: url('~/assets/ui_button_pressed.png');
+    top: 1px;
+    background-image: url('~/assets/ui_button_pressed2x.png');
 }
 
 .almost{
