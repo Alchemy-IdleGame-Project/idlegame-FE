@@ -15,7 +15,11 @@ const putAuthinLocal = (booger) => {
 const getAuthFromLocal = () => {
   const auth1 = localStorage.getItem(AUTH);
   if (auth1) return JSON.parse(auth1);
-  return {};
+  return {
+    email: '',
+    id: '',
+    token: '',
+  };
 };
 
 export default function App() {

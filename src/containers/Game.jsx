@@ -11,9 +11,11 @@ import Gold from '../components/app/hud/Gold';
 import Clicks from '../components/app/hud/Clicks';
 import UserControls from '../components/app/controls/UserControls';
 import Detriment from '../components/app/detriment/Detriment';
+import * as request from 'superagent';
+import PropTypes from 'prop-types';
 
-export default function Game() {
-  const [gold, setGold] = useState(444444440);
+export default function Game(props) {
+  const [gold, setGold] = useState(0);
   const [goldPerSecond, setGoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
   const [numClicks, setNumClicks] = useState(0);
@@ -28,8 +30,8 @@ export default function Game() {
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({
     house: true,
-    lumberyard: false,
-    windmill: false,
+    lumberyard: true,
+    windmill: true,
     mine: false,
     watermill: false,
     sawmill: false,
@@ -37,8 +39,18 @@ export default function Game() {
     blacksmith: false,
     tavern: false,
     castle: false,
-    wahoo: '6785099',
   });
+
+  const url = process.env.DATABASE_URL;
+
+  const uploadSave = async (built, token) => {
+    const response = await request
+      .post(`${url}/api/unlocked`)
+      .set('Authorization', token)
+      .send(built);
+    return response.body;
+  };
+
 
   const [detriment, setDetriment] = useState({
     termites: { unlocked: false, active: false },
@@ -52,15 +64,15 @@ export default function Game() {
   });
 
   const goldRequired = {
-    lumberyard: 25 * (prestige + 0.1 * 10),
-    windmill: 250 * (prestige + 0.1 * 10),
-    mine: 2000 * (prestige + 0.1 * 10),
-    watermill: 10000 * (prestige + 0.1 * 10),
-    sawmill: 50000 * (prestige + 0.1 * 10),
-    farm: 100000 * (prestige + 0.1 * 10),
-    blacksmith: 500000 * (prestige + 0.1 * 10),
-    tavern: 1000000 * (prestige + 0.1 * 10),
-    castle: 10000000 * (prestige + 0.1 * 10),
+    lumberyard: 25 * (prestige + 1),
+    windmill: 250 * (prestige + 1),
+    mine: 2000 * (prestige + 1),
+    watermill: 10000 * (prestige + 1),
+    sawmill: 50000 * (prestige + 1),
+    farm: 100000 * (prestige + 1),
+    blacksmith: 500000 * (prestige + 1),
+    tavern: 1000000 * (prestige + 1),
+    castle: 10000000 * (prestige + 1),
   };
   const revealPercent = 0.66;
 
@@ -569,7 +581,7 @@ export default function Game() {
           prestige={prestige}
           castle={user.castle}
         />
-        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} />
+        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} user={user} gold={gold} auth={props.auth} />
         <Clock gameTime={gameTime} />
         <Gold gold={gold} />
         <Clicks clicks={numClicks} />
@@ -651,3 +663,10 @@ export default function Game() {
     </div>
   );
 }
+Game.propTypes = {
+  auth: PropTypes.shape({
+    email: PropTypes.string.isRequired,
+    token: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+};
