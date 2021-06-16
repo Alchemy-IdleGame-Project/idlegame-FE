@@ -187,13 +187,15 @@ const Canvas = (props) => {
   }, [props.user]);
 
   return (
-    <canvas
-      className={style.canvas}
-      height="608px"
-      width="800px"
-      ref={canvasRef}
-      {...props}
-    />
+    <div className={style.canDiv}>
+      <canvas
+        className={style.canvas}
+        height="608px"
+        width="800px"
+        ref={canvasRef}
+        {...props}
+      />
+    </div>
   );
 };
 

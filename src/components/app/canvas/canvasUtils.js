@@ -59,6 +59,7 @@ export const drawClouds = (ctx, amount) => {
 };
 
 const draw = (ctx, array) => {
+  
   for (let r = 0; r < rowTileCount; r++) {
     for (let c = 0; c < colTileCount; c++) {
       const tile = array[r][c];
