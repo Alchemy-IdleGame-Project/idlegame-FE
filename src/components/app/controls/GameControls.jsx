@@ -15,7 +15,7 @@ const GameControls = ({
 
   return (
     <div className={style.gameControls}>
-    
+      <h2>Purchase Buildings</h2>
 
       {/* display for the mine button */}
       {

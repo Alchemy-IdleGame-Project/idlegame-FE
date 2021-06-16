@@ -1,14 +1,17 @@
+/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const Prestige = ({ handlePrestige, prestige, castle }) => {
-
+  let btnPrestige = prestige;
+  btnPrestige++;
+  const prestigeBtn = <button onClick={handlePrestige}>Prestige { btnPrestige} </button>;
   return (
     <div>
+      <p>Prestige level: {prestige}</p>
       {
-        ((castle) ? <button onClick={handlePrestige}>Prestige</button> : '')
+        ((castle) ? prestigeBtn : '')
       }
-      <p>Prestige level: {prestige} <i>Hover for prestige info</i> </p>
     </div>
   );
 };
