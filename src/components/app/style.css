@@ -1,0 +1,80 @@
+.canvas{
+    
+}
+
+.tester{
+    background-color: rgb(185, 185, 185);
+    display: flex;
+}
+
+.bigbam{
+    width: 250px;
+    float: right;
+}
+.userControls{
+    float: left;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+.gameControls{
+    
+   
+    
+}
+
+.smallButton{
+    color: white;
+    width: 100px;
+    height: 50px;
+    background-image: url('~/assets/ui_button.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    background-color: rgba(0,0,0,0);
+    border: 0px solid grey;
+}
+
+.something .hovertest{
+visibility: hidden;
+  width: 128px;
+  background-color: black;
+  color: #fff;
+  position: absolute;
+  z-index: 1;
+}
+
+.something:hover .hovertest {
+    visibility: visible;
+}
+
+.bigButton{
+    color: white;
+    width: 200px;
+    height: 100px;
+    background-image: url('~/assets/ui_button.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(0,0,0,0);
+    border: 0px solid grey;
+}
+
+.smallButton:active{
+    position: relative;
+    top: -1px;
+    background-image: url('~/assets/ui_button_pressed.png');
+}
+.bigButton:active{
+    position: relative;
+    top: -1px;
+    background-image: url('~/assets/ui_button_pressed.png');
+}
+
+.almost{
+    border: 2px solid gold;
+}
+
+.buttonDisabled{
+    color: orange;
+}
