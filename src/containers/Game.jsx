@@ -20,22 +20,11 @@ export default function Game(props) {
   const [gametime, setGametime] = useState(0);
   const [prestige, setPrestige] = useState(0);
 
-  const [activeTime, setActiveTime] = useState({
-    termites:     { lastActive: 0, duration: 2 },
-    failedCrops:  { lastActive: 0, duration: 2 }, 
-    caveIn:       { lastActive: 0, duration: 2 },
-    flood:        { lastActive: 0, duration: 2 },
-    osha:         { lastActive: 0, duration: 2 },
-    peta:         { lastActive: 0, duration: 2 },
-    bandits:      { lastActive: 0, duration: 30 },
-    arson:        { lastActive: 0, duration: 2 } 
-  });
   
-
   // const [activeUser, setActiveUser] = useState();
   // const [signInPrompt, setSignInPrompt] = useState(false);
   // const [save, setSave] = useState('');
-
+  
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({
     house: true,
@@ -49,8 +38,20 @@ export default function Game(props) {
     castle: false,
   });
   
-  const url = process.env.DATABASE_URL;
+  const [activeTime, setActiveTime] = useState({
+    termites:     { lastActive: 0, duration: 2 },
+    failedCrops:  { lastActive: 0, duration: 2 }, 
+    caveIn:       { lastActive: 0, duration: 2 },
+    flood:        { lastActive: 0, duration: 2 },
+    osha:         { lastActive: 0, duration: 2 },
+    peta:         { lastActive: 0, duration: 2 },
+    bandits:      { lastActive: 0, duration: 30 },
+    arson:        { lastActive: 0, duration: 2 } 
+  });
+  
 
+  const url = process.env.DATABASE_URL;
+  
   const uploadSave = async (built, token) => {
     const response = await request
       .post(`${url}/api/unlocked`)
@@ -58,7 +59,7 @@ export default function Game(props) {
       .send(built);
     return response.body;
   };
-
+  
   const downloadSave = async (token) => {
     const response = await request
       .get(`${url}/api/unlocked`)
@@ -66,6 +67,34 @@ export default function Game(props) {
     return response.body[response.body.length - 1];
   };
 
+  const [loadUser, setLoadUser] = useState(false);
+
+  useEffect(async () => {
+    const saveData = await downloadSave(props.auth.auth.token);
+    setUser((prevUser) => {
+      prevUser = {
+        house: true,
+        ...saveData };
+      let o = {};
+      Object.keys(prevUser).map(item => {
+        if (typeof prevUser[item] === 'boolean'){
+          o = {
+            [item]: prevUser[item]
+          };
+        }
+        if (o[item]){
+          setDetriment((prevDet) => {
+            Object.keys(prevDet).map(item => {
+              prevDet[item].unlocked = true;
+
+            });
+            return prevDet;
+          });
+        }
+      });
+      return prevUser;
+    });
+  }, [loadUser]);
 
   const [detriment, setDetriment] = useState({
     termites: { unlocked: false, active: false },
@@ -103,6 +132,7 @@ export default function Game(props) {
     Object.keys(detriment).map(item => {
     //if the prop is unlocked, roll for a chance to activate detriment
       if (detriment[item].unlocked && !detriment[item].active){
+        console.log('how many times do I roll?');
         const roll = Math.ceil(Math.random() * 10);
         if (roll >= 8){
           detriment[item].active = true;
@@ -270,18 +300,16 @@ export default function Game(props) {
   //if the prop is unlocked and detriment is active, set the detriment back to inactive and remove negative effects
   function shutOffEffect(){
     Object.keys(detriment).map(item => {
-      if (detriment[item].unlocked && detriment[item].active && gametime - activeTime[item].duration === activeTime[item].lastActive){
-        console.log(item);
-        // console.log('sdfiupgiherpiuhger');
+      if (detriment[item].unlocked && 
+          detriment[item].active && 
+      gametime - activeTime[item].duration === activeTime[item].lastActive){
+        console.log(activeTime, 'logging here');
         switch (item){
           case 'termites' :{
             console.log('shutting off termites');
-            setDetriment({
-              ...detriment,
-              termites :  {
-                active: false,
-                unlocked: true
-              }
+            setDetriment(prevDetriment => {
+              prevDetriment.termites.active = false;
+              return prevDetriment;
             });
             setGoldPerSecond(prevGold => {
               prevGold++;
@@ -290,12 +318,9 @@ export default function Game(props) {
             break;
           }
           case 'failedCrops' :{
-            setDetriment({
-              ...detriment,
-              failedCrops :  {
-                active: false,
-                unlocked: true
-              }
+            setDetriment(prevDetriment => {
+              prevDetriment.failedCrops.active = false;
+              return prevDetriment;
             });
             setGoldPerSecond(prevGold => {
               prevGold++;
@@ -304,12 +329,9 @@ export default function Game(props) {
             break;
           }
           case 'caveIn' :{
-            setDetriment({
-              ...detriment,
-              caveIn :  {
-                active: false,
-                unlocked: true
-              }
+            setDetriment(prevDetriment => {
+              prevDetriment.caveIn.active = false;
+              return prevDetriment;
             });
             setGoldPerSecond(prevGold => {
               prevGold = prevGold + 20;
@@ -318,22 +340,16 @@ export default function Game(props) {
             break;
           }
           case 'flood' :{
-            setDetriment({
-              ...detriment,
-              flood :  {
-                active: false,
-                unlocked: true
-              }
+            setDetriment(prevDetriment => {
+              prevDetriment.flood.active = false;
+              return prevDetriment;
             });
             break;
           }
           case 'osha' :{
-            setDetriment({
-              ...detriment,
-              osha :  {
-                active: false,
-                unlocked: true
-              }
+            setDetriment(prevDetriment => {
+              prevDetriment.osha.active = false;
+              return prevDetriment;
             });
             setGoldPerSecond(prevGold => {
               prevGold = prevGold * 1.25;
@@ -342,12 +358,9 @@ export default function Game(props) {
             break;
           }
           case 'peta' :{
-            setDetriment({
-              ...detriment,
-              peta :  {
-                active: false,
-                unlocked: true
-              }
+            setDetriment(prevDetriment => {
+              prevDetriment.peta.active = false;
+              return prevDetriment;
             });
             setGoldPerSecond(prevGold => {
               prevGold = prevGold * 1.112;
@@ -356,12 +369,9 @@ export default function Game(props) {
             break;
           }
           case 'bandits' :{
-            setDetriment({
-              ...detriment,
-              bandits :  {
-                active: false,
-                unlocked: true
-              }
+            setDetriment(prevDetriment => {
+              prevDetriment.bandits.active = false;
+              return prevDetriment;
             });
             setGoldPerSecond(prevGold => {
               prevGold++;
@@ -370,12 +380,9 @@ export default function Game(props) {
             break;
           }
           case 'arson' :{
-            setDetriment({
-              ...detriment,
-              arson :  {
-                active: false,
-                unlocked: true
-              }
+            setDetriment(prevDetriment => {
+              prevDetriment.arson.active = false;
+              return prevDetriment;
             });
             setGoldPerSecond(prevGold => {
               prevGold++;
@@ -390,6 +397,7 @@ export default function Game(props) {
       }
     });
   }
+  
   useEffect(() => {
     if (gametime % 3 === 0){
    
@@ -604,22 +612,32 @@ export default function Game(props) {
         tavern: false,
         castle: false,
       });
+      setGold(0);
+      setGoldPerSecond(1);
       setGametime(0);
+      setNumClicks(0);
+      setDetriment({
+        termites: { unlocked: false, active: false },
+        failedCrops: { unlocked: false, active: false },
+        caveIn: { unlocked: false, active: false },
+        flood: { unlocked: false, active: false },
+        osha: { unlocked: false, active: false },
+        peta: { unlocked: false, active: false },
+        bandits: { unlocked: false, active: false },
+        arson: { unlocked: false, active: false },
+      });
     }
   }
 
   return (
     <div>
-      <h1>Idle Isle</h1>
-      <div className={style.tester}>
-        <hr />
-        <Prestige
-          handlePrestige={incrementPrestige}
-          prestige={prestige}
-          castle={user.castle}
-        />
-        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} downloadSave={downloadSave} user={user} setUser={setUser} gold={gold} auth={props.auth} />
-        <Hud gold={gold} clicks={numClicks} gametime={gametime} gPS={goldPerSecond} />
+      <div className={style.overhead}>
+        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} downloadSave={downloadSave} user={user} setUser={setUser} gold={gold} auth={props.auth} setLoadUser={setLoadUser} />
+        <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
+        <h1 className={style.gameTitle}><img src="../../assets/gametitle.PNG" alt="idle isle" /></h1>
+        <div className={style.hud}>
+          <Hud gold={gold} clicks={numClicks} gametime={gametime} gPS={goldPerSecond} handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
+        </div>
       </div>
 
       <div className={style.bigbam}>
@@ -683,8 +701,10 @@ export default function Game(props) {
 }
 Game.propTypes = {
   auth: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-    token: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-  }).isRequired,
+    auth: PropTypes.shape({
+      email: PropTypes.string.isRequired,
+      token: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired
 };

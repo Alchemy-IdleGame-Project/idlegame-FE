@@ -7,18 +7,17 @@ const UserControls = ({
   handleMineClick,
   handleClicks,
   uploadSave,
-  downloadSave,
-  setUser,
   gold,
   user,
   auth,
+  setLoadUser
 }) => {
   function handleMineButtonClick() {
     handleMineClick();
     handleClicks();
   }
-
-  function handleSaveButton() {
+  // you need to add prestige, gametime, num clicks
+  function handleSaveButton() { 
     console.log(user);
     console.log(auth.auth.token, 'this is auth token');
     uploadSave(
@@ -32,27 +31,14 @@ const UserControls = ({
         blacksmith: user.blacksmith,
         tavern: user.tavern,
         castle: user.castle,
+        gold
       },
       auth.auth.token
     );
   }
 
   async function handleLoadButton() {
-    console.log(user, 'this is pre load');
-    const saveData = await downloadSave(auth.auth.token);
-    setUser({ 
-      house: true, 
-      lumberyard: saveData.lumberyard,
-      windmill: saveData.windmill,
-      mine: saveData.mine,
-      watermill: saveData.watermill,
-      sawmill: saveData.sawmill,
-      farm: saveData.farm,
-      blacksmith: saveData.blacksmith,
-      tavern: saveData.tavern,
-      castle: saveData.castle });
-    console.log(user, 'this is post load');
-    console.log(saveData, 'this is saved data');
+    setLoadUser(true);
   }
 
   return (
@@ -76,8 +62,7 @@ UserControls.propTypes = {
   handleMineClick: PropTypes.func.isRequired,
   handleClicks: PropTypes.func.isRequired,
   uploadSave: PropTypes.func.isRequired,
-  downloadSave: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired,
+  setLoadUser: PropTypes.func.isRequired,
   gold: PropTypes.number.isRequired,
   user: PropTypes.shape({
     house: PropTypes.bool.isRequired,

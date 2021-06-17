@@ -2,14 +2,28 @@ import React from 'react'
 import Clicks from './Clicks';
 import Clock from './Clock';
 import Gold from './Gold';
+import PropTypes from 'prop-types';
+import Prestige from '../prestige/Prestige';
 
-const Hud = ({gametime, gold, clicks, gPS}) => {
+const Hud = ({ gametime, gold, clicks, gPS }) => {
+  const clock = <Clock gametime={gametime} />;
+  const goldCount = <Gold gold={gold} />;
+  const clickCount =  <Clicks clicks={clicks} />;
+  const goldPerSecond =  <p>gold per second: {gPS} </p>;
+  
   return <>
-    <Clock gametime={gametime} />
-    <Gold gold={gold} />
-    <Clicks clicks={clicks} /> <br/>
-    <p>gold per second: {gPS} </p>
-  </> 
+    {clock}
+    {goldCount}
+    {clickCount}
+    {goldPerSecond}
+  </>; 
+};
+
+Hud.propTypes = {
+  gametime: PropTypes.number.isRequired,
+  gold: PropTypes.number.isRequired,
+  clicks: PropTypes.number.isRequired,
+  gPS: PropTypes.number.isRequired,
 };
 
 export default Hud;
