@@ -5,7 +5,6 @@ import TitlePage from '../../containers/TitlePage';
 import Register from '../login/Register';
 import SignIn from '../login/SignIn';
 import Header from './header/Header';
-import style from './style.css';
 
 const AUTH = 'AUTH';
 
@@ -31,11 +30,9 @@ export default function App() {
   const handleAuthChange = (authy) => {
     putAuthinLocal(authy);
     const auth1 = getAuthFromLocal();
-    console.log(auth1);
     setAuth({
       auth: auth1,
     });
-    console.log(auth, ' this is the current state');
   };
 
   return (

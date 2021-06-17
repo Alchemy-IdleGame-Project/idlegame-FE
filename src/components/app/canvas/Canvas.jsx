@@ -12,28 +12,24 @@ const Canvas = (props) => {
   // const convertedLayers = convertTiles(layers);
   //layers needed to be drawn regardless of user status
 
-
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     // let frameCount = 0;
     // let animationFrameId;
-    
+
     //draw starts here
     const render = () => {
-
       //perhaps we can make implimentation to optionally increase frames per second
       // frameCount++;
       // draw(context, tester);
       // draw(context, tester1);
       drawMap(context);
-      drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
-      
+      drawUnlocked(context, props); //function in canvas utils, renders each layer that is unlocked by the user
     };
     render();
- 
-  }, [props.active]); 
-  
+  }, [props.active]);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
@@ -47,12 +43,10 @@ const Canvas = (props) => {
       // draw(context, tester);
       // draw(context, tester1);
       drawMap(context);
-      drawUnlocked(context, props);  //function in canvas utils,
+      drawUnlocked(context, props); //function in canvas utils,
       // drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
-      
     };
     render();
- 
   }, [props.prestige]);
 
   useEffect(() => {
@@ -177,7 +171,6 @@ const Canvas = (props) => {
       drawUnlocked(context, props); //function in canvas utils, renders each layer that is unlocked by the user
       unlockToolTip(region, buildingInfo, building);
 
-    
       // eslint-disable-next-line no-unused-vars
       // return cloudCoords;
     };
