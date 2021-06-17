@@ -1,14 +1,12 @@
 /* eslint-disable no-self-assign */
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GameControls from '../components/app/controls/GameControls';
 import Canvas from '../components/app/canvas/Canvas';
-import Clock from '../components/app/hud/Clock';
 import { useInterval } from '../hooks/hooks.js';
 import style from '../components/app/style.css';
 import Prestige from '../components/app/prestige/Prestige';
-import Gold from '../components/app/hud/Gold';
-import Clicks from '../components/app/hud/Clicks';
+import Hud from '../components/app/hud/Hud'
 import UserControls from '../components/app/controls/UserControls';
 import Detriment from '../components/app/detriment/Detriment';
 import * as request from 'superagent';
@@ -21,7 +19,18 @@ export default function Game(props) {
   const [numClicks, setNumClicks] = useState(0);
   const [gameTime, setGameTime] = useState(0);
   const [prestige, setPrestige] = useState(0);
-  const [activeTime, setActiveTime] = useState();
+
+  const [activeTime, setActiveTime] = useState({
+    termites: { lastActive: 0, duration: 2 },
+    failedCrops: { lastActive: 0, duration: 30 }, 
+    caveIn: { lastActive: 0, duration: 30 },
+    flood: { lastActive: 0, duration: 30 },
+    osha: { lastActive: 0, duration: 30 },
+    peta: { lastActive: 0, duration: 30 },
+    bandits: { lastActive: 0, duration: 30 },
+    arson: { lastActive: 0, duration: 30 } 
+  });
+  
 
   // const [activeUser, setActiveUser] = useState();
   // const [signInPrompt, setSignInPrompt] = useState(false);
@@ -30,8 +39,8 @@ export default function Game(props) {
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({
     house: true,
-    lumberyard: true,
-    windmill: true,
+    lumberyard: false,
+    windmill: false,
     mine: false,
     watermill: false,
     sawmill: false,
@@ -83,40 +92,54 @@ export default function Game(props) {
     setNumClicks((prevClicks) => ++prevClicks);
   }
 
-  function detrimentRoll() {
-    Object.keys(detriment).map((item) => {
-      // console.log(detriment);
-      // console.log(item);
-      if (detriment[item].unlocked && !detriment[item].active) {
+  function detrimentRoll(){
+    //maps over each key in the detriment object checking for an unlocked value
+    Object.keys(detriment).map(item => {
+    //if the prop is unlocked, roll for a chance to activate detriment
+      if (detriment[item].unlocked && !detriment[item].active){
         const roll = Math.ceil(Math.random() * 10);
-        if (roll >= 8) {
-          // console.log(detriment[item]);
+        if (roll >= 8){
           detriment[item].active = true;
+          //switch case to put into effect in state, our detriment values
           switch (item) {
+            //name of detriment
             case 'termites': {
-              setGoldPerSecond((prevGold) => {
+              console.log('activating termites');
+              //detriment effect
+              setGoldPerSecond(prevGold => {
                 prevGold--;
                 return prevGold;
               });
-              setActiveTime(gameTime + 5);
+              //time for which the detriment is active
+              setActiveTime(prevActive => {
+                
+                prevActive.termites.lastActive = gameTime;
+                return {
+                  ...prevActive
+                } ;
+              });
+              console.log(activeTime.termites);
               break;
             }
+
             case 'failedCrops': {
-              setGoldPerSecond((prevGold) => {
-                prevGold--;
+              setGoldPerSecond(prevGold => {
+                prevGold = prevGold - 10;
                 return prevGold;
               });
               setActiveTime(gameTime + 5);
               break;
             }
+
             case 'caveIn': {
-              setGoldPerSecond((prevGold) => {
-                prevGold--;
+              setGoldPerSecond(prevGold => {
+                prevGold = prevGold - 20;
                 return prevGold;
               });
               setActiveTime(gameTime + 5);
               break;
             }
+
             case 'flood': {
               setGold((prevGold) => {
                 prevGold = prevGold - 10000;
@@ -126,6 +149,7 @@ export default function Game(props) {
               setActiveTime(gameTime + 5);
               break;
             }
+
             case 'osha': {
               setGold((prevGold) => {
                 prevGold = prevGold - 50000;
@@ -139,14 +163,16 @@ export default function Game(props) {
               setActiveTime(gameTime + 30);
               break;
             }
+
             case 'peta': {
-              setGoldPerSecond((prevGold) => {
-                prevGold--;
+              setGoldPerSecond(prevGold => {
+                prevGold = prevGold * .9;
                 return prevGold;
               });
               setActiveTime(gameTime + 5);
               break;
             }
+
             case 'bandits': {
               setGoldPerSecond((prevGold) => {
                 prevGold--;
@@ -161,10 +187,11 @@ export default function Game(props) {
               );
               break;
             }
+
             case 'arson': {
-              setGoldPerSecond((prevGold) => {
-                prevGold--;
-                return prevGold;
+              setUser({
+                ...user,
+                tavern: false
               });
               setActiveTime(gameTime + 5);
               console.log(
@@ -175,21 +202,149 @@ export default function Game(props) {
               );
               break;
             }
+            default:{
+              break;
+            }
           }
         } else {
           console.log('rolled less than an 8');
         }
-      } else if (
-        detriment[item].unlocked &&
-        detriment[item].active &&
-        activeTime === gameTime
-      ) {
-        switch (item) {
-          case 'termites': {
-            setGoldPerSecond((prevGold) => {
-              prevGold++;
-              return prevGold;
-            });
+      } 
+
+      //if the prop is unlocked and detriment is active, set the detriment back to inactive and remove negative effects
+      // else if (detriment[item].unlocked && detriment[item].active && gameTime - activeTime[item].duration === activeTime[item].lastActive){
+
+      //   console.log('sdfiupgiherpiuhger');
+      //   switch (item){
+      //     case 'termites' :{
+            
+      //         setDetriment({
+      //           ...detriment,
+      //           termites :  {
+      //             active: false,
+      //             unlocked: true
+      //           }
+      //         });
+      //         setGoldPerSecond(prevGold => {
+      //           prevGold++;
+      //           return prevGold;
+      //         });
+            
+      //       break;
+      //     }
+      //     case 'failedCrops' :{
+      //       setDetriment({
+      //         ...detriment,
+      //         failedCrops :  {
+      //           active: false,
+      //           unlocked: true
+      //         }
+      //       });
+      //       setGoldPerSecond(prevGold => {
+      //         prevGold++;
+      //         return prevGold;
+      //       });
+      //       break;
+      //     }
+      //     case 'caveIn' :{
+      //       setDetriment({
+      //         ...detriment,
+      //         caveIn :  {
+      //           active: false,
+      //           unlocked: true
+      //         }
+      //       });
+      //       setGoldPerSecond(prevGold => {
+      //         prevGold = prevGold + 20;
+      //         return prevGold;
+      //       });
+      //       break;
+      //     }
+      //     case 'flood' :{
+      //       setDetriment({
+      //         ...detriment,
+      //         flood :  {
+      //           active: false,
+      //           unlocked: true
+      //         }
+      //       });
+      //       // setGoldPerSecond(prevGold => {
+      //       //   prevGold++;
+      //       //   return prevGold;
+      //       // });
+      //       break;
+      //     }
+      //     case 'osha' :{
+      //       setDetriment({
+      //         ...detriment,
+      //         osha :  {
+      //           active: false,
+      //           unlocked: true
+      //         }
+      //       });
+      //       setGoldPerSecond(prevGold => {
+      //         prevGold = prevGold * 1.25;
+      //         return prevGold;
+      //       });
+      //       break;
+      //     }
+      //     case 'peta' :{
+      //       setDetriment({
+      //         ...detriment,
+      //         peta :  {
+      //           active: false,
+      //           unlocked: true
+      //         }
+      //       });
+      //       setGoldPerSecond(prevGold => {
+      //         prevGold = prevGold * 1.112;
+      //         return Math.floor(prevGold);
+      //       });
+      //       break;
+      //     }
+      //     case 'bandits' :{
+      //       setDetriment({
+      //         ...detriment,
+      //         bandits :  {
+      //           active: false,
+      //           unlocked: true
+      //         }
+      //       });
+      //       setGoldPerSecond(prevGold => {
+      //         prevGold++;
+      //         return prevGold;
+      //       });
+      //       break;
+      //     }
+      //     case 'arson' :{
+      //       setDetriment({
+      //         ...detriment,
+      //         arson :  {
+      //           active: false,
+      //           unlocked: true
+      //         }
+      //       });
+      //       setGoldPerSecond(prevGold => {
+      //         prevGold++;
+      //         return prevGold;
+      //       });
+      //       break;
+      //     }
+      //   }
+      //   return;
+      // }
+    });
+  }
+  
+
+  function shutOffEffect(){
+    Object.keys(detriment).map(item => {
+      if (detriment[item].unlocked && detriment[item].active && gameTime - activeTime[item].duration === activeTime[item].lastActive){
+
+        // console.log('sdfiupgiherpiuhger');
+        switch (item){
+          case 'termites' :{
+          console.log('shutting off termites');
             setDetriment({
               ...detriment,
               termites: {
@@ -197,13 +352,14 @@ export default function Game(props) {
                 unlocked: true,
               },
             });
-            break;
-          }
-          case 'failedCrops': {
-            setGoldPerSecond((prevGold) => {
+            setGoldPerSecond(prevGold => {
               prevGold++;
               return prevGold;
             });
+          
+            break;
+          }
+          case 'failedCrops' :{
             setDetriment({
               ...detriment,
               failedCrops: {
@@ -211,13 +367,13 @@ export default function Game(props) {
                 unlocked: true,
               },
             });
-            break;
-          }
-          case 'caveIn': {
-            setGoldPerSecond((prevGold) => {
+            setGoldPerSecond(prevGold => {
               prevGold++;
               return prevGold;
             });
+            break;
+          }
+          case 'caveIn' :{
             setDetriment({
               ...detriment,
               caveIn: {
@@ -225,13 +381,13 @@ export default function Game(props) {
                 unlocked: true,
               },
             });
-            break;
-          }
-          case 'flood': {
-            setGoldPerSecond((prevGold) => {
-              prevGold++;
+            setGoldPerSecond(prevGold => {
+              prevGold = prevGold + 20;
               return prevGold;
             });
+            break;
+          }
+          case 'flood' :{
             setDetriment({
               ...detriment,
               flood: {
@@ -239,13 +395,13 @@ export default function Game(props) {
                 unlocked: true,
               },
             });
+            // setGoldPerSecond(prevGold => {
+            //   prevGold++;
+            //   return prevGold;
+            // });
             break;
           }
-          case 'osha': {
-            setGoldPerSecond((prevGold) => {
-              prevGold++;
-              return prevGold;
-            });
+          case 'osha' :{
             setDetriment({
               ...detriment,
               osha: {
@@ -253,13 +409,13 @@ export default function Game(props) {
                 unlocked: true,
               },
             });
-            break;
-          }
-          case 'peta': {
-            setGoldPerSecond((prevGold) => {
-              prevGold++;
+            setGoldPerSecond(prevGold => {
+              prevGold = prevGold * 1.25;
               return prevGold;
             });
+            break;
+          }
+          case 'peta' :{
             setDetriment({
               ...detriment,
               peta: {
@@ -267,6 +423,10 @@ export default function Game(props) {
                 unlocked: true,
               },
             });
+            setGoldPerSecond(prevGold => {
+              prevGold = prevGold * 1.112;
+              return Math.floor(prevGold);
+            });
             break;
           }
           case 'bandits': {
@@ -274,20 +434,9 @@ export default function Game(props) {
               prevGold++;
               return prevGold;
             });
-            setDetriment({
-              ...detriment,
-              bandits: {
-                active: false,
-                unlocked: true,
-              },
-            });
             break;
           }
-          case 'arson': {
-            setGoldPerSecond((prevGold) => {
-              prevGold++;
-              return prevGold;
-            });
+          case 'arson' :{
             setDetriment({
               ...detriment,
               arson: {
@@ -295,72 +444,28 @@ export default function Game(props) {
                 unlocked: true,
               },
             });
+            setGoldPerSecond(prevGold => {
+              prevGold++;
+              return prevGold;
+            });
+            break;
+          }
+          default :{
             break;
           }
         }
-        return;
+      
       }
     });
   }
-
-  if (gameTime % 5 === 0) {
+  useEffect(() => {
+    if (gameTime % 3 === 0){
     // const currentTime = gameTime;
-    detrimentRoll();
-
-    if (gameTime - activeTime >= 5) {
-      // console.log(activeTime, 'this is the active time');
-      Object.keys(detriment).map((item) => {
-        switch (item) {
-          case 'termites': {
-            setGoldPerSecond(3);
-            break;
-          }
-          case 'failedCrops': {
-            setGoldPerSecond(3);
-            break;
-          }
-          case 'caveIn': {
-            setGoldPerSecond(3);
-            break;
-          }
-          case 'flood': {
-            setGoldPerSecond(3);
-            break;
-          }
-          case 'osha': {
-            setGoldPerSecond(3);
-            break;
-          }
-          case 'peta': {
-            setGoldPerSecond(3);
-            break;
-          }
-          case 'bandits': {
-            setGoldPerSecond(3);
-            break;
-          }
-          case 'arson': {
-            setGoldPerSecond(3);
-            break;
-          }
-          default: {
-            break;
-          }
-        }
-        if (detriment[item].active) {
-          setDetriment({
-            ...detriment,
-            [item]: {
-              ...detriment[item],
-              active: false,
-            },
-          });
-        }
-      });
+      detrimentRoll();
     }
-  } else {
-    // console.log('modulus not 0');
-  }
+    shutOffEffect();
+  }, [gameTime]);
+  
 
   function mineGold(prestige) {
     setGold((prevGold) => {
@@ -368,8 +473,7 @@ export default function Game(props) {
       if (active === false) {
         setActive(true);
       }
-
-      if (prestige > 0) {
+      if (prestige > 0){
         prevGold += goldPerSecond;
         return Math.floor(prevGold);
       } else {
@@ -582,9 +686,7 @@ export default function Game(props) {
           castle={user.castle}
         />
         <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} user={user} gold={gold} auth={props.auth} />
-        <Clock gameTime={gameTime} />
-        <Gold gold={gold} />
-        <Clicks clicks={numClicks} />
+        <Hud gold={gold} clicks={numClicks} gameTime={gameTime} gPS={goldPerSecond} />
       </div>
 
       <div className={style.bigbam}>
@@ -610,49 +712,31 @@ export default function Game(props) {
         <ul className={style.circles}>
           <li>
             <li>
-              <li>
-                <img width="100px" src="../../assets/gold-coin.png" />
-              </li>
+              <li><img width="100px"src="../../assets/gold-coin.png"/></li>
             </li>
           </li>
           <li></li>
           <li></li>
-          <li></li>
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+    
           </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
+          <li><img width="100px"src="../../assets/gold-coin.png"/></li>
+          <li><img width="100px"src="../../assets/gold-coin.png"/></li>
+          <li><img width="100px"src="../../assets/gold-coin.png"/></li>
+          <li><img width="100px"src="../../assets/gold-coin.png"/></li>
+          <li><img width="100px"src="../../assets/gold-coin.png"/></li>
+          <li><img width="100px"src="../../assets/gold-coin.png"/></li>
           <li>
             <li>
-              <li>
-                <img width="100px" src="../../assets/gold-coin.png" />
-              </li>
+              <li><img width="100px"src="../../assets/gold-coin.png"/></li>
             </li>
           </li>
+          <li><img width="100px"src="../../assets/gold-coin.png"/></li>
+          <li><img width="100px"src="../../assets/gold-coin.png"/></li>
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+    
           </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li></li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
+          <li><img width="100px"src="../../assets/gold-coin.png"/></li>
           <li></li>
           <li></li>
           <li></li>
