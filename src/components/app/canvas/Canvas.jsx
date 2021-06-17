@@ -4,7 +4,7 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
-import { drawUnlocked, drawMap, drawClouds } from './canvasUtils';
+import { drawUnlocked, drawMap } from './canvasUtils';
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);
@@ -28,7 +28,7 @@ const Canvas = (props) => {
       // draw(context, tester1);
       drawMap(context);
       drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
-      // drawClouds(context);
+      
     };
     render();
  
@@ -49,7 +49,7 @@ const Canvas = (props) => {
       drawMap(context);
       drawUnlocked(context, props);  //function in canvas utils,
       // drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
-      // drawClouds(context);
+      
     };
     render();
  
@@ -177,7 +177,7 @@ const Canvas = (props) => {
       drawUnlocked(context, props); //function in canvas utils, renders each layer that is unlocked by the user
       unlockToolTip(region, buildingInfo, building);
 
-      // const cloudCoords = drawClouds(context, props.gametime);
+    
       // eslint-disable-next-line no-unused-vars
       // return cloudCoords;
     };
@@ -201,7 +201,6 @@ const Canvas = (props) => {
 
 Canvas.propTypes = {
   user: PropTypes.shape({}).isRequired,
-  gameTime: PropTypes.number.isRequired,
   prestige: PropTypes.number.isRequired,
   active: PropTypes.bool.isRequired,
 };

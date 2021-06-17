@@ -32,6 +32,7 @@ const UserControls = ({
         blacksmith: user.blacksmith,
         tavern: user.tavern,
         castle: user.castle,
+        gold
       },
       auth.auth.token
     );
