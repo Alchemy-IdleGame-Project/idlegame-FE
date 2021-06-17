@@ -6,19 +6,14 @@ import Canvas from '../components/app/canvas/Canvas';
 import { useInterval } from '../hooks/hooks.js';
 import style from '../components/app/style.css';
 import Prestige from '../components/app/prestige/Prestige';
-<<<<<<< HEAD
-=======
-import Gold from '../components/app/hud/Gold';
-import Clicks from '../components/app/hud/Clicks';
->>>>>>> 1b32e83d013b57ef268b6da00c2d47bae6c12d25
-import Hud from '../components/app/hud/Hud'
+import Hud from '../components/app/hud/Hud';
 import UserControls from '../components/app/controls/UserControls';
 import Detriment from '../components/app/detriment/Detriment';
 import * as request from 'superagent';
 import PropTypes from 'prop-types';
 
 export default function Game(props) {
-  const [gold, setGold] = useState(0);
+  const [gold, setGold] = useState(50000000);
   const [goldPerSecond, setGoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
   const [numClicks, setNumClicks] = useState(0);
@@ -44,9 +39,9 @@ export default function Game(props) {
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({
     house: true,
-    lumberyard: true,
-    windmill: true,
-    mine: true,
+    lumberyard: false,
+    windmill: false,
+    mine: false,
     watermill: false,
     sawmill: false,
     blacksmith: false,
@@ -134,7 +129,6 @@ export default function Game(props) {
             }
 
             case 'failedCrops': {
-           
 
               console.log('activating crop failure');
               //detriment effect
@@ -284,10 +278,10 @@ export default function Game(props) {
             console.log('shutting off termites');
             setDetriment({
               ...detriment,
-              termites: {
+              termites :  {
                 active: false,
-                unlocked: true,
-              },
+                unlocked: true
+              }
             });
             setGoldPerSecond(prevGold => {
               prevGold++;
@@ -298,10 +292,10 @@ export default function Game(props) {
           case 'failedCrops' :{
             setDetriment({
               ...detriment,
-              failedCrops: {
+              failedCrops :  {
                 active: false,
-                unlocked: true,
-              },
+                unlocked: true
+              }
             });
             setGoldPerSecond(prevGold => {
               prevGold++;
@@ -312,10 +306,10 @@ export default function Game(props) {
           case 'caveIn' :{
             setDetriment({
               ...detriment,
-              caveIn: {
+              caveIn :  {
                 active: false,
-                unlocked: true,
-              },
+                unlocked: true
+              }
             });
             setGoldPerSecond(prevGold => {
               prevGold = prevGold + 20;
@@ -326,24 +320,20 @@ export default function Game(props) {
           case 'flood' :{
             setDetriment({
               ...detriment,
-              flood: {
+              flood :  {
                 active: false,
-                unlocked: true,
-              },
+                unlocked: true
+              }
             });
-            // setGoldPerSecond(prevGold => {
-            //   prevGold++;
-            //   return prevGold;
-            // });
             break;
           }
           case 'osha' :{
             setDetriment({
               ...detriment,
-              osha: {
+              osha :  {
                 active: false,
-                unlocked: true,
-              },
+                unlocked: true
+              }
             });
             setGoldPerSecond(prevGold => {
               prevGold = prevGold * 1.25;
@@ -354,14 +344,10 @@ export default function Game(props) {
           case 'peta' :{
             setDetriment({
               ...detriment,
-              peta: {
+              peta :  {
                 active: false,
-                unlocked: true,
-              },
-            });
-            setGoldPerSecond(prevGold => {
-              prevGold = prevGold * 1.112;
-              return Math.floor(prevGold);
+                unlocked: true
+              }
             });
             setGoldPerSecond(prevGold => {
               prevGold = prevGold * 1.112;
@@ -372,10 +358,10 @@ export default function Game(props) {
           case 'bandits' :{
             setDetriment({
               ...detriment,
-              arson: {
+              bandits :  {
                 active: false,
-                unlocked: true,
-              },
+                unlocked: true
+              }
             });
             setGoldPerSecond(prevGold => {
               prevGold++;
@@ -392,6 +378,8 @@ export default function Game(props) {
               }
             });
             setGoldPerSecond(prevGold => {
+              prevGold++;
+              return prevGold;
             });
             break;
           }
@@ -399,13 +387,16 @@ export default function Game(props) {
             break;
           }
         }
-
-     useEffect(() => {
-       if (gameTime % 3 === 0){
+      }
+    });
+  }
+  useEffect(() => {
+    if (gameTime % 3 === 0){
+   
       detrimentRoll();
     }
     shutOffEffect();
-  }, [gameTime]);   
+  }, [gameTime]);
     
   
 
