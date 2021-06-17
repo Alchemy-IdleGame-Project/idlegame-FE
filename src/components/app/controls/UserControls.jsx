@@ -7,6 +7,7 @@ const UserControls = ({
   handleMineClick,
   handleClicks,
   uploadSave,
+  newGame,
   gold,
   user,
   auth,
@@ -16,7 +17,7 @@ const UserControls = ({
     handleMineClick();
     handleClicks();
   }
-  // you need to add prestige, gametime, num clicks
+  // you need to add gold, prestige, gametime, num clicks
   function handleSaveButton() { 
     console.log(user);
     console.log(auth.auth.token, 'this is auth token');
@@ -41,9 +42,13 @@ const UserControls = ({
     setLoadUser(true);
   }
 
+  function handleNewGame() {
+    newGame();
+  }
+
   return (
     <div className={style.userControls}>
-      <button className={style.smallButton}>New Game</button>
+      <button className={style.smallButton} onClick={handleNewGame}>New Game</button>
       <button className={style.smallButton} onClick={handleSaveButton}>
         Save Game
       </button>
@@ -61,6 +66,7 @@ const UserControls = ({
 UserControls.propTypes = {
   handleMineClick: PropTypes.func.isRequired,
   handleClicks: PropTypes.func.isRequired,
+  newGame: PropTypes.func.isRequired,
   uploadSave: PropTypes.func.isRequired,
   setLoadUser: PropTypes.func.isRequired,
   gold: PropTypes.number.isRequired,

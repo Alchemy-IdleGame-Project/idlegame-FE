@@ -43,11 +43,11 @@ const SignIn = (props) => {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label >Username</label>
+          <label >Username:</label>
           <input value={userInfo.username} onChange={handleUsername} />
         </div>
         <div>
-          <label>Password</label>
+          <label>Password:</label>
           <input value={userInfo.password} onChange={handlePassword}/>
         </div>
         <button>
