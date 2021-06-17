@@ -8,7 +8,7 @@ const Hud = ({ gametime, gold, clicks, gPS }) => {
   const clock = <Clock gametime={gametime} />;
   const goldCount = <Gold gold={gold} />;
   const clickCount =  <Clicks clicks={clicks} />;
-  const goldPerSecond =  <p>gold per second: {gPS} </p>;
+  const goldPerSecond =  <p>gold per second: {Math.floor(gPS)} </p>;
   
   return <>
     {clock}
