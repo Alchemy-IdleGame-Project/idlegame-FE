@@ -390,6 +390,7 @@ export default function Game(props) {
       }
     });
   }
+  
   useEffect(() => {
     if (gameTime % 3 === 0){
    
@@ -612,14 +613,21 @@ export default function Game(props) {
     <div>
       <h1>Idle Isle</h1>
       <div className={style.tester}>
-        <hr />
+
+      
         <Prestige
           handlePrestige={incrementPrestige}
           prestige={prestige}
           castle={user.castle}
         />
         <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} downloadSave={downloadSave} user={user} setUser={setUser} gold={gold} auth={props.auth} />
-        <Hud gold={gold} clicks={numClicks} gameTime={gameTime} gPS={goldPerSecond} />
+        
+
+        <hr/>
+        <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
+        
+        <Hud gold={gold} clicks={numClicks} gameTime={gameTime} gPS={goldPerSecond} handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
+
       </div>
 
       <div className={style.bigbam}>

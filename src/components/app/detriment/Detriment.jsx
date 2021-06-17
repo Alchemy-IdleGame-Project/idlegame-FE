@@ -5,15 +5,17 @@ import style from '../style.css';
  
 const Detriment = ({ detriment }) => {
   // console.log(detriment);
-  return(
+  return (
     <div className={style.detDiv}>
-        <h2>Current detrimental effects are:</h2>
+      <h2>Current detrimental effects are:</h2>
       {Object.keys(detriment).map(item => {
-        if(detriment[item].active){
-          switch(item) {
+        if (detriment[item].active){
+          switch (item) {
             case 'termites' : {
               // console.log(item);
-              return <p className={style.activeDetriment}> {item} -1 gold/s </p>;          
+              return <div className={style.activeDetriment}>
+                <p> {item} -1 gold/s </p>;          
+              </div>;
             }
             case 'failedCrops' : {
               // console.log(item);
@@ -44,8 +46,8 @@ const Detriment = ({ detriment }) => {
               return <p className={style.activeDetriment}> {item}: Burnt down tavern </p>;
             }
           }
-        } else if(!detriment[item].active) {
-          switch(item) {
+        } else if (!detriment[item].active) {
+          switch (item) {
             case 'termites' : {
               // console.log(item);
               return <p className={style.inactiveDetriment}> {item} -1 gold/s </p>;          
