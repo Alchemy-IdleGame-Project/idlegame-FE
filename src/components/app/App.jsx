@@ -5,6 +5,7 @@ import TitlePage from '../../containers/TitlePage';
 import Register from '../login/Register';
 import SignIn from '../login/SignIn';
 import Header from './header/Header';
+import style from './style.css';
 
 const AUTH = 'AUTH';
 
@@ -39,7 +40,6 @@ export default function App() {
 
   return (
     <>
-      <Header />
       <Switch>
         <Route
           path="/"
@@ -66,6 +66,7 @@ export default function App() {
           render={(routerProps) => <Game {...routerProps} auth={auth} />}
         />
       </Switch>
+      <Header />
     </>
   );
 }

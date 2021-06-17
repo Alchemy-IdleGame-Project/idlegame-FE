@@ -3,12 +3,12 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import style from '../style.css'
 
-const Clock = ({ gameTime }) => {
+const Clock = ({ gametime }) => {
   let hour, minute, second;
 
-  hour = Math.floor(gameTime / 3600);
-  minute = Math.floor((gameTime - (hour * 3600)) / 60);
-  second = gameTime - (hour * 3600) - (minute * 60);
+  hour = Math.floor(gametime / 3600);
+  minute = Math.floor((gametime - (hour * 3600)) / 60);
+  second = gametime - (hour * 3600) - (minute * 60);
   
   if (String(hour).length < 2){
     hour = `0${hour}`;
@@ -29,7 +29,7 @@ const Clock = ({ gameTime }) => {
 };
 
 Clock.propTypes = {
-  gameTime: PropTypes.number.isRequired
+  gametime: PropTypes.number.isRequired
 };
 
 export default Clock;
