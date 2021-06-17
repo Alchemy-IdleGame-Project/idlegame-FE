@@ -22,8 +22,6 @@ const UserControls = ({
   }
   // you need to add gold, prestige, gametime, num clicks
   function handleSaveButton() { 
-    console.log(user);
-    console.log(auth.auth.token, 'this is auth token');
     uploadSave(
       {
         lumberyard: user.lumberyard,

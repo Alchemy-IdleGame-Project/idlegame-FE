@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import * as request from 'superagent';
 import PropTypes from 'prop-types';
-
-
+import style from '../app/style.css';
 
 const Register = (props) => {
   const [userInfo, setUserInfo] = useState({
@@ -16,7 +15,6 @@ const Register = (props) => {
     const res = await request
       .post(`${url}/auth/signup`)
       .send({ password, email: username });
-    console.log(res.body);
     return res.body;
   }
 
@@ -45,14 +43,16 @@ const Register = (props) => {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label >Username:</label>
-          <input value={userInfo.username} onChange={handleUsername} />
+          <label>Username: 
+            <input value={userInfo.username} onChange={handleUsername} />
+          </label>
         </div>
         <div>
-          <label>Password:</label>
-          <input value={userInfo.password} onChange={handlePassword}/>
+          <label>Password: 
+            <input value={userInfo.password} onChange={handlePassword}/>
+          </label>
         </div>
-        <button>
+        <button className={style.smallButton}>
           Register
         </button>
       </form>
@@ -63,7 +63,7 @@ const Register = (props) => {
 
 Register.propTypes = {
   handleAuth: PropTypes.func.isRequired,
-  history: PropTypes.string.isRequired
+  history: PropTypes.object.isRequired
 };
 
 export default Register;

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
-import style from '../style.css'
+import style from '../style.css';
 
 const Clock = ({ gametime }) => {
   let hour, minute, second;
@@ -23,7 +23,7 @@ const Clock = ({ gametime }) => {
   return (
     <div className={style.clock}>
       <img src="../../assets/square-clock.png" alt="Game Clock" width="30px"/>
-       {hour }:{ minute}:{second}
+      {hour }:{ minute}:{second}
     </div>
   );
 };

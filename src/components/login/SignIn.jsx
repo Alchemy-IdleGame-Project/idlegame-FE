@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import * as request from 'superagent';
+import style from '../app/style.css';
 
 
 const SignIn = (props) => {
@@ -43,14 +44,16 @@ const SignIn = (props) => {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label >Username:</label>
-          <input value={userInfo.username} onChange={handleUsername} />
+          <label >Username: 
+            <input value={userInfo.username} onChange={handleUsername} />
+          </label>
         </div>
         <div>
-          <label>Password:</label>
-          <input value={userInfo.password} onChange={handlePassword}/>
+          <label>Password: 
+            <input value={userInfo.password} onChange={handlePassword}/>
+          </label>
         </div>
-        <button>
+        <button className={style.smallButton}>
           Log In
         </button>
       </form>
@@ -60,7 +63,7 @@ const SignIn = (props) => {
 
 SignIn.propTypes = {
   handleAuth: PropTypes.func.isRequired,
-  history: PropTypes.string.isRequired
+  history: PropTypes.object.isRequired
 };
 
 export default SignIn;
