@@ -8,6 +8,7 @@ const UserControls = ({
   handleClicks,
   uploadSave,
   downloadSave,
+  setUser,
   gold,
   user,
   auth,
@@ -37,8 +38,21 @@ const UserControls = ({
   }
 
   async function handleLoadButton() {
+    console.log(user, 'this is pre load');
     const saveData = await downloadSave(auth.auth.token);
-    console.log(saveData, 'this is load dataaaa');
+    setUser({ 
+      house: true, 
+      lumberyard: saveData.lumberyard,
+      windmill: saveData.windmill,
+      mine: saveData.mine,
+      watermill: saveData.watermill,
+      sawmill: saveData.sawmill,
+      farm: saveData.farm,
+      blacksmith: saveData.blacksmith,
+      tavern: saveData.tavern,
+      castle: saveData.castle });
+    console.log(user, 'this is post load');
+    console.log(saveData, 'this is saved data');
   }
 
   return (
@@ -63,6 +77,7 @@ UserControls.propTypes = {
   handleClicks: PropTypes.func.isRequired,
   uploadSave: PropTypes.func.isRequired,
   downloadSave: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
   gold: PropTypes.number.isRequired,
   user: PropTypes.shape({
     house: PropTypes.bool.isRequired,

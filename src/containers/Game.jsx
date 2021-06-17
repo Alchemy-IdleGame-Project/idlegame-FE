@@ -40,8 +40,8 @@ export default function Game(props) {
   const [user, setUser] = useState({
     house: true,
     lumberyard: true,
-    windmill: false,
-    mine: false,
+    windmill: true,
+    mine: true,
     watermill: false,
     sawmill: false,
     farm: false,
@@ -692,7 +692,7 @@ export default function Game(props) {
           prestige={prestige}
           castle={user.castle}
         />
-        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} downloadSave={downloadSave} user={user} gold={gold} auth={props.auth} />
+        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} downloadSave={downloadSave} user={user} setUser={setUser} gold={gold} auth={props.auth} />
         <Hud gold={gold} clicks={numClicks} gameTime={gameTime} gPS={goldPerSecond} />
       </div>
 
