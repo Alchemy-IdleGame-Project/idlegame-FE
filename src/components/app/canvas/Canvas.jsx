@@ -201,7 +201,7 @@ const Canvas = (props) => {
 
 Canvas.propTypes = {
   user: PropTypes.shape({}).isRequired,
-  gameTime: PropTypes.number.isRequired,
+  gametime: PropTypes.number.isRequired,
   prestige: PropTypes.number.isRequired,
   active: PropTypes.bool.isRequired,
 };

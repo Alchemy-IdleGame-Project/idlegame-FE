@@ -17,7 +17,7 @@ export default function Game(props) {
   const [goldPerSecond, setGoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
   const [numClicks, setNumClicks] = useState(0);
-  const [gameTime, setGameTime] = useState(0);
+  const [gametime, setGametime] = useState(0);
   const [prestige, setPrestige] = useState(0);
 
   const [activeTime, setActiveTime] = useState({
@@ -119,7 +119,7 @@ export default function Game(props) {
               //time for which the detriment is active
               setActiveTime(prevActive => {
                 
-                prevActive.termites.lastActive = gameTime;
+                prevActive.termites.lastActive = gametime;
                 return {
                   ...prevActive
                 } ;
@@ -139,7 +139,7 @@ export default function Game(props) {
               //time for which the detriment is active
               setActiveTime(prevActive => {
                 
-                prevActive.failedCrops.lastActive = gameTime;
+                prevActive.failedCrops.lastActive = gametime;
                 return {
                   ...prevActive
                 } ;
@@ -157,7 +157,7 @@ export default function Game(props) {
               });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
               setActiveTime(prevActive => {
-                prevActive.caveIn.lastActive = gameTime;
+                prevActive.caveIn.lastActive = gametime;
                 return {
                   ...prevActive
                 } ;
@@ -174,7 +174,7 @@ export default function Game(props) {
               });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
               setActiveTime(prevActive => {
-                prevActive.flood.lastActive = gameTime;
+                prevActive.flood.lastActive = gametime;
                 return {
                   ...prevActive
                 } ;
@@ -197,7 +197,7 @@ export default function Game(props) {
               });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
               setActiveTime(prevActive => {
-                prevActive.osha.lastActive = gameTime;
+                prevActive.osha.lastActive = gametime;
                 return {
                   ...prevActive
                 } ;
@@ -215,7 +215,7 @@ export default function Game(props) {
               });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
               setActiveTime(prevActive => {
-                prevActive.peta.lastActive = gameTime;
+                prevActive.peta.lastActive = gametime;
                 return {
                   ...prevActive
                 } ;
@@ -233,7 +233,7 @@ export default function Game(props) {
               });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
               setActiveTime(prevActive => {
-                prevActive.bandits.lastActive = gameTime;
+                prevActive.bandits.lastActive = gametime;
                 return {
                   ...prevActive
                 } ;
@@ -248,7 +248,7 @@ export default function Game(props) {
               setUser({ ...user, tavern : false });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
               setActiveTime(prevActive => {
-                prevActive.arson.lastActive = gameTime;
+                prevActive.arson.lastActive = gametime;
                 return {
                   ...prevActive
                 } ;
@@ -270,8 +270,8 @@ export default function Game(props) {
   //if the prop is unlocked and detriment is active, set the detriment back to inactive and remove negative effects
   function shutOffEffect(){
     Object.keys(detriment).map(item => {
-      if (detriment[item].unlocked && detriment[item].active && gameTime - activeTime[item].duration === activeTime[item].lastActive){
-
+      if (detriment[item].unlocked && detriment[item].active && gametime - activeTime[item].duration === activeTime[item].lastActive){
+        console.log(item);
         // console.log('sdfiupgiherpiuhger');
         switch (item){
           case 'termites' :{
@@ -391,12 +391,12 @@ export default function Game(props) {
     });
   }
   useEffect(() => {
-    if (gameTime % 3 === 0){
+    if (gametime % 3 === 0){
    
       detrimentRoll();
     }
     shutOffEffect();
-  }, [gameTime]);
+  }, [gametime]);
     
   
 
@@ -417,7 +417,7 @@ export default function Game(props) {
   }
 
   function gameClock() {
-    setGameTime((prevTime) => {
+    setGametime((prevTime) => {
       prevTime++;
       return prevTime;
     });
@@ -604,7 +604,7 @@ export default function Game(props) {
         tavern: false,
         castle: false,
       });
-      setGameTime(0);
+      setGametime(0);
     }
   }
 
@@ -619,19 +619,10 @@ export default function Game(props) {
           castle={user.castle}
         />
         <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} downloadSave={downloadSave} user={user} setUser={setUser} gold={gold} auth={props.auth} />
-        <Hud gold={gold} clicks={numClicks} gameTime={gameTime} gPS={goldPerSecond} />
+        <Hud gold={gold} clicks={numClicks} gametime={gametime} gPS={goldPerSecond} />
       </div>
 
       <div className={style.bigbam}>
-        <Detriment detriment={detriment} />
-
-        {/* experimenting with being able to have more properties in the user but not passing properties that arent necessary */}
-        <Canvas
-          gameTime={gameTime}
-          user={user}
-          active={active}
-          prestige={prestige}
-        />
         <GameControls
           handleMineClick={mineGold}
           handleClicks={addToClicks}
@@ -642,6 +633,16 @@ export default function Game(props) {
           unlockBuilding={unlockBuilding}
           user={user}
         />
+
+        {/* experimenting with being able to have more properties in the user but not passing properties that arent necessary */}
+        <Canvas
+          gametime={gametime}
+          user={user}
+          active={active}
+          prestige={prestige}
+        />
+        <Detriment detriment={detriment} />
+
         <ul className={style.circles}>
           <li>
             <li>

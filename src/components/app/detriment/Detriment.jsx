@@ -7,7 +7,7 @@ const Detriment = ({ detriment }) => {
   // console.log(detriment);
   return(
     <div className={style.detDiv}>
-        <h2>Current detrimental effects are:</h2>
+      <h2>Current detrimental effects are:</h2>
       {Object.keys(detriment).map(item => {
         if(detriment[item].active){
           switch(item) {
