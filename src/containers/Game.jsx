@@ -39,7 +39,7 @@ export default function Game(props) {
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({
     house: true,
-    lumberyard: false,
+    lumberyard: true,
     windmill: false,
     mine: false,
     watermill: false,
@@ -58,6 +58,13 @@ export default function Game(props) {
       .set('Authorization', token)
       .send(built);
     return response.body;
+  };
+
+  const downloadSave = async (token) => {
+    const response = await request
+      .get(`${url}/api/unlocked`)
+      .set('Authorization', token);
+    return response.body[response.body.length - 1];
   };
 
 
@@ -344,7 +351,7 @@ export default function Game(props) {
         // console.log('sdfiupgiherpiuhger');
         switch (item){
           case 'termites' :{
-          console.log('shutting off termites');
+            console.log('shutting off termites');
             setDetriment({
               ...detriment,
               termites: {
@@ -685,7 +692,7 @@ export default function Game(props) {
           prestige={prestige}
           castle={user.castle}
         />
-        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} user={user} gold={gold} auth={props.auth} />
+        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} downloadSave={downloadSave} user={user} gold={gold} auth={props.auth} />
         <Hud gold={gold} clicks={numClicks} gameTime={gameTime} gPS={goldPerSecond} />
       </div>
 

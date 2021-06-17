@@ -7,6 +7,7 @@ const UserControls = ({
   handleMineClick,
   handleClicks,
   uploadSave,
+  downloadSave,
   gold,
   user,
   auth,
@@ -17,7 +18,6 @@ const UserControls = ({
   }
 
   function handleSaveButton() {
-    
     console.log(user);
     console.log(auth.auth.token, 'this is auth token');
     uploadSave(
@@ -36,13 +36,20 @@ const UserControls = ({
     );
   }
 
+  async function handleLoadButton() {
+    const saveData = await downloadSave(auth.auth.token);
+    console.log(saveData, 'this is load dataaaa');
+  }
+
   return (
     <div className={style.userControls}>
       <button className={style.smallButton}>New Game</button>
       <button className={style.smallButton} onClick={handleSaveButton}>
         Save Game
       </button>
-      <button className={style.smallButton}>Load Game</button>
+      <button className={style.smallButton} onClick={handleLoadButton}>
+        Load Game
+      </button>
       <br />
       <button className={style.smallButton} onClick={handleMineButtonClick}>
         Mine Gold
@@ -55,6 +62,7 @@ UserControls.propTypes = {
   handleMineClick: PropTypes.func.isRequired,
   handleClicks: PropTypes.func.isRequired,
   uploadSave: PropTypes.func.isRequired,
+  downloadSave: PropTypes.func.isRequired,
   gold: PropTypes.number.isRequired,
   user: PropTypes.shape({
     house: PropTypes.bool.isRequired,
