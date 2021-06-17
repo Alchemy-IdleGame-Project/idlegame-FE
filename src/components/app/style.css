@@ -99,6 +99,7 @@ canvas{
     background-position: center;
     background-size:cover;
     /* padding-bottom: 50px; */
+    justify-content: center;
     color: white;
     margin: auto;
 }
@@ -117,7 +118,6 @@ canvas{
     /* padding-top: 5%; */
     width: 800px;
     height: 608px;
-
 }
 .userControls{
    display: flex; 

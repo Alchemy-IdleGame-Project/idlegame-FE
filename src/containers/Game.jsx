@@ -32,6 +32,7 @@ export default function Game(props) {
     mine: false,
     watermill: false,
     sawmill: false,
+    farm: false,
     blacksmith: false,
     tavern: false,
     castle: false,
@@ -69,30 +70,38 @@ export default function Game(props) {
 
   useEffect(async () => {
     const saveData = await downloadSave(props.auth.auth.token);
-    setUser((prevUser) => {
-      prevUser = {
-        house: true,
-        ...saveData,
-      };
-      let o = {};
-      Object.keys(prevUser).map((item) => {
-        if (typeof prevUser[item] === 'boolean') {
-          o = {
-            [item]: prevUser[item],
-          };
+    if (typeof saveData !== 'undefined'){
+      setGoldPerSecond(1);
+      setGold(saveData.gold);
+      setGametime(saveData.gametime);
+      setPrestige(saveData.prestige);
+      setNumClicks(saveData.clicks);
+      setUser((prevUser) => {
+        prevUser = {
+          house: true,
+          ...saveData
+        };
+        let o = {};
+        Object.keys(prevUser).map(item => {
+          if (typeof prevUser[item] === 'boolean'){
+            o = {
+              [item]: prevUser[item]
+            };
+          }
+          if (o[item]){
+            // setDetriment((prevDet) => {
+            //   Object.keys(prevDet).map(item2 => {
+            //     prevDet[item2].unlocked = true;
+            //   });
+            //   return prevDet;
+            console.log(item);
+            loadBuilding(item);
+          }
         }
-        if (o[item]) {
-          setDetriment((prevDet) => {
-            Object.keys(prevDet).map((item) => {
-              console.log(prevDet[item], '!!!!!!!');
-              prevDet[item].unlocked = true;
-            });
-            return prevDet;
-          });
-        }
+        );
+        return prevUser;
       });
-      return prevUser;
-    });
+    }
   }, [loadUser]);
 
   const [detriment, setDetriment] = useState({
@@ -121,6 +130,154 @@ export default function Game(props) {
 
   //anytime we refresh make sure to push the state to the DB
   //window.onbeforeunload= ourFunctionToUpdateDB(user);
+
+  function loadBuilding(item) {
+    switch (item) {
+      case 'lumberyard': {
+        if (gold < goldRequired.lumberyard) return;
+        setUser({
+          ...user,
+          [item]: true,
+        });
+        setGoldPerSecond(
+          (prevGold) => prevGold + goldRequired.lumberyard * 0.1 - 0.5
+        );
+        setDetriment({
+          ...detriment,
+          termites: {
+            active: false,
+            unlocked: true,
+          },
+        });
+        break;
+      }
+      case 'windmill': {
+        if (gold < goldRequired.windmill) return;
+        setUser({
+          ...user,
+          [item]: true,
+        });
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.windmill * 0.06);
+        setDetriment({
+          ...detriment,
+          failedCrops: {
+            active: false,
+            unlocked: true,
+          },
+        });
+        break;
+      }
+      case 'mine': {
+        if (gold < goldRequired.mine) return;
+        setUser({
+          ...user,
+          [item]: true,
+        });
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.mine * 0.01);
+        setDetriment({
+          ...detriment,
+          caveIn: {
+            active: false,
+            unlocked: true,
+          },
+        });
+        break;
+      }
+      case 'watermill': {
+        if (gold < goldRequired.watermill) return;
+        setUser({
+          ...user,
+          [item]: true,
+        });
+        setGoldPerSecond(
+          (prevGold) => prevGold + goldRequired.watermill * 0.003
+        );
+        setDetriment({
+          ...detriment,
+          flood: {
+            active: false,
+            unlocked: true,
+          },
+        });
+        break;
+      }
+      case 'sawmill': {
+        if (gold < goldRequired.sawmill) return;
+        setUser({
+          ...user,
+          [item]: true,
+        });
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.sawmill * 0.001);
+        setDetriment({
+          ...detriment,
+          osha: {
+            active: false,
+            unlocked: true,
+          },
+        });
+        break;
+      }
+      case 'farm': {
+        if (gold < goldRequired.farm) return;
+        setUser({
+          ...user,
+          [item]: true,
+        });
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.farm * 0.002);
+        setDetriment({
+          ...detriment,
+          peta: {
+            active: false,
+            unlocked: true,
+          },
+        });
+        break;
+      }
+      case 'blacksmith': {
+        if (gold < goldRequired.blacksmith) return;
+        setUser({
+          ...user,
+          [item]: true,
+        });
+        setGoldPerSecond(
+          (prevGold) => prevGold + goldRequired.blacksmith * 0.001
+        );
+        setDetriment({
+          ...detriment,
+          bandits: {
+            active: false,
+            unlocked: true,
+          },
+        });
+        break;
+      }
+      case 'tavern': {
+        if (gold < goldRequired.tavern) return;
+        setUser({
+          ...user,
+          [item]: true,
+        });
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.tavern * 0.002);
+        setDetriment({
+          ...detriment,
+          arson: {
+            active: false,
+            unlocked: true,
+          },
+        });
+        break;
+      }
+      case 'castle': {
+        if (gold < goldRequired.castle) return;
+        setUser({
+          ...user,
+          [item]: true,
+        });
+        setGoldPerSecond((prevGold) => prevGold + goldRequired.castle * 0.1);
+        break;
+      }
+    }
+  }
 
   function addToClicks() {
     setNumClicks((prevClicks) => ++prevClicks);
@@ -676,26 +833,9 @@ export default function Game(props) {
   return (
     <div>
       <div className={style.overhead}>
-        <UserControls
-          handleMineClick={mineGold}
-          handleClicks={addToClicks}
-          uploadSave={uploadSave}
-          downloadSave={downloadSave}
-          user={user}
-          setUser={setUser}
-          gold={gold}
-          auth={props.auth}
-          setLoadUser={setLoadUser}
-          newGame={newGame}
-        />
-        <Prestige
-          handlePrestige={incrementPrestige}
-          prestige={prestige}
-          castle={user.castle}
-        />
-        <h1 className={style.gameTitle}>
-          <img src="../../assets/gametitle.PNG" alt="idle isle" />
-        </h1>
+        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} downloadSave={downloadSave} user={user} setUser={setUser} gold={gold} auth={props.auth} setLoadUser={setLoadUser} prestige={prestige} gametime={gametime} numClicks={numClicks} newGame={newGame}/>
+        <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
+        <h1 className={style.gameTitle}><img src="../../assets/gametitle.PNG" alt="idle isle" /></h1>
         <div className={style.hud}>
           <Hud
             gold={gold}
