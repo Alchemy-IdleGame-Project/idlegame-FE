@@ -24,7 +24,7 @@ const Register = (props) => {
     e.preventDefault();
     const auth = await signUp(userInfo.username, userInfo.password);
     props.handleAuth(auth);
-    // this.props.history.push('/game');
+    props.history.push('/game');
   };
 
   const handleUsername = (e) => {
@@ -62,7 +62,8 @@ const Register = (props) => {
 
 
 Register.propTypes = {
-  handleAuth: PropTypes.func.isRequired
+  handleAuth: PropTypes.func.isRequired,
+  history: PropTypes.string.isRequired
 };
 
 export default Register;

@@ -5,7 +5,7 @@ import { gold } from 'color-name';
 
 const Gold = ({ gold }) => {
   return (
-    <p><img width="40px" src="../../../assets/coin-icon-3830.png"/>Current Gold: {gold} </p>
+    <p><img width="40px" src="../../../assets/coin-icon-3830.png"/> Current Gold: {gold} </p>
   );
 };
 
