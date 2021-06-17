@@ -147,7 +147,21 @@ function firstToUpper(string) {
 
 export const drawUnlocked = (ctx, ps) => {
   const user = Object.keys(ps.user);
-
+  
+  if(!ps.user.tavern){
+    draw(ctx, tester);
+    draw(ctx, tester1);
+    user.map(item => {
+      
+      if(ps.user[item] === true){
+      
+        
+        draw(ctx, eval(`road${firstToUpper(item)}Layer`));    
+        draw2(ctx, eval(`${item}Layer`));
+      }
+    });
+  }
+  
   user.map(item => {
     
     if(ps.user[item] === true){

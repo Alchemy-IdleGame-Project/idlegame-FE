@@ -6,6 +6,11 @@ import Canvas from '../components/app/canvas/Canvas';
 import { useInterval } from '../hooks/hooks.js';
 import style from '../components/app/style.css';
 import Prestige from '../components/app/prestige/Prestige';
+<<<<<<< HEAD
+=======
+import Gold from '../components/app/hud/Gold';
+import Clicks from '../components/app/hud/Clicks';
+>>>>>>> 1b32e83d013b57ef268b6da00c2d47bae6c12d25
 import Hud from '../components/app/hud/Hud'
 import UserControls from '../components/app/controls/UserControls';
 import Detriment from '../components/app/detriment/Detriment';
@@ -21,14 +26,14 @@ export default function Game(props) {
   const [prestige, setPrestige] = useState(0);
 
   const [activeTime, setActiveTime] = useState({
-    termites: { lastActive: 0, duration: 2 },
-    failedCrops: { lastActive: 0, duration: 30 }, 
-    caveIn: { lastActive: 0, duration: 30 },
-    flood: { lastActive: 0, duration: 30 },
-    osha: { lastActive: 0, duration: 30 },
-    peta: { lastActive: 0, duration: 30 },
-    bandits: { lastActive: 0, duration: 30 },
-    arson: { lastActive: 0, duration: 30 } 
+    termites:     { lastActive: 0, duration: 2 },
+    failedCrops:  { lastActive: 0, duration: 2 }, 
+    caveIn:       { lastActive: 0, duration: 2 },
+    flood:        { lastActive: 0, duration: 2 },
+    osha:         { lastActive: 0, duration: 2 },
+    peta:         { lastActive: 0, duration: 2 },
+    bandits:      { lastActive: 0, duration: 30 },
+    arson:        { lastActive: 0, duration: 2 } 
   });
   
 
@@ -44,12 +49,11 @@ export default function Game(props) {
     mine: true,
     watermill: false,
     sawmill: false,
-    farm: false,
     blacksmith: false,
     tavern: false,
     castle: false,
   });
-
+  
   const url = process.env.DATABASE_URL;
 
   const uploadSave = async (built, token) => {
@@ -130,20 +134,41 @@ export default function Game(props) {
             }
 
             case 'failedCrops': {
+           
+
+              console.log('activating crop failure');
+              //detriment effect
               setGoldPerSecond(prevGold => {
                 prevGold = prevGold - 10;
                 return prevGold;
               });
-              setActiveTime(gameTime + 5);
+              //time for which the detriment is active
+              setActiveTime(prevActive => {
+                
+                prevActive.failedCrops.lastActive = gameTime;
+                return {
+                  ...prevActive
+                } ;
+              });
+              console.log(activeTime.failedCrops);
               break;
             }
 
             case 'caveIn': {
+              console.log('activating cave in Runnnnn');
+              //detriment effect
               setGoldPerSecond(prevGold => {
                 prevGold = prevGold - 20;
                 return prevGold;
               });
-              setActiveTime(gameTime + 5);
+              //grab current time to start detriment timer once it meets the detriment duration, it will shut off
+              setActiveTime(prevActive => {
+                prevActive.caveIn.lastActive = gameTime;
+                return {
+                  ...prevActive
+                } ;
+              });
+              console.log(activeTime.caveIn);
               break;
             }
 
@@ -153,12 +178,21 @@ export default function Game(props) {
                 prevGold < 0 ? (prevGold = 0) : (prevGold = prevGold);
                 return Math.floor(prevGold);
               });
-              setActiveTime(gameTime + 5);
+              //grab current time to start detriment timer once it meets the detriment duration, it will shut off
+              setActiveTime(prevActive => {
+                prevActive.flood.lastActive = gameTime;
+                return {
+                  ...prevActive
+                } ;
+              });
+              console.log(activeTime.flood);
               break;
             }
 
             case 'osha': {
-              setGold((prevGold) => {
+              console.log('osha is on the grounds');
+              //detriment effect
+              setGold(prevGold => {
                 prevGold = prevGold - 50000;
                 prevGold < 0 ? (prevGold = 0) : (prevGold = prevGold);
                 return Math.floor(prevGold);
@@ -167,46 +201,65 @@ export default function Game(props) {
                 prevGoldPerSecond = prevGoldPerSecond * 0.8;
                 return prevGoldPerSecond;
               });
-              setActiveTime(gameTime + 30);
+              //grab current time to start detriment timer once it meets the detriment duration, it will shut off
+              setActiveTime(prevActive => {
+                prevActive.osha.lastActive = gameTime;
+                return {
+                  ...prevActive
+                } ;
+              });
+              console.log(activeTime.flood);
               break;
             }
 
             case 'peta': {
+              console.log('those annoying peta folks are around');
+              //detriment effect
               setGoldPerSecond(prevGold => {
                 prevGold = prevGold * .9;
                 return prevGold;
               });
-              setActiveTime(gameTime + 5);
+              //grab current time to start detriment timer once it meets the detriment duration, it will shut off
+              setActiveTime(prevActive => {
+                prevActive.peta.lastActive = gameTime;
+                return {
+                  ...prevActive
+                } ;
+              });
+              console.log(activeTime.flood);
               break;
             }
 
             case 'bandits': {
-              setGoldPerSecond((prevGold) => {
-                prevGold--;
-                return prevGold;
+              console.log('bandits, run away ');
+              //detriment effect
+              setGold(prevGold => {
+                prevGold = prevGold * .25;
+                return Math.floor(prevGold);
               });
-              setActiveTime(gameTime + 5);
-              console.log(
-                item,
-                'insided of roll case',
-                goldPerSecond,
-                'this is the gold per second'
-              );
+              //grab current time to start detriment timer once it meets the detriment duration, it will shut off
+              setActiveTime(prevActive => {
+                prevActive.bandits.lastActive = gameTime;
+                return {
+                  ...prevActive
+                } ;
+              });
+              console.log(activeTime.flood);
               break;
             }
 
             case 'arson': {
-              setUser({
-                ...user,
-                tavern: false
+              console.log('the tavern has burnt to the ground!');
+              //detriment effect
+              setUser({ ...user, tavern : false });
+              //grab current time to start detriment timer once it meets the detriment duration, it will shut off
+              setActiveTime(prevActive => {
+                prevActive.arson.lastActive = gameTime;
+                return {
+                  ...prevActive
+                } ;
               });
-              setActiveTime(gameTime + 5);
-              console.log(
-                item,
-                'insided of roll case',
-                goldPerSecond,
-                'this is the gold per second'
-              );
+              console.log(user, 'after arson burnt the tavern');
               break;
             }
             default:{
@@ -217,133 +270,10 @@ export default function Game(props) {
           console.log('rolled less than an 8');
         }
       } 
-
-      //if the prop is unlocked and detriment is active, set the detriment back to inactive and remove negative effects
-      // else if (detriment[item].unlocked && detriment[item].active && gameTime - activeTime[item].duration === activeTime[item].lastActive){
-
-      //   console.log('sdfiupgiherpiuhger');
-      //   switch (item){
-      //     case 'termites' :{
-            
-      //         setDetriment({
-      //           ...detriment,
-      //           termites :  {
-      //             active: false,
-      //             unlocked: true
-      //           }
-      //         });
-      //         setGoldPerSecond(prevGold => {
-      //           prevGold++;
-      //           return prevGold;
-      //         });
-            
-      //       break;
-      //     }
-      //     case 'failedCrops' :{
-      //       setDetriment({
-      //         ...detriment,
-      //         failedCrops :  {
-      //           active: false,
-      //           unlocked: true
-      //         }
-      //       });
-      //       setGoldPerSecond(prevGold => {
-      //         prevGold++;
-      //         return prevGold;
-      //       });
-      //       break;
-      //     }
-      //     case 'caveIn' :{
-      //       setDetriment({
-      //         ...detriment,
-      //         caveIn :  {
-      //           active: false,
-      //           unlocked: true
-      //         }
-      //       });
-      //       setGoldPerSecond(prevGold => {
-      //         prevGold = prevGold + 20;
-      //         return prevGold;
-      //       });
-      //       break;
-      //     }
-      //     case 'flood' :{
-      //       setDetriment({
-      //         ...detriment,
-      //         flood :  {
-      //           active: false,
-      //           unlocked: true
-      //         }
-      //       });
-      //       // setGoldPerSecond(prevGold => {
-      //       //   prevGold++;
-      //       //   return prevGold;
-      //       // });
-      //       break;
-      //     }
-      //     case 'osha' :{
-      //       setDetriment({
-      //         ...detriment,
-      //         osha :  {
-      //           active: false,
-      //           unlocked: true
-      //         }
-      //       });
-      //       setGoldPerSecond(prevGold => {
-      //         prevGold = prevGold * 1.25;
-      //         return prevGold;
-      //       });
-      //       break;
-      //     }
-      //     case 'peta' :{
-      //       setDetriment({
-      //         ...detriment,
-      //         peta :  {
-      //           active: false,
-      //           unlocked: true
-      //         }
-      //       });
-      //       setGoldPerSecond(prevGold => {
-      //         prevGold = prevGold * 1.112;
-      //         return Math.floor(prevGold);
-      //       });
-      //       break;
-      //     }
-      //     case 'bandits' :{
-      //       setDetriment({
-      //         ...detriment,
-      //         bandits :  {
-      //           active: false,
-      //           unlocked: true
-      //         }
-      //       });
-      //       setGoldPerSecond(prevGold => {
-      //         prevGold++;
-      //         return prevGold;
-      //       });
-      //       break;
-      //     }
-      //     case 'arson' :{
-      //       setDetriment({
-      //         ...detriment,
-      //         arson :  {
-      //           active: false,
-      //           unlocked: true
-      //         }
-      //       });
-      //       setGoldPerSecond(prevGold => {
-      //         prevGold++;
-      //         return prevGold;
-      //       });
-      //       break;
-      //     }
-      //   }
-      //   return;
-      // }
     });
   }
   
-
+  //if the prop is unlocked and detriment is active, set the detriment back to inactive and remove negative effects
   function shutOffEffect(){
     Object.keys(detriment).map(item => {
       if (detriment[item].unlocked && detriment[item].active && gameTime - activeTime[item].duration === activeTime[item].lastActive){
@@ -363,7 +293,6 @@ export default function Game(props) {
               prevGold++;
               return prevGold;
             });
-          
             break;
           }
           case 'failedCrops' :{
@@ -434,16 +363,13 @@ export default function Game(props) {
               prevGold = prevGold * 1.112;
               return Math.floor(prevGold);
             });
-            break;
-          }
-          case 'bandits': {
-            setGoldPerSecond((prevGold) => {
-              prevGold++;
-              return prevGold;
+            setGoldPerSecond(prevGold => {
+              prevGold = prevGold * 1.112;
+              return Math.floor(prevGold);
             });
             break;
           }
-          case 'arson' :{
+          case 'bandits' :{
             setDetriment({
               ...detriment,
               arson: {
@@ -457,21 +383,30 @@ export default function Game(props) {
             });
             break;
           }
+          case 'arson' :{
+            setDetriment({
+              ...detriment,
+              arson :  {
+                active: false,
+                unlocked: true
+              }
+            });
+            setGoldPerSecond(prevGold => {
+            });
+            break;
+          }
           default :{
             break;
           }
         }
-      
-      }
-    });
-  }
-  useEffect(() => {
-    if (gameTime % 3 === 0){
-    // const currentTime = gameTime;
+
+     useEffect(() => {
+       if (gameTime % 3 === 0){
       detrimentRoll();
     }
     shutOffEffect();
-  }, [gameTime]);
+  }, [gameTime]);   
+    
   
 
   function mineGold(prestige) {
