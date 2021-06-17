@@ -34,8 +34,40 @@ body{
     padding-top: 5px;
     /* margin-left: 3%; */
 }
-canvas{
-    /* width: 90%; */
+a{
+    text-decoration: none;
+    color: rgb(228, 228, 228);
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+a:active{
+    background-image: url('~/assets/ui_button_pressed.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    top: 1px;
+}
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+}
+input{
+    margin: 4px;
+    border: 10px solid transparent;
+    border-style: solid;
+    border-image: url("~/assets/border2.png") 10 round;
+    background-color: #bdbdbd;
+    padding: 3px;
+    border-radius:10px 10px 10px 10px;
+}
+input:focus{
+    outline: none;
 }
 .overhead{
     width: 90%;
@@ -61,7 +93,7 @@ canvas{
     color: white;
     text-align: center;    
     width: 65%;
-    height: 6%;
+    height: 7.5%;
     font-size: 1.4rem;
     padding-top: 4%;
     padding-right: 7%;
@@ -78,14 +110,13 @@ canvas{
     color: white;
     text-align: center;    
     width: 65%;
-    height: 6%;
+    height: 7.5%;
     font-size: 1.4rem;
     padding-top: 4%;
     padding-right: 7%;
     margin: auto;
     box-sizing: content-box;
-    /* font-family: 'Kirang Haerang', cursive; */
-   
+    /* font-family: 'Kirang Haerang', cursive; */ 
 }
 .inactiveDetriment p{
     position: absolute;

@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
 import Clicks from './Clicks';
 import Clock from './Clock';
 import Gold from './Gold';
 import PropTypes from 'prop-types';
-import Prestige from '../prestige/Prestige';
 
 const Hud = ({ gametime, gold, clicks, gPS }) => {
   const clock = <Clock gametime={gametime} />;
