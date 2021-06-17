@@ -10,7 +10,10 @@ const UserControls = ({
   gold,
   user,
   auth,
-  setLoadUser
+  setLoadUser,
+  prestige,
+  gametime,
+  numClicks
 }) => {
   function handleMineButtonClick() {
     handleMineClick();
@@ -31,7 +34,10 @@ const UserControls = ({
         blacksmith: user.blacksmith,
         tavern: user.tavern,
         castle: user.castle,
-        gold
+        gold,
+        prestige,
+        gametime,
+        clicks: numClicks
       },
       auth.auth.token
     );
@@ -64,6 +70,9 @@ UserControls.propTypes = {
   uploadSave: PropTypes.func.isRequired,
   setLoadUser: PropTypes.func.isRequired,
   gold: PropTypes.number.isRequired,
+  prestige: PropTypes.number.isRequired,
+  gametime: PropTypes.number.isRequired,
+  numClicks: PropTypes.number.isRequired,
   user: PropTypes.shape({
     house: PropTypes.bool.isRequired,
     lumberyard: PropTypes.bool.isRequired,
