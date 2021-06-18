@@ -6,17 +6,27 @@ import minhImage from '../../../../assets/profileImg/minhProfile.jpg';
 import edmondImage from '../../../../assets/profileImg/edmondProfile.png';
 import vanceImage from '../../../../assets/profileImg/vanceProfile.jpg';
 import domImage from '../../../../assets/profileImg/domProfile.jpg';
+<<<<<<< HEAD
 import emailIcon from '../../../../assets/profileIcons/emailIcon.png';
 import resumeIcon from '../../../../assets/profileIcons/resumeIcon.png';
 import linkedInIcon from '../../../../assets/profileIcons/linkedInIcon.png';
 import githubIcon from '../../../../assets/profileIcons/githubIcon.png';
+=======
+>>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
 
 const ProfileCard = () => {
 
   const profileImg = [
+<<<<<<< HEAD
    minhImage,
   edmondImage,
 vanceImage, domImage];
+=======
+    minhImage,
+    edmondImage,
+    vanceImage, 
+    domImage];
+>>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
 
   const array = profiles.map((item, index) => {
     return (

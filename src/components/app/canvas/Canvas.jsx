@@ -5,6 +5,19 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
 import { drawUnlocked, drawMap } from './canvasUtils';
+<<<<<<< HEAD
+=======
+import blacksmithInfo from '../../../../assets/info-cards/blacksmith-info.png';
+import castleInfo from '../../../../assets/info-cards/castle-info.png';
+import farmInfo from '../../../../assets/info-cards/farm-info.png';
+import lumberyardInfo from '../../../../assets/info-cards/lumberyard-info.png';
+import mineInfo from '../../../../assets/info-cards/mine-info.png';
+import sawmillInfo from '../../../../assets/info-cards/sawmill-info.png';
+import tavernInfo from '../../../../assets/info-cards/tavern-info.png';
+import watermillInfo from '../../../../assets/info-cards/watermill-info.png';
+import windmillInfo from '../../../../assets/info-cards/windmill-info.png';
+import houseInfo from '../../../../assets/info-cards/blankityblanketyblenk.png';
+>>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);
@@ -50,6 +63,7 @@ const Canvas = (props) => {
     // var canvas = document.querySelector("canvas"),
     const ctx = canvas.getContext('2d');
     const region = [
+<<<<<<< HEAD
       { name: 'house', x: 369, y: 273, w: 32, h: 32 },
       { name: 'lumberyard', x: 499, y: 321, w: 32, h: 32 },
       { name: 'mine', x: 208, y: 272, w: 32, h: 32 },
@@ -61,6 +75,19 @@ const Canvas = (props) => {
       { name: 'tavern', x: 304, y: 384, w: 32, h: 32 },
       { name: 'castle', x: 304, y: 208, w: 32, h: 32 },
       { name: 'tree', x: 332, y: 333, w: 32, h: 32 },
+=======
+      { name: 'house', x: 369, y: 273, w: 32, h: 32, img: houseInfo },
+      { name: 'lumberyard', x: 499, y: 321, w: 32, h: 32, img: lumberyardInfo },
+      { name: 'mine', x: 208, y: 272, w: 32, h: 32, img: mineInfo },
+      { name: 'watermill', x: 400, y: 416, w: 32, h: 32, img: watermillInfo },
+      { name: 'windmill', x: 400, y: 175, w: 32, h: 32, img: windmillInfo },
+      { name: 'sawmill', x: 464, y: 320, w: 32, h: 32, img: sawmillInfo },
+      { name: 'farm', x: 448, y: 207, w: 32, h: 32, img: farmInfo },
+      { name: 'blacksmith', x: 240, y: 305, w: 32, h: 32, img: blacksmithInfo },
+      { name: 'tavern', x: 304, y: 384, w: 32, h: 32, img: tavernInfo },
+      { name: 'castle', x: 304, y: 208, w: 32, h: 32, img: castleInfo },
+      { name: 'tree', x: 332, y: 333, w: 32, h: 32, img: houseInfo },
+>>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
     ];
     const building = {};
 
@@ -69,10 +96,17 @@ const Canvas = (props) => {
       user.map((item) => {
         if (props.user[item] === true) {
           //  `road${firstToUpper(item)}Layer`);
+<<<<<<< HEAD
           buildingInfo = `../../../../assets/info-cards/${item}-info.png`;
           for (let i = 0; i < region.length; i++) {
             if (region[i].name === item) {
               if (region[i].name === 'house') break;
+=======
+          for (let i = 0; i < region.length; i++) {
+            if (region[i].name === item) {
+              if (region[i].name === 'house') break;
+              buildingInfo = region[i].img;
+>>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
               building = region[i];
               ctx.fillStyle = 'rgba(255, 255, 255, 0)';
               ctx.fillRect(building.x, building.y, building.w, building.h);

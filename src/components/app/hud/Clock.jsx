@@ -2,6 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
+<<<<<<< HEAD
+=======
+import squareclock from '../../../../assets/square-clock.png';
+>>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
 
 const Clock = ({ gametime }) => {
   let hour, minute, second;
@@ -22,7 +26,11 @@ const Clock = ({ gametime }) => {
 
   return (
     <div className={style.clock}>
+<<<<<<< HEAD
       <img src="../../assets/square-clock.png" alt="Game Clock" width="30px"/>
+=======
+      <img src={squareclock} alt="Game Clock" width="30px"/>
+>>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
       {hour }:{ minute}:{second}
     </div>
   );
