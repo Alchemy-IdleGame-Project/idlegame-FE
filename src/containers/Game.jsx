@@ -35,10 +35,10 @@ export default function Game(props) {
   });
 
   const [activeTime, setActiveTime] = useState({
-    termites: { lastActive: 0, duration: 19 },
+    termites: { lastActive: 0, duration: 41 },
     failedCrops: { lastActive: 0, duration: 15 },
-    caveIn: { lastActive: 0, duration: 21 },
-    flood: { lastActive: 0, duration: 21 },
+    caveIn: { lastActive: 0, duration: 15 },
+    flood: { lastActive: 0, duration: 41 },
     osha: { lastActive: 0, duration: 10 },
     peta: { lastActive: 0, duration: 10 },
     bandits: { lastActive: 0, duration: 41 },
@@ -257,7 +257,7 @@ export default function Game(props) {
               
               //detriment effect
               setGoldPerSecond((prevGold) => {
-                prevGold = prevGold - 10;
+                prevGold = prevGold - 9;
                 return prevGold;
               });
               //time for which the detriment is active
@@ -275,7 +275,7 @@ export default function Game(props) {
               
               //detriment effect
               setGoldPerSecond((prevGold) => {
-                prevGold = prevGold - 20;
+                prevGold = prevGold - 18;
                 return prevGold;
               });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
@@ -291,7 +291,7 @@ export default function Game(props) {
 
             case 'flood': {
               setGold((prevGold) => {
-                prevGold = prevGold - 10000;
+                prevGold = prevGold - 5000;
                 prevGold < 0 ? (prevGold = 0) : (prevGold = prevGold);
                 return Math.floor(prevGold);
               });
@@ -310,7 +310,7 @@ export default function Game(props) {
               
               //detriment effect
               setGold((prevGold) => {
-                prevGold = prevGold - 50000;
+                prevGold = prevGold - 20000;
                 prevGold < 0 ? (prevGold = 0) : (prevGold = prevGold);
                 return Math.floor(prevGold);
               });
@@ -415,7 +415,7 @@ export default function Game(props) {
               return prevDetriment;
             });
             setGoldPerSecond((prevGold) => {
-              prevGold + 10;
+              prevGold = prevGold + 9;
               return prevGold;
             });
             break;
@@ -426,7 +426,7 @@ export default function Game(props) {
               return prevDetriment;
             });
             setGoldPerSecond((prevGold) => {
-              prevGold = prevGold + 20;
+              prevGold = prevGold + 18;
               return prevGold;
             });
             break;
@@ -491,7 +491,7 @@ export default function Game(props) {
   }
 
   useEffect(() => {
-    if (gametime % 20 === 0) {
+    if (gametime % 40 === 0) {
       detrimentRoll();
     }
     shutOffEffect();
@@ -505,10 +505,10 @@ export default function Game(props) {
         setActive(true);
       }
       if (prestige > 0) {
-        prevGold += ((goldPerSecond / 10) < 1) ? 1 : (goldPerSecond / 10) ;
+        prevGold += ((goldPerSecond / 3) < 1) ? 1 : (goldPerSecond / 3) ;
         return Math.floor(prevGold);
       } else {
-        prevGold += ((goldPerSecond / 10) < 1) ? 1 : (goldPerSecond / 10) ;
+        prevGold += ((goldPerSecond / 3) < 1) ? 1 : (goldPerSecond / 3) ;
         return Math.floor(prevGold);
       }
     });

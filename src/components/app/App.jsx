@@ -22,6 +22,7 @@ const getAuthFromLocal = () => {
   };
 };
 
+
 export default function App() {
   const [auth, setAuth] = useState({
     auth: getAuthFromLocal(),
@@ -34,6 +35,7 @@ export default function App() {
       auth: auth1,
     });
   };
+
 
   return (
     <>
