@@ -1,9 +1,11 @@
 import  { layers }  from '../../../../assets/MaptheSecond.js';
+import SPOverworld from '../../../../assets/SP-Overworld.png';
+import Building32x32 from '../../../../assets/Compilation-Building32x32.png';
 
 const tilesetImage = new Image();
 const tilesetImage2 = new Image();
-tilesetImage.src = 'assets/SP-Overworld.png';
-tilesetImage2.src = '../../../../assets/Compilation-Building32x32.png';
+tilesetImage.src = SPOverworld;
+tilesetImage2.src = Building32x32;
 const tileSize = 16; // The size of a tile (32×32)
 const rowTileCount = 38; // The number of tiles in a row of our background
 const colTileCount = 50; // The number of tiles in a column of our background
