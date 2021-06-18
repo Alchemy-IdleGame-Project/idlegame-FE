@@ -16,7 +16,7 @@ import { loadBuilding } from '../gameUtils/buildingUtils';
 import { downloadSave } from '../gameUtils/userUtils';
 
 export default function Game(props) {
-  const [gold, setGold] = useState(999999990);
+  const [gold, setGold] = useState(0);
   const [goldPerSecond, setGoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
   const [numClicks, setNumClicks] = useState(0);
