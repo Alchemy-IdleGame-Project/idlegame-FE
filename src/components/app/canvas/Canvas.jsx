@@ -15,15 +15,11 @@ const Canvas = (props) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    // let frameCount = 0;
-    // let animationFrameId;
+    
 
     //draw starts here
     const render = () => {
-      //perhaps we can make implimentation to optionally increase frames per second
-      // frameCount++;
-      // draw(context, tester);
-      // draw(context, tester1);
+  
       drawMap(context);
       drawUnlocked(context, props); //function in canvas utils, renders each layer that is unlocked by the user
     };
@@ -33,15 +29,10 @@ const Canvas = (props) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    // let frameCount = 0;
-    // let animationFrameId;
 
     //draw starts here
     const render = () => {
-      //perhaps we can make implimentation to optionally increase frames per second
-      // frameCount++;
-      // draw(context, tester);
-      // draw(context, tester1);
+    
       drawMap(context);
       drawUnlocked(context, props); //function in canvas utils,
       // drawUnlocked(context, props);//function in canvas utils, renders each layer that is unlocked by the user
@@ -195,7 +186,7 @@ const Canvas = (props) => {
 Canvas.propTypes = {
   user: PropTypes.shape({}).isRequired,
   prestige: PropTypes.number.isRequired,
-  active: PropTypes.bool.isRequired,
+  active: PropTypes.number.isRequired,
 };
 
 export default Canvas;

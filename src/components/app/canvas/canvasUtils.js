@@ -1,4 +1,4 @@
-import { layers } from '../../../../assets/MaptheSecond.json';
+import  {layers}  from '../../../../assets/MaptheSecond.js';
 
 const tilesetImage = new Image();
 const tilesetImage2 = new Image();
@@ -100,12 +100,12 @@ function firstToUpper(string) {
 export const drawUnlocked = (ctx, ps) => {
   const user = Object.keys(ps.user);
   
-  if(!ps.user.tavern){
+  if (!ps.user.tavern){
     draw(ctx, tester);
     draw(ctx, tester1);
     user.map(item => {
       
-      if(ps.user[item] === true){
+      if (ps.user[item] === true){
       
         
         draw(ctx, eval(`road${firstToUpper(item)}Layer`));    
@@ -116,7 +116,7 @@ export const drawUnlocked = (ctx, ps) => {
   
   user.map(item => {
     
-    if(ps.user[item] === true){
+    if (ps.user[item] === true){
     
       
       draw(ctx, eval(`road${firstToUpper(item)}Layer`));    
@@ -125,7 +125,7 @@ export const drawUnlocked = (ctx, ps) => {
   });
 };
 
-export const convertedLayers = convertTiles(layers);
+export const convertedLayers = convertTiles(layers.layers);
 
 const tester = convertedLayers[0];
 const tester1 = convertedLayers[2];

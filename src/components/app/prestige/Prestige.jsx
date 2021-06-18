@@ -22,18 +22,18 @@ const Prestige = ({ user, prestige,  setPrestige, setUser, setGold, setGoldPerSe
 };
 
 Prestige.propTypes = {
-  handlePrestige: PropTypes.func.isRequired,
-  prestige: PropTypes.number.isRequired,
-  castle: PropTypes.bool.isRequired,
+  handlePrestige: PropTypes.func,
+  prestige: PropTypes.number,
+  castle: PropTypes.bool,
   user: PropTypes.shape({
-    castle: PropTypes.bool.isRequired
-  }).isRequired,
-  setPrestige: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired,
-  setGold: PropTypes.func.isRequired,
-  setGoldPerSecond: PropTypes.func.isRequired,
-  setGametime: PropTypes.func.isRequired,
-  setNumClicks: PropTypes.func.isRequired,
-  setDetriment: PropTypes.func.isRequired,
+    castle: PropTypes.bool
+  }),
+  setPrestige: PropTypes.func,
+  setUser: PropTypes.func,
+  setGold: PropTypes.func,
+  setGoldPerSecond: PropTypes.func,
+  setGametime: PropTypes.func,
+  setNumClicks: PropTypes.func,
+  setDetriment: PropTypes.func,
 };
 export default Prestige;

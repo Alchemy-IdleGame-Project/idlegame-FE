@@ -10,7 +10,6 @@ import Hud from '../components/app/hud/Hud';
 import UserControls from '../components/app/controls/UserControls';
 import Detriment from '../components/app/detriment/Detriment';
 import PropTypes from 'prop-types';
-// import { uploadSave, downloadSave } from '../gameUtils/userUtils'
 import { detrimentRoll, shutOffEffect } from '../gameUtils/detrimentUtils';
 import { loadBuilding } from '../gameUtils/buildingUtils';
 import { downloadSave } from '../gameUtils/userUtils';
@@ -261,22 +260,14 @@ export default function Game(props) {
         <Canvas
           gametime={gametime}
           user={user}
-          active={active}
+        
+          active={(active) ? 1 : 0}
           prestige={prestige}
         />
         <Detriment detriment={detriment} />
 
         <ul className={style.circles}>
-          <li>
-            <li>
-              <li>
-                <img width="100px" src="../../assets/gold-coin.png" />
-              </li>
-            </li>
-          </li>
-          <li></li>
-          <li></li>
-          <li></li>
+         
           <li>
             <img width="100px" src="../../assets/gold-coin.png" />
           </li>
@@ -296,11 +287,7 @@ export default function Game(props) {
             <img width="100px" src="../../assets/gold-coin.png" />
           </li>
           <li>
-            <li>
-              <li>
-                <img width="100px" src="../../assets/gold-coin.png" />
-              </li>
-            </li>
+            <img width="100px" src="../../assets/gold-coin.png" />
           </li>
           <li>
             <img width="100px" src="../../assets/gold-coin.png" />
@@ -308,15 +295,6 @@ export default function Game(props) {
           <li>
             <img width="100px" src="../../assets/gold-coin.png" />
           </li>
-          <li></li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
         </ul>
       </div>
     </div>

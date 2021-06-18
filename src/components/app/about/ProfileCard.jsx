@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import style from '../style.css';
-import { profiles } from '../../../../assets/Profiles.json';
+import profiles from '../../../../assets/Profiles.js';
 
 
 const ProfileCard = () => {

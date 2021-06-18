@@ -2,7 +2,7 @@
 export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecond, setDetriment) {
   switch (item) {
     case 'lumberyard': {
-      if (gold < goldRequired.lumberyard) return;
+     
  
       setGoldPerSecond(
         (prevGold) => Math.floor(prevGold + goldRequired.lumberyard * 0.1)
@@ -14,7 +14,7 @@ export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecon
       break;
     }
     case 'windmill': {
-      if (gold < goldRequired.windmill) return;
+     
       setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.windmill * 0.06));
       setDetriment((prevDetriment) => {
         prevDetriment.failedCrops.unlocked = true;
@@ -23,7 +23,7 @@ export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecon
       break;
     }
     case 'mine': {
-      if (gold < goldRequired.mine) return;
+     
       setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.mine * 0.01));
       setDetriment((prevDetriment) => {
         prevDetriment.caveIn.unlocked = true;
@@ -31,7 +31,7 @@ export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecon
       });
       break;      }
     case 'watermill': {
-      if (gold < goldRequired.watermill) return;
+     
       setGoldPerSecond(
         (prevGold) => Math.floor(prevGold + goldRequired.watermill * 0.003)
       );
@@ -41,7 +41,7 @@ export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecon
       });
       break;      }
     case 'sawmill': {
-      if (gold < goldRequired.sawmill) return;
+     
       setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.sawmill * 0.001));
       setDetriment((prevDetriment) => {
         prevDetriment.osha.unlocked = true;
@@ -49,7 +49,7 @@ export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecon
       });
       break;      }
     case 'farm': {
-      if (gold < goldRequired.farm) return;
+     
       setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.farm * 0.002));
       setDetriment((prevDetriment) => {
         prevDetriment.peta.unlocked = true;
@@ -57,7 +57,7 @@ export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecon
       });
       break;      }
     case 'blacksmith': {
-      if (gold < goldRequired.blacksmith) return;
+     
       setGoldPerSecond(
         (prevGold) => Math.floor(prevGold + goldRequired.blacksmith * 0.001)
       );
@@ -67,7 +67,7 @@ export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecon
       });
       break;      }
     case 'tavern': {
-      if (gold < goldRequired.tavern) return;
+     
       setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.tavern * 0.002));
       setDetriment((prevDetriment) => {
         prevDetriment.arson.unlocked = true;
@@ -75,7 +75,7 @@ export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecon
       });
       break;      }
     case 'castle': {
-      if (gold < goldRequired.castle) return;
+     
       setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.castle * 0.1));
       break;
     }
@@ -85,7 +85,7 @@ export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecon
 export function unlockBuilding(e, gold, user, detriment, goldRequired, setUser, setGold, setGoldPerSecond, setDetriment) {
   switch (e.target.value) {
     case 'lumberyard': {
-      if (gold < goldRequired.lumberyard) return;
+     
       setUser({
         ...user,
         [e.target.value]: true,
@@ -104,7 +104,7 @@ export function unlockBuilding(e, gold, user, detriment, goldRequired, setUser, 
       break;
     }
     case 'windmill': {
-      if (gold < goldRequired.windmill) return;
+     
       setUser({
         ...user,
         [e.target.value]: true,
@@ -121,7 +121,7 @@ export function unlockBuilding(e, gold, user, detriment, goldRequired, setUser, 
       break;
     }
     case 'mine': {
-      if (gold < goldRequired.mine) return;
+     
       setUser({
         ...user,
         [e.target.value]: true,
@@ -138,7 +138,7 @@ export function unlockBuilding(e, gold, user, detriment, goldRequired, setUser, 
       break;
     }
     case 'watermill': {
-      if (gold < goldRequired.watermill) return;
+     
       setUser({
         ...user,
         [e.target.value]: true,
@@ -157,7 +157,7 @@ export function unlockBuilding(e, gold, user, detriment, goldRequired, setUser, 
       break;
     }
     case 'sawmill': {
-      if (gold < goldRequired.sawmill) return;
+     
       setUser({
         ...user,
         [e.target.value]: true,
@@ -174,7 +174,7 @@ export function unlockBuilding(e, gold, user, detriment, goldRequired, setUser, 
       break;
     }
     case 'farm': {
-      if (gold < goldRequired.farm) return;
+     
       setUser({
         ...user,
         [e.target.value]: true,
@@ -191,7 +191,7 @@ export function unlockBuilding(e, gold, user, detriment, goldRequired, setUser, 
       break;
     }
     case 'blacksmith': {
-      if (gold < goldRequired.blacksmith) return;
+     
       setUser({
         ...user,
         [e.target.value]: true,
@@ -210,7 +210,7 @@ export function unlockBuilding(e, gold, user, detriment, goldRequired, setUser, 
       break;
     }
     case 'tavern': {
-      if (gold < goldRequired.tavern) return;
+     
       setUser({
         ...user,
         [e.target.value]: true,
@@ -227,7 +227,7 @@ export function unlockBuilding(e, gold, user, detriment, goldRequired, setUser, 
       break;
     }
     case 'castle': {
-      if (gold < goldRequired.castle) return;
+     
       setUser({
         ...user,
         [e.target.value]: true,
