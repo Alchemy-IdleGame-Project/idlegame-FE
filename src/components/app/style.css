@@ -358,9 +358,147 @@ visibility: hidden;
         transform : translateY(-1000px) rotate(1080deg);
         opacity: 0;
         border-radius: 50%;
+       
 
     }
 }
+
+
+.cards{
+    width: 100%;
+    list-style: none;
+    height: 100%;
+    color: black;
+}
+
+.outerLi{
+    border: 10px solid transparent;
+    border-style: solid;
+    border-image: url("~/assets/border2.png") 10 round;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+}
+.profImg{
+    border: 10px solid transparent;
+    border-style: solid;
+    border-image: url("~/assets/border2.png") 10 round;
+    position: absolute;
+    right: 1%;
+    top :14%;
+    width: 38%;
+    max-width:40% ;
+    max-height: 185px;
+    margin: 0;
+    padding: 0;
+}
+.cards li {
+    max-height:40%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    text-align: center;
+   
+}
+
+.cards li ul{
+    list-style: none;
+}
+@keyframes animate12{
+    0%{
+        transform : translateY(300%) rotate(0deg);
+        /* background: rgba(255, 255, 255, 0.6); */
+    }
+    
+    100%{
+        transform : translateY(0) ;
+        /* background: rgba(255, 255, 255, 0.2); */
+    }
+}
+
+.cards li:nth-child(1){
+    position: absolute;
+    top: 8%;
+    left:2%;
+    animation-name: animate12;
+    animation-duration: 1s;
+} 
+.socials a{
+    color: black;
+    align-content: center;
+    margin: 0;
+}
+.email{
+    color: black;
+    display: flex;
+    flex-direction: row;
+}
+.resume{
+    color: black;
+    display: flex;
+    flex-direction: row;
+}
+.linkedIn{
+    color: black;
+    display: flex;
+    flex-direction: row;
+}
+.github{
+    color: black;
+    display: flex;
+    flex-direction: row;
+}
+.cards li:nth-child(2){
+    position: absolute;
+    top: 8%;
+    right: 2%;
+    animation-name: animate12;
+    animation-duration: 1s;
+}
+.cards li:nth-child(3){
+    position: absolute;
+    left:2%;
+    bottom: 8%;
+    animation-name: animate12;
+    animation-duration: 1s;
+}
+.cards li:nth-child(4){
+    position: absolute;
+    bottom: 8%;
+    right: 2%;
+    animation-name: animate12;
+    animation-duration: 1s;
+} 
+
+.profileBio{
+    height: 35%;
+    width: 95%;
+    margin: auto;
+    border: 10px solid transparent;
+    border-style: solid;
+    border-image: url("~/assets/border2.png") 10 round;
+}
+.socials{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: 10px solid transparent;
+    border-style: solid;
+    border-image: url("~/assets/border2.png") 10 round;
+}
+.socials  span{
+    margin: auto;
+   
+}
+.profileTop{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+
+
 .clock{ 
     background-color: grey;
     width: 100px;

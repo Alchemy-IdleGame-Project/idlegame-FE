@@ -415,7 +415,7 @@ export default function Game(props) {
               return prevDetriment;
             });
             setGoldPerSecond((prevGold) => {
-              prevGold + 10;
+              prevGold = prevGold + 10;
               return prevGold;
             });
             break;
