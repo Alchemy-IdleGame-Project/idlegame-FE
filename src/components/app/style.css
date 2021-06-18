@@ -343,11 +343,9 @@ input:focus {
     transform: translateY(0) rotate(0deg);
     opacity: 1;
     border-radius: 50%;
-    /* background: rgba(243, 199, 78, 1); */
+   
   }
-  25% {
-    /* background: rgba(243, 199, 78, 1); */
-  }
+
   100% {
     transform: translateY(-1000px) rotate(1080deg);
     opacity: 0;
@@ -494,11 +492,9 @@ input:focus {
 }
 
 .clock {
-  background-color: grey;
   width: 100px;
   height: 100;
   text-align: center;
-  animation: animateC infinite 5s linear;
   display: flex;
   align-items: center;
 }
