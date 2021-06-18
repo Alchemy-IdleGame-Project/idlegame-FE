@@ -6,27 +6,20 @@ import minhImage from '../../../../assets/profileImg/minhProfile.jpg';
 import edmondImage from '../../../../assets/profileImg/edmondProfile.png';
 import vanceImage from '../../../../assets/profileImg/vanceProfile.jpg';
 import domImage from '../../../../assets/profileImg/domProfile.jpg';
-<<<<<<< HEAD
-import emailIcon from '../../../../assets/profileIcons/emailIcon.png';
-import resumeIcon from '../../../../assets/profileIcons/resumeIcon.png';
-import linkedInIcon from '../../../../assets/profileIcons/linkedInIcon.png';
-import githubIcon from '../../../../assets/profileIcons/githubIcon.png';
-=======
->>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
+import emailImage from '../../../../assets/profileIcons/emailIcon.png';
+import githubImage from '../../../../assets/profileIcons/githubIcon.png';
+import linkedinImage from '../../../../assets/profileIcons/linkedInIcon.png';
+import resumeImage from '../../../../assets/profileIcons/resumeIcon.png';
+
 
 const ProfileCard = () => {
 
   const profileImg = [
-<<<<<<< HEAD
-   minhImage,
-  edmondImage,
-vanceImage, domImage];
-=======
     minhImage,
     edmondImage,
     vanceImage, 
     domImage];
->>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
+
 
   const array = profiles.map((item, index) => {
     return (
@@ -41,7 +34,11 @@ vanceImage, domImage];
               <img
                 width="35px"
                 height="35px"
+<<<<<<< HEAD
                 src={emailIcon}
+=======
+                src={emailImage}
+>>>>>>> 68368503c4e72af96bc13c795cff43c7b3a26dcc
               />
               {/* <span>{item.contact[0].contactType}:</span> */}
               <span> {item.contact[0].address}</span>
@@ -52,7 +49,11 @@ vanceImage, domImage];
               <img
                 width="35px"
                 height="35px"
+<<<<<<< HEAD
                 src={resumeIcon}
+=======
+                src={resumeImage}
+>>>>>>> 68368503c4e72af96bc13c795cff43c7b3a26dcc
               />
               <span>{item.contact[1].contactType}:</span>
               <span>
@@ -64,7 +65,11 @@ vanceImage, domImage];
               <img
                 width="35px"
                 height="30px"
+<<<<<<< HEAD
                 src={linkedInIcon}
+=======
+                src={linkedinImage}
+>>>>>>> 68368503c4e72af96bc13c795cff43c7b3a26dcc
               />
               <span>{item.contact[2].contactType}:</span>
               <span>
@@ -82,7 +87,11 @@ vanceImage, domImage];
                 width="35px"
                 height="35px"
                 margin="23px"
+<<<<<<< HEAD
                 src={githubIcon}
+=======
+                src={githubImage}
+>>>>>>> 68368503c4e72af96bc13c795cff43c7b3a26dcc
               />
               <span>{item.contact[3].contactType}:</span>
               <span>

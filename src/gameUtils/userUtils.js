@@ -39,7 +39,7 @@ export function newGame(
       tavern: false,
       castle: false,
     };
-    setGold(500000);
+    setGold(0);
     setGoldPerSecond(1);
     setGametime(0);
     setNumClicks(0);

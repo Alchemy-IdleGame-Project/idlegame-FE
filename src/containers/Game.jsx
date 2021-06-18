@@ -15,6 +15,7 @@ import { loadBuilding } from '../gameUtils/buildingUtils';
 import { downloadSave } from '../gameUtils/userUtils';
 import gameTitleImage from '../../assets/gametitle.png';
 import goldCoin from '../../assets/gold-coin.png';
+import gameTitle from '../../assets/gametitle.png';
 
 
 export default function Game(props) {
@@ -79,7 +80,7 @@ export default function Game(props) {
     if (!user) {
       return;
     }
-    Object.keys(user).map((item) => {
+    Object.keys(user).map((item) => { 
       if (user[item]) {
         loadBuilding(
           item,
@@ -232,10 +233,14 @@ export default function Game(props) {
         />
         <h1 className={style.gameTitle}>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <img src={gameTitleImage} alt="idle isle" />
 =======
           <img src="../../assets/gametitle.PNG" alt="idle isle" />
 >>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
+=======
+          <img src={gameTitle} alt="idle isle" />
+>>>>>>> 68368503c4e72af96bc13c795cff43c7b3a26dcc
         </h1>
         <div className={style.hud}>
           <Hud
@@ -274,7 +279,6 @@ export default function Game(props) {
         <Detriment detriment={detriment} />
 
         <ul className={style.circles}>
-         
           <li>
 <<<<<<< HEAD
             <img width="100px" src="../../assets/gold-coin.png" />
