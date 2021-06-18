@@ -4,7 +4,6 @@ export function loadBuilding(item, gold, prestige, goldRequired, setGoldPerSecon
     case 'lumberyard': {
       if (gold < goldRequired.lumberyard) return;
  
-      console.log(prestige, 'look over here');
       setGoldPerSecond(
         (prevGold) => Math.floor(prevGold + goldRequired.lumberyard * 0.1)
       );

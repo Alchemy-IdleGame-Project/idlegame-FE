@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
-import {unlockBuilding} from '../../../gameUtils/buildingUtils';
+import { unlockBuilding } from '../../../gameUtils/buildingUtils';
 
 const GameControls = ({
   gold,
@@ -17,7 +17,6 @@ const GameControls = ({
 }) => {
  
   const wahoo = (e) => {
-    console.log(e);
     unlockBuilding(e, gold, user, detriment, goldRequired, setUser, setGold, setGoldPerSecond, setDetriment);
   };
 
