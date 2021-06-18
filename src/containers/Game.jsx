@@ -122,7 +122,7 @@ export default function Game(props) {
 
   const goldRequired = {
     lumberyard: 25 * (prestige + 1),
-    windmill: 50 * (prestige + 1), //IMPORTANT FIX
+    windmill: 250 * (prestige + 1),
     mine: 2000 * (prestige + 1),
     watermill: 10000 * (prestige + 1),
     sawmill: 50000 * (prestige + 1),
@@ -499,6 +499,23 @@ export default function Game(props) {
   }, [gametime]);
 
   function mineGold(prestige) {
+    console.log((goldPerSecond / 10));
+    setGold((prevGold) => {
+      //starts game if one is not going
+      if (active === false) {
+        setActive(true);
+      }
+      if (prestige > 0) {
+        prevGold += ((goldPerSecond / 10) < 1) ? 1 : (goldPerSecond / 10) ;
+        return Math.floor(prevGold);
+      } else {
+        prevGold += ((goldPerSecond / 10) < 1) ? 1 : (goldPerSecond / 10) ;
+        return Math.floor(prevGold);
+      }
+    });
+  }
+
+  function passiveGold(prestige) {
     setGold((prevGold) => {
       //starts game if one is not going
       if (active === false) {
@@ -522,7 +539,7 @@ export default function Game(props) {
   }
 
   //starts the mine gold per second loop on load
-  useInterval(mineGold, 1000);
+  useInterval(passiveGold, 1000);
 
   //starts the gameClock
   useInterval(gameClock, 1000);
