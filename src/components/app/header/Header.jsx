@@ -1,13 +1,11 @@
 import React, { useState }from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import style from '../style.css';
-import Logout from '../../login/Logout';
+
 
 export default function Header() {
  
   const handleLogout = () => {
-    console.log('you got here');
     localStorage.removeItem('AUTH');
   };
 
@@ -31,6 +29,3 @@ export default function Header() {
     </div>
   );
 }
-Logout.propTypes = {
-  history: PropTypes.object.isRequired
-};
