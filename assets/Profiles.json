@@ -6,12 +6,12 @@
             "bio" : "something aboutyoujjjjjjjjjjjjjjjjjjjjjjjj jjjjjjj jjjjjjjjjj jjjjjjjjjjj hhhhhhhhhhhhhhhhhhhhh hhhhhh hhhhh hhhhhhhhh hhhhhhhhhhh hhhhhhhhhhh hhhhhhhh hhhj",
             "contact" : [
                 {
-                    "icon" : "./profileIcons/emailIcon.png",
+                    "icon" : "./emailIcon.png",
                     "contactType" : "Email",
                     "address" : "email@email.com"
                 },
                 {
-                    "icon" : "./profileIcons/resumeIcon.png",
+                   
                     "contactType" : "Resume",                    
                     "link" : "link to resume"
                 },
@@ -111,8 +111,8 @@
                 {
                     "icon" : "./profileIcons/githubIcon.png",
                     "contactType" : "Github",
-                    "link" : "https://github.com/https://github.com/Dominique-Sakrisson",
-                    "linkDisplay" : "/in/dominique-sakrisson"
+                    "link" : "https://github.com/Dominique-Sakrisson",
+                    "linkDisplay" : "/dominique-sakrisson"
                 }
             ]
         }

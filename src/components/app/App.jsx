@@ -5,6 +5,7 @@ import TitlePage from '../../containers/TitlePage';
 import Register from '../login/Register';
 import SignIn from '../login/SignIn';
 import Header from './header/Header';
+import ProfileCard from './about/ProfileCard';
 
 const AUTH = 'AUTH';
 
@@ -37,6 +38,7 @@ export default function App() {
 
   return (
     <>
+   
       <Switch>
         <Route
           path="/"
@@ -62,8 +64,16 @@ export default function App() {
           exact
           render={(routerProps) => <Game {...routerProps} auth={auth} />}
         />
+        <Route
+          path="/about"
+          exact
+          render={(routerProps) => (
+            <ProfileCard {...routerProps} handleAuth={handleAuthChange} />
+          )}
+        />
       </Switch>
       <Header />
+      
     </>
   );
 }
