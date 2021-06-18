@@ -12,7 +12,6 @@ const SignIn = (props) => {
   const url = process.env.DATABASE_URL;
 
   async function signIn(username, password) {
-    //this is a placeholder
     const res = await request
       .post(`${url}/auth/signin`)
       .send({ password, email: username });

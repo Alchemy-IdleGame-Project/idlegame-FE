@@ -26,7 +26,6 @@ const UserControls = ({
     handleMineClick();
     handleClicks();
   }
-  // you need to add gold, prestige, gametime, num clicks
   function handleSaveButton() {
     uploadSave(
       {

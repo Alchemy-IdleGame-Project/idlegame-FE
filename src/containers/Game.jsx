@@ -13,7 +13,6 @@ import PropTypes from 'prop-types';
 import { detrimentRoll, shutOffEffect } from '../gameUtils/detrimentUtils';
 import { loadBuilding } from '../gameUtils/buildingUtils';
 import { downloadSave } from '../gameUtils/userUtils';
-import gameTitleImage from '../../assets/gametitle.png';
 import goldCoin from '../../assets/gold-coin.png';
 import gameTitle from '../../assets/gametitle.png';
 
@@ -232,16 +231,9 @@ export default function Game(props) {
           setDetriment={setDetriment}
         />
         <h1 className={style.gameTitle}>
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <img src={gameTitleImage} alt="idle isle" />
-=======
-          <img src="../../assets/gametitle.PNG" alt="idle isle" />
->>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
-=======
           <img src={gameTitle} alt="idle isle" />
->>>>>>> 68368503c4e72af96bc13c795cff43c7b3a26dcc
         </h1>
+
         <div className={style.hud}>
           <Hud
             gold={gold}
@@ -267,8 +259,6 @@ export default function Game(props) {
           setDetriment={setDetriment}
           user={user}
         />
-
-        {/* experimenting with being able to have more properties in the user but not passing properties that arent necessary */}
         <Canvas
           gametime={gametime}
           user={user}
@@ -280,33 +270,6 @@ export default function Game(props) {
 
         <ul className={style.circles}>
           <li>
-<<<<<<< HEAD
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-          </li>
-          <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
-=======
             <img width="100px" src={goldCoin} />
           </li>
           <li>
@@ -332,7 +295,6 @@ export default function Game(props) {
           </li>
           <li>
             <img width="100px" src={goldCoin} />
->>>>>>> 9517ef50806025d5b4c3b4615d97eee91b1b97ec
           </li>
         </ul>
       </div>

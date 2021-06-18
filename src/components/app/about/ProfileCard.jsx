@@ -8,9 +8,8 @@ import vanceImage from '../../../../assets/profileImg/vanceProfile.jpg';
 import domImage from '../../../../assets/profileImg/domProfile.jpg';
 import emailImage from '../../../../assets/profileIcons/emailIcon.png';
 import githubImage from '../../../../assets/profileIcons/githubIcon.png';
-import linkedinImage from '../../../../assets/profileIcons/linkedInIcon.png';
+import linkedInImage from '../../../../assets/profileIcons/linkedInIcon.png';
 import resumeImage from '../../../../assets/profileIcons/resumeIcon.png';
-
 
 const ProfileCard = () => {
 
@@ -26,34 +25,21 @@ const ProfileCard = () => {
       <li className={style.outerLi} key={item.name}>
         <div className={style.profileTop}>
           <h2>{item.name}</h2>
-
           <img className={style.profImg} src={profileImg[index]} />
-
           <div className={style.socials}>
             <div className={style.email}>
               <img
                 width="35px"
                 height="35px"
-<<<<<<< HEAD
-                src={emailIcon}
-=======
                 src={emailImage}
->>>>>>> 68368503c4e72af96bc13c795cff43c7b3a26dcc
               />
-              {/* <span>{item.contact[0].contactType}:</span> */}
               <span> {item.contact[0].address}</span>
             </div>
-
-            {/* //how to open an email to this address */}
             <div className={style.resume}>
               <img
                 width="35px"
                 height="35px"
-<<<<<<< HEAD
-                src={resumeIcon}
-=======
                 src={resumeImage}
->>>>>>> 68368503c4e72af96bc13c795cff43c7b3a26dcc
               />
               <span>{item.contact[1].contactType}:</span>
               <span>
@@ -65,11 +51,7 @@ const ProfileCard = () => {
               <img
                 width="35px"
                 height="30px"
-<<<<<<< HEAD
-                src={linkedInIcon}
-=======
-                src={linkedinImage}
->>>>>>> 68368503c4e72af96bc13c795cff43c7b3a26dcc
+                src={linkedInImage}
               />
               <span>{item.contact[2].contactType}:</span>
               <span>
@@ -87,11 +69,7 @@ const ProfileCard = () => {
                 width="35px"
                 height="35px"
                 margin="23px"
-<<<<<<< HEAD
-                src={githubIcon}
-=======
                 src={githubImage}
->>>>>>> 68368503c4e72af96bc13c795cff43c7b3a26dcc
               />
               <span>{item.contact[3].contactType}:</span>
               <span>

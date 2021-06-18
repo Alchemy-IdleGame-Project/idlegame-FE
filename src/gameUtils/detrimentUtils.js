@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-
 export function detrimentRoll(
   detriment,
   gametime,
@@ -9,57 +8,47 @@ export function detrimentRoll(
   setGold,
   setUser
 ) {
-  //maps over each key in the detriment object checking for an unlocked value
   Object.keys(detriment).map((item) => {
-    //if the prop is unlocked, roll for a chance to activate detriment
     if (detriment[item].unlocked && !detriment[item].active) {
       const roll = Math.ceil(Math.random() * 100);
+      
       if (roll >= 85) {
         detriment[item].active = true;
-        //switch case to put into effect in state, our detriment values
+        
         switch (item) {
-          //name of detriment
           case 'termites': {
-            //detriment effect
             setGoldPerSecond((prevGold) => {
               prevGold--;
               return prevGold;
             });
-            //time for which the detriment is active
             setActiveTime((prevActive) => {
               prevActive.termites.lastActive = gametime;
               return {
                 ...prevActive,
               };
             });
-
             break;
           }
 
           case 'failedCrops': {
-            //detriment effect
             setGoldPerSecond((prevGold) => {
               prevGold = prevGold - 9;
               return prevGold;
             });
-            //time for which the detriment is active
             setActiveTime((prevActive) => {
               prevActive.failedCrops.lastActive = gametime;
               return {
                 ...prevActive,
               };
             });
-
             break;
           }
 
           case 'caveIn': {
-            //detriment effect
             setGoldPerSecond((prevGold) => {
               prevGold = prevGold - 18;
               return prevGold;
             });
-            //grab current time to start detriment timer once it meets the detriment duration, it will shut off
             setActiveTime((prevActive) => {
               prevActive.caveIn.lastActive = gametime;
               return {
@@ -75,7 +64,6 @@ export function detrimentRoll(
               prevGold < 0 ? (prevGold = 0) : (prevGold = prevGold);
               return Math.floor(prevGold);
             });
-            //grab current time to start detriment timer once it meets the detriment duration, it will shut off
             setActiveTime((prevActive) => {
               prevActive.flood.lastActive = gametime;
               return {
@@ -85,7 +73,6 @@ export function detrimentRoll(
             break;
           }
           case 'osha': {
-            //detriment effect
             setGold((prevGold) => {
               prevGold = prevGold - 12000;
               prevGold < 0 ? (prevGold = 0) : (prevGold = prevGold);
@@ -95,48 +82,40 @@ export function detrimentRoll(
               prevGoldPerSecond = prevGoldPerSecond * 0.75;
               return prevGoldPerSecond;
             });
-            //grab current time to start detriment timer once it meets the detriment duration, it will shut off
             setActiveTime((prevActive) => {
               prevActive.osha.lastActive = gametime;
               return {
                 ...prevActive,
               };
             });
-
             break;
           }
 
           case 'peta': {
-            //detriment effect
             setGoldPerSecond((prevGold) => {
               prevGold = prevGold * 0.8;
               return prevGold;
             });
-            //grab current time to start detriment timer once it meets the detriment duration, it will shut off
             setActiveTime((prevActive) => {
               prevActive.peta.lastActive = gametime;
               return {
                 ...prevActive,
               };
             });
-
             break;
           }
 
           case 'bandits': {
-            //detriment effect
             setGold((prevGold) => {
               prevGold = prevGold * 0.75;
               return Math.floor(prevGold);
             });
-            //grab current time to start detriment timer once it meets the detriment duration, it will shut off
             setActiveTime((prevActive) => {
               prevActive.bandits.lastActive = gametime;
               return {
                 ...prevActive,
               };
             });
-
             break;
           }
 
@@ -145,9 +124,7 @@ export function detrimentRoll(
               prevGold = prevGold - 2000;
               return prevGold;
             });
-            //detriment effect
             setUser({ ...user, tavern: false });
-            //grab current time to start detriment timer once it meets the detriment duration, it will shut off
             setActiveTime((prevActive) => {
               prevActive.arson.lastActive = gametime;
               return {
@@ -164,7 +141,7 @@ export function detrimentRoll(
     }
   });
 }
-//if the prop is unlocked and detriment is active, set the detriment back to inactive and remove negative effects
+
 export function shutOffEffect(
   detriment,
   gametime,

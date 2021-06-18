@@ -8,6 +8,7 @@ const Prestige = ({ user, prestige,  setPrestige, setUser, setGold, setGoldPerSe
   const bamooo = () => {
     incrementPrestige(user, setPrestige, setUser, setGold, setGoldPerSecond, setGametime, setNumClicks, setDetriment);
   };
+  
   let btnPrestige = prestige;
   btnPrestige++;
   const prestigeBtn = <button onClick={bamooo}>Prestige { btnPrestige} </button>;
