@@ -72,6 +72,7 @@ export function detrimentRoll(
             });
             break;
           }
+          
           case 'osha': {
             setGold((prevGold) => {
               prevGold = prevGold - 12000;
