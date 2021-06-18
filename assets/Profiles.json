@@ -1,0 +1,120 @@
+{
+    "profiles" : [
+        {
+            "name" : "name 1 ",
+            "imgSrc" : "http://placekitten.com/100/100",
+            "bio" : "something aboutyoujjjjjjjjjjjjjjjjjjjjjjjj jjjjjjj jjjjjjjjjj jjjjjjjjjjj hhhhhhhhhhhhhhhhhhhhh hhhhhh hhhhh hhhhhhhhh hhhhhhhhhhh hhhhhhhhhhh hhhhhhhh hhhj",
+            "contact" : [
+                {
+                    "icon" : "./profileIcons/emailIcon.png",
+                    "contactType" : "Email",
+                    "address" : "email@email.com"
+                },
+                {
+                    "icon" : "./profileIcons/resumeIcon.png",
+                    "contactType" : "Resume",                    
+                    "link" : "link to resume"
+                },
+                {
+                    "icon" : "./profileIcons/linkedInIcon.png",
+                    "contactType" : "LinkedIn",
+                    "link" : "https://www.linkedin.com/in/dominique-sakrisson/",
+                    "linkDisplay" : "/in/your profile"
+                },
+                {
+                    "icon" : "./profileIcons/githubIcon.png",
+                    "contactType" : "Github",
+                    "link" : "https://github.com/your profile here",
+                    "linkDisplay" : "/in/your handle"
+                }
+            ]
+        },
+        {
+            "name" : "name 2",
+            "imgSrc" : "http://placekitten.com/100/100",
+            "bio" : "something about youfghh hhhhhhhhh hhhhhhhhhhh hhhhhhhhhhhhhhhhh hhhhhhhhhhh hhhhhhhhhhhh hhh",
+            "contact" : [
+                {
+                    "icon" : "./profileIcons/emailIcon.png",
+                    "contactType" : "Email",
+                    "address" : "email@email.com"
+                },
+                {
+                    "icon" : "./profileIcons/resumeIcon.png",
+                    "contactType" : "Resume",                    
+                    "link" : "link to resume"
+                },
+                {
+                    "icon" : "./profileIcons/linkedInIcon.png",
+                    "contactType" : "LinkedIn",
+                    "link" : "https://www.linkedin.com/in/dominique-sakrisson/",
+                    "linkDisplay" : "/in/your profile"
+                },
+                {
+                    "icon" : "./profileIcons/githubIcon.png",
+                    "contactType" : "Github",
+                    "link" : "https://github.com/your profile here",
+                    "linkDisplay" : "/in/your handle"
+                }
+            ]
+        },
+        {
+            "name" : "name 3 ",
+            "imgSrc" : "http://placekitten.com/100/100",
+            "bio" : "something about you",
+            "contact" : [
+                {
+                    "icon" : "./profileIcons/emailIcon.png",
+                    "contactType" : "Email",
+                    "address" : "email@email.com"
+                },
+                {
+                    "icon" : "./profileIcons/resumeIcon.png",
+                    "contactType" : "Resume",                    
+                    "link" : "link to resume"
+                },
+                {
+                    "icon" : "./profileIcons/linkedInIcon.png",
+                    "contactType" : "LinkedIn",
+                    "link" : "https://www.linkedin.com/in/dominique-sakrisson/",
+                    "linkDisplay" : "/in/your profile"
+                },
+                {
+                    "icon" : "./profileIcons/githubIcon.png",
+                    "contactType" : "Github",
+                    "link" : "https://github.com/your profile here",
+                    "linkDisplay" : "/in/your handle"
+                }
+            ]
+        },
+        {
+            "name" : "Dominique ",
+            "imgSrc" : "http://placekitten.com/100/100",
+            "bio" : "Designing and building this project with this team was a great experience. I learned much about working effectively with the team, prioitizing tasks, managing complex state management in React and what goes into creating complex images using tileset data. My favorite type of games to play are of the FPS and RPG genres.",
+            "contact" : [
+                {
+                    "icon" : "./profileIcons/emailIcon.png",
+                    "contactType" : "Email",
+                    "address" : "domsakrisson@gmail.com"
+                },
+                {
+                    "icon" : "./profileIcons/resumeIcon.png",
+                    "contactType" : "Resume",                    
+                    "link" : "https://drive.google.com/file/d/1jefyr6IqIKvL1Lx_Fo4Hn2ckjaKYjEPp/view?usp=sharing"
+                },
+                {
+                    "icon" : "./profileIcons/linkedInIcon.png",
+                    "contactType" : "LinkedIn",
+                    "link" : "https://www.linkedin.com/in/dominique-sakrisson/",
+                    "linkDisplay" : "/in/dominique-sakrisson"
+                },
+                {
+                    "icon" : "./profileIcons/githubIcon.png",
+                    "contactType" : "Github",
+                    "link" : "https://github.com/https://github.com/Dominique-Sakrisson",
+                    "linkDisplay" : "/in/dominique-sakrisson"
+                }
+            ]
+        }
+    ] 
+}

@@ -12,27 +12,27 @@ const Detriment = ({ detriment }) => {
           switch (item) {
             case 'termites': {
               return (
-                <p className={style.activeDetriment}> {item} -1 gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> {item} -1 gold/s </p>
               );
             }
             case 'failedCrops': {
               return (
-                <p className={style.activeDetriment}> {item}: -10 gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> {item}: -10 gold/s </p>
               );
             }
             case 'caveIn': {
               return (
-                <p className={style.activeDetriment}> {item}: -20 gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> {item}: -20 gold/s </p>
               );
             }
             case 'flood': {
               return (
-                <p className={style.activeDetriment}> {item}: -10k gold </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> {item}: -10k gold </p>
               );
             }
             case 'osha': {
               return (
-                <p className={style.activeDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}>
                   {' '}
                   {item}: -50k gold -20% gold/s{' '}
                 </p>
@@ -40,12 +40,12 @@ const Detriment = ({ detriment }) => {
             }
             case 'peta': {
               return (
-                <p className={style.activeDetriment}> {item}: -10% gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> {item}: -10% gold/s </p>
               );
             }
             case 'bandits': {
               return (
-                <p className={style.activeDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}>
                   {' '}
                   {item}: -75% total gold{' '}
                 </p>
@@ -53,7 +53,7 @@ const Detriment = ({ detriment }) => {
             }
             case 'arson': {
               return (
-                <p className={style.activeDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}>
                   {' '}
                   {item}: Burnt down tavern{' '}
                 </p>
@@ -64,27 +64,27 @@ const Detriment = ({ detriment }) => {
           switch (item) {
             case 'termites': {
               return (
-                <p className={style.inactiveDetriment}> {item} -1 gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> {item} -1 gold/s </p>
               );
             }
             case 'failedCrops': {
               return (
-                <p className={style.inactiveDetriment}> {item}: -10 gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> {item}: -10 gold/s </p>
               );
             }
             case 'caveIn': {
               return (
-                <p className={style.inactiveDetriment}> {item}: -20 gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> {item}: -20 gold/s </p>
               );
             }
             case 'flood': {
               return (
-                <p className={style.inactiveDetriment}> {item}: -10k gold </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> {item}: -10k gold </p>
               );
             }
             case 'osha': {
               return (
-                <p className={style.inactiveDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}>
                   {' '}
                   {item}: -50k gold -20% gold/s{' '}
                 </p>
@@ -92,12 +92,12 @@ const Detriment = ({ detriment }) => {
             }
             case 'peta': {
               return (
-                <p className={style.inactiveDetriment}> {item}: -10% gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> {item}: -10% gold/s </p>
               );
             }
             case 'bandits': {
               return (
-                <p className={style.inactiveDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}>
                   {' '}
                   {item}: -75% total gold{' '}
                 </p>
@@ -105,7 +105,7 @@ const Detriment = ({ detriment }) => {
             }
             case 'arson': {
               return (
-                <p className={style.inactiveDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}>
                   {' '}
                   {item}: Burnt down tavern{' '}
                 </p>

@@ -1,5 +1,7 @@
 import React from 'react';
 import background from '../../assets/titlebackground.png';
+import ProfileCard from '../components/app/about/ProfileCard';
+import style from '../components/app/style.css';
 
 const TitlePage = () => {
   const titleStyle = {
@@ -13,7 +15,8 @@ const TitlePage = () => {
     // backgroundSize: '100%'
   };
   return (
-    <div style={titleStyle}>
+    <div style={titleStyle}>  
+        <ProfileCard />
     </div>
   );
 };
