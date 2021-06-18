@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState }from 'react';
 import { Link } from 'react-router-dom';
 import style from '../style.css';
 
+
 export default function Header() {
+ 
+  const handleLogout = () => {
+    localStorage.removeItem('AUTH');
+  };
+
   return (
     <div className={style.header}>
       <div className={style.headerButton}>
@@ -15,7 +21,7 @@ export default function Header() {
         <Link to={'/login'}>Log In</Link>
       </div>
       <div className={style.headerButton}>
-        <Link to={'/'}>Log Out</Link>
+        <Link to={'/'} onClick={handleLogout}>Log Out</Link>
       </div>
       <div className={style.headerButton}>
         <Link to={'/about'}>About the Developers</Link>

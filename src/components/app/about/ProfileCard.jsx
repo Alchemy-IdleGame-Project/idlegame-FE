@@ -1,16 +1,23 @@
 /* eslint-disable max-len */
 import React from 'react';
 import style from '../style.css';
-import { profiles } from '../../../../assets/Profiles.json';
-
+import profiles from '../../../../assets/Profiles.js';
+import minhImage from '../../../../assets/profileImg/minhProfile.jpg';
+import edmondImage from '../../../../assets/profileImg/edmondProfile.png';
+import vanceImage from '../../../../assets/profileImg/vanceProfile.jpg';
+import domImage from '../../../../assets/profileImg/domProfile.jpg';
+import emailImage from '../../../../assets/profileIcons/emailIcon.png';
+import githubImage from '../../../../assets/profileIcons/githubIcon.png';
+import linkedinImage from '../../../../assets/profileIcons/linkedInIcon.png';
+import resumeImage from '../../../../assets/profileIcons/resumeIcon.png';
 
 const ProfileCard = () => {
 
   const profileImg = [
-    '../../../../assets/profileImg/minhProfile.jpg', 
-    '../../../../assets/profileImg/edmondProfile.png', 
-    '../../../../assets/profileImg/vanceProfile.jpg', 
-    '../../../../assets/profileImg/domProfile.jpg'];
+    minhImage,
+    edmondImage,
+    vanceImage, 
+    domImage];
 
   const array = profiles.map((item, index) => {
     return (
@@ -25,7 +32,7 @@ const ProfileCard = () => {
               <img
                 width="35px"
                 height="35px"
-                src="../../../../assets/profileIcons/emailIcon.png"
+                src={emailImage}
               />
               {/* <span>{item.contact[0].contactType}:</span> */}
               <span> {item.contact[0].address}</span>
@@ -36,7 +43,7 @@ const ProfileCard = () => {
               <img
                 width="35px"
                 height="35px"
-                src="../../../../assets/profileIcons/resumeIcon.png"
+                src={resumeImage}
               />
               <span>{item.contact[1].contactType}:</span>
               <span>
@@ -48,7 +55,7 @@ const ProfileCard = () => {
               <img
                 width="35px"
                 height="30px"
-                src="../../../../assets/profileIcons/linkedInIcon.png"
+                src={linkedinImage}
               />
               <span>{item.contact[2].contactType}:</span>
               <span>
@@ -66,7 +73,7 @@ const ProfileCard = () => {
                 width="35px"
                 height="35px"
                 margin="23px"
-                src="../../../../assets/profileIcons/githubIcon.png"
+                src={githubImage}
               />
               <span>{item.contact[3].contactType}:</span>
               <span>

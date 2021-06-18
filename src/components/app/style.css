@@ -381,9 +381,9 @@ input:focus {
   position: absolute;
   right: 1%;
   top: 14%;
-  width: 38%;
+  /* width: 38%; */
   /* max-width: 40%; */
-  height: 38%;
+  height: 50%;
   margin: 0;
   padding: 0;
 }

@@ -1,9 +1,11 @@
-import { layers } from '../../../../assets/MaptheSecond.json';
+import  { layers }  from '../../../../assets/MaptheSecond.js';
+import SPOverworld from '../../../../assets/SP-Overworld.png';
+import Building32x32 from '../../../../assets/Compilation-Building32x32.png';
 
 const tilesetImage = new Image();
 const tilesetImage2 = new Image();
-tilesetImage.src = '../../../../assets/SP-Overworld.png';
-tilesetImage2.src = '../../../../assets/Compilation-Building32x32.png';
+tilesetImage.src = SPOverworld;
+tilesetImage2.src = Building32x32;
 const tileSize = 16; // The size of a tile (32×32)
 const rowTileCount = 38; // The number of tiles in a row of our background
 const colTileCount = 50; // The number of tiles in a column of our background
@@ -100,12 +102,12 @@ function firstToUpper(string) {
 export const drawUnlocked = (ctx, ps) => {
   const user = Object.keys(ps.user);
   
-  if(!ps.user.tavern){
+  if (!ps.user.tavern){
     draw(ctx, tester);
     draw(ctx, tester1);
     user.map(item => {
       
-      if(ps.user[item] === true){
+      if (ps.user[item] === true){
       
         
         draw(ctx, eval(`road${firstToUpper(item)}Layer`));    
@@ -116,7 +118,7 @@ export const drawUnlocked = (ctx, ps) => {
   
   user.map(item => {
     
-    if(ps.user[item] === true){
+    if (ps.user[item] === true){
     
       
       draw(ctx, eval(`road${firstToUpper(item)}Layer`));    
@@ -125,7 +127,7 @@ export const drawUnlocked = (ctx, ps) => {
   });
 };
 
-export const convertedLayers = convertTiles(layers);
+export const convertedLayers = convertTiles(layers.layers);
 
 const tester = convertedLayers[0];
 const tester1 = convertedLayers[2];

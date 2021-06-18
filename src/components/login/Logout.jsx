@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import style from '../app/style.css';
 
@@ -6,8 +6,9 @@ import style from '../app/style.css';
 const Logout = (props) => {
   const [loggedOut, setLoggedOut] = useState(false);
   
-  const handleLogout = () => {
-    localStorage.removeItem();
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem('AUTH');
     setLoggedOut(true);
   };
   if (loggedOut){
@@ -15,11 +16,9 @@ const Logout = (props) => {
   }
 
   return (
-    <div>
-      <button onClick={handleLogout} className={style.smallButton}>
-        Log Out
-      </button>
-    </div>
+    <button onClick={handleLogout} className={style.smallButton}>
+      Log Out
+    </button>
   );
 };
 
