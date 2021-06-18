@@ -14,6 +14,7 @@ import { detrimentRoll, shutOffEffect } from '../gameUtils/detrimentUtils';
 import { loadBuilding } from '../gameUtils/buildingUtils';
 import { downloadSave } from '../gameUtils/userUtils';
 import goldCoin from '../../assets/gold-coin.png';
+import gameTitle from '../../assets/gametitle.png';
 
 export default function Game(props) {
   const [gold, setGold] = useState(0);
@@ -229,7 +230,7 @@ export default function Game(props) {
           setDetriment={setDetriment}
         />
         <h1 className={style.gameTitle}>
-          <img src="../../assets/gametitle.PNG" alt="idle isle" />
+          <img src={gameTitle} alt="idle isle" />
         </h1>
         <div className={style.hud}>
           <Hud
@@ -268,7 +269,6 @@ export default function Game(props) {
         <Detriment detriment={detriment} />
 
         <ul className={style.circles}>
-         
           <li>
             <img width="100px" src={goldCoin} />
           </li>
