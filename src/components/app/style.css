@@ -369,6 +369,7 @@ visibility: hidden;
     list-style: none;
     height: 100%;
     color: black;
+    margin: auto;
 }
 
 .outerLi{
@@ -380,11 +381,12 @@ visibility: hidden;
     flex-direction: column;
     height: 100%;
     padding: 0;
+    margin-bottom: 10px;
 }
 .profImg{
-    border: 10px solid transparent;
+    border: 5px solid transparent;
     border-style: solid;
-    border-image: url("~/assets/border2.png") 10 round;
+    border-image: url("~/assets/border2.png") 5 round;
     position: absolute;
     right: 1%;
     top :14%;
@@ -399,7 +401,7 @@ visibility: hidden;
     background: rgba(255, 255, 255, 0.9);
     display: flex;
     text-align: center;
-   
+    border-radius: 10px;
 }
 
 .cards li ul{
@@ -433,21 +435,25 @@ visibility: hidden;
     color: black;
     display: flex;
     flex-direction: row;
+    padding-left: 2%;
 }
 .resume{
     color: black;
     display: flex;
     flex-direction: row;
+    padding-left: 2%;
 }
 .linkedIn{
     color: black;
     display: flex;
     flex-direction: row;
+    padding-left: 2%;
 }
 .github{
     color: black;
     display: flex;
     flex-direction: row;
+    padding-left: 2%;
 }
 .cards li:nth-child(2){
     position: absolute;
@@ -459,13 +465,13 @@ visibility: hidden;
 .cards li:nth-child(3){
     position: absolute;
     left:2%;
-    bottom: 8%;
+    bottom: 5%;
     animation-name: animate12;
     animation-duration: 1s;
 }
 .cards li:nth-child(4){
     position: absolute;
-    bottom: 8%;
+    bottom: 5%;
     right: 2%;
     animation-name: animate12;
     animation-duration: 1s;
@@ -475,17 +481,17 @@ visibility: hidden;
     height: 35%;
     width: 95%;
     margin: auto;
-    border: 10px solid transparent;
+    border: 5px solid transparent;
     border-style: solid;
-    border-image: url("~/assets/border2.png") 10 round;
+    border-image: url("~/assets/border2.png") 5 round;
 }
 .socials{
     display: flex;
     flex-direction: column;
     width: 50%;
-    border: 10px solid transparent;
+    border: 5px solid transparent;
     border-style: solid;
-    border-image: url("~/assets/border2.png") 10 round;
+    border-image: url("~/assets/border2.png") 5 round;
 }
 .socials  span{
     margin: auto;

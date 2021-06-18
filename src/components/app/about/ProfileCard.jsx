@@ -14,14 +14,14 @@ const ProfileCard = () => {
 
         <div className={style.socials}>
           <div className={style.email}>
-            <img width="35px" src="../../../../assets/profileIcons/emailIcon.png"/>
+            <img width="35px" height="35px"src="../../../../assets/profileIcons/emailIcon.png"/>
             <span>{item.contact[0].contactType}:</span>
             <span> {item.contact[0].address}</span>
           </div>
 
           {/* //how to open an email to this address */}
           <div className={style.resume}>
-            <img width="35px" src="../../../../assets/profileIcons/resumeIcon.png"/>
+            <img width="35px" height="35px" src="../../../../assets/profileIcons/resumeIcon.png"/>
             <span>{item.contact[1].contactType}:</span>
             <span>   
               <a href={item.contact[1].link} >
@@ -30,7 +30,7 @@ const ProfileCard = () => {
           </div>
 
           <div className={style.linkedIn}>
-            <img width="35px" src="../../../../assets/profileIcons/linkedInIcon.png"/>
+            <img width="35px" height="30px" src="../../../../assets/profileIcons/linkedInIcon.png"/>
             <span>{item.contact[2].contactType}:</span>
             <span>
               <a href={item.contact[2].link} alt={item.contact[2].linkDisplay}> 
@@ -39,7 +39,7 @@ const ProfileCard = () => {
           </div>
 
           <div className={style.github}>
-            <img width="35px" src="../../../../assets/profileIcons/githubIcon.png"/>
+            <img width="35px" height="35px" margin="23px" src="../../../../assets/profileIcons/githubIcon.png"/>
             <span>{item.contact[3].contactType}:</span>
             <span>
               <a href={item.contact[3].link} alt={item.contact[2].linkDisplay}> 
