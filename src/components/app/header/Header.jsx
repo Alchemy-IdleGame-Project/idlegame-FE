@@ -17,6 +17,10 @@ export default function Header() {
       <div className={style.headerButton}>
         <Link to={'/'}>Log Out</Link>
       </div>
+      <div className={style.headerButton}>
+        <Link to={'/about'}>About the Developers</Link>
+      </div>
+
     </div>
   );
 }

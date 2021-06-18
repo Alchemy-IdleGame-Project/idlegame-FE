@@ -15,27 +15,27 @@ const Detriment = ({ detriment }) => {
           switch (item) {
             case 'termites': {
               return (
-                <p className={style.activeDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-1</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-1</span> gold/s </p>
               );
             }
             case 'failedCrops': {
               return (
-                <p className={style.activeDetriment}> Failed Crops: <span style={{ color: 'gold' }}>-10</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> Failed Crops: <span style={{ color: 'gold' }}>-10</span> gold/s </p>
               );
             }
             case 'caveIn': {
               return (
-                <p className={style.activeDetriment}> Cave-in: <span style={{ color: 'gold' }}>-20</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> Cave-in: <span style={{ color: 'gold' }}>-20</span> gold/s </p>
               );
             }
             case 'flood': {
               return (
-                <p className={style.activeDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-10k</span> gold </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-10k</span> gold </p>
               );
             }
             case 'osha': {
               return (
-                <p className={style.activeDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}>
                   {' '}
                   {item.toUpperCase()}: <span style={{ color: 'gold' }}>-50k</span> gold <span style={{ color: 'gold' }}>-25%</span> gold/s{' '}
                 </p>
@@ -43,12 +43,12 @@ const Detriment = ({ detriment }) => {
             }
             case 'peta': {
               return (
-                <p className={style.activeDetriment}> {item.toUpperCase()}: <span style={{ color: 'gold' }}>-20%</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> {item.toUpperCase()}: <span style={{ color: 'gold' }}>-20%</span> gold/s </p>
               );
             }
             case 'bandits': {
               return (
-                <p className={style.activeDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}>
                   {' '}
                   {capitalizer(item)}: <span style={{ color: 'gold' }}>-25%</span> total gold{' '}
                 </p>
@@ -56,7 +56,7 @@ const Detriment = ({ detriment }) => {
             }
             case 'arson': {
               return (
-                <p className={style.activeDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}>
                   {' '}
                   {capitalizer(item)}: <span style={{ color: 'red' }}>Burnt down tavern{' '}</span> 
                 </p>
@@ -67,27 +67,27 @@ const Detriment = ({ detriment }) => {
           switch (item) {
             case 'termites': {
               return (
-                <p className={style.inactiveDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-1</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-1</span> gold/s </p>
               );
             }
             case 'failedCrops': {
               return (
-                <p className={style.inactiveDetriment}> Failed Crops: <span style={{ color: 'gold' }}>-10</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> Failed Crops: <span style={{ color: 'gold' }}>-10</span> gold/s </p>
               );
             }
             case 'caveIn': {
               return (
-                <p className={style.inactiveDetriment}> Cave-in: <span style={{ color: 'gold' }}>-20</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> Cave-in: <span style={{ color: 'gold' }}>-20</span> gold/s </p>
               );
             }
             case 'flood': {
               return (
-                <p className={style.inactiveDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-10k</span> gold </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-10k</span> gold </p>
               );
             }
             case 'osha': {
               return (
-                <p className={style.inactiveDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}>
                   {' '}
                   {item.toUpperCase()}: <span style={{ color: 'gold' }}>-50k</span> gold <span style={{ color: 'gold' }}>-25% </span>gold/s{' '}
                 </p>
@@ -95,12 +95,14 @@ const Detriment = ({ detriment }) => {
             }
             case 'peta': {
               return (
-                <p className={style.inactiveDetriment}> {item.toUpperCase()}: <span style={{ color: 'gold' }}>-20%</span> gold/s </p>
+                <p style={{ minWidth : '305px' }} className={style.inactiveDetriment}>
+                  {item.toUpperCase()}: <span style={{ color: 'gold' }}>-20%</span> gold/s 
+                </p>
               );
             }
             case 'bandits': {
               return (
-                <p className={style.inactiveDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}>
                   {' '}
                   {capitalizer(item)}: <span style={{ color: 'gold' }}>-25%</span> total gold{' '}
                 </p>
@@ -108,7 +110,7 @@ const Detriment = ({ detriment }) => {
             }
             case 'arson': {
               return (
-                <p className={style.inactiveDetriment}>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}>
                   {' '}
                   {capitalizer(item)}: Burnt down tavern{' '}
                 </p>
