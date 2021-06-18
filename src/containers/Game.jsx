@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import { detrimentRoll, shutOffEffect } from '../gameUtils/detrimentUtils';
 import { loadBuilding } from '../gameUtils/buildingUtils';
 import { downloadSave } from '../gameUtils/userUtils';
+import gameTitleImage from '../../assets/gametitle.png';
 
 export default function Game(props) {
   const [gold, setGold] = useState(0);
@@ -228,7 +229,7 @@ export default function Game(props) {
           setDetriment={setDetriment}
         />
         <h1 className={style.gameTitle}>
-          <img src="../../assets/gametitle.PNG" alt="idle isle" />
+          <img src={gameTitleImage} alt="idle isle" />
         </h1>
         <div className={style.hud}>
           <Hud
