@@ -20,24 +20,24 @@ const Detriment = ({ detriment }) => {
             }
             case 'failedCrops': {
               return (
-                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> Failed Crops: <span style={{ color: 'gold' }}>-10</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> Failed Crops: <span style={{ color: 'gold' }}>-9</span> gold/s </p>
               );
             }
             case 'caveIn': {
               return (
-                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> Cave-in: <span style={{ color: 'gold' }}>-20</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> Cave-in: <span style={{ color: 'gold' }}>-18</span> gold/s </p>
               );
             }
             case 'flood': {
               return (
-                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-10k</span> gold </p>
+                <p style={{ minWidth : '305px' }}className={style.activeDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-5k</span> gold </p>
               );
             }
             case 'osha': {
               return (
                 <p style={{ minWidth : '305px' }}className={style.activeDetriment}>
                   {' '}
-                  {item.toUpperCase()}: <span style={{ color: 'gold' }}>-50k</span> gold <span style={{ color: 'gold' }}>-25%</span> gold/s{' '}
+                  {item.toUpperCase()}: <span style={{ color: 'gold' }}>-12k</span> gold <span style={{ color: 'gold' }}>-25%</span> gold/s{' '}
                 </p>
               );
             }
@@ -72,24 +72,24 @@ const Detriment = ({ detriment }) => {
             }
             case 'failedCrops': {
               return (
-                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> Failed Crops: <span style={{ color: 'gold' }}>-10</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> Failed Crops: <span style={{ color: 'gold' }}>-9</span> gold/s </p>
               );
             }
             case 'caveIn': {
               return (
-                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> Cave-in: <span style={{ color: 'gold' }}>-20</span> gold/s </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> Cave-in: <span style={{ color: 'gold' }}>-18</span> gold/s </p>
               );
             }
             case 'flood': {
               return (
-                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-10k</span> gold </p>
+                <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-5k</span> gold </p>
               );
             }
             case 'osha': {
               return (
                 <p style={{ minWidth : '305px' }}className={style.inactiveDetriment}>
                   {' '}
-                  {item.toUpperCase()}: <span style={{ color: 'gold' }}>-50k</span> gold <span style={{ color: 'gold' }}>-25% </span>gold/s{' '}
+                  {item.toUpperCase()}: <span style={{ color: 'gold' }}>-20k</span> gold <span style={{ color: 'gold' }}>-25% </span>gold/s{' '}
                 </p>
               );
             }

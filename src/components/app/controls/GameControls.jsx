@@ -155,11 +155,7 @@ GameControls.propTypes = {
   clicks: PropTypes.number.isRequired,
   handleClicks: PropTypes.func.isRequired,
   revealPercent: PropTypes.number.isRequired,
-  detriment: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired, 
-  setGold: PropTypes.func.isRequired, 
-  setGoldPerSecond: PropTypes.func.isRequired, 
-  setDetriment: PropTypes.func.isRequired,
+  detriment: PropTypes.shape({}),
   goldRequired: PropTypes.shape({
     lumberyard: PropTypes.number.isRequired,
     windmill: PropTypes.number.isRequired,
@@ -183,6 +179,10 @@ GameControls.propTypes = {
     tavern: PropTypes.bool.isRequired,
     castle: PropTypes.bool.isRequired,
   }).isRequired,
+  setUser: PropTypes.func.isRequired,
+  setGold: PropTypes.func.isRequired, 
+  setGoldPerSecond: PropTypes.func.isRequired, 
+  setDetriment: PropTypes.func.isRequired, 
 };
 
 export default GameControls;
