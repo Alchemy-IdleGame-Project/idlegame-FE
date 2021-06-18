@@ -1,8 +1,8 @@
-import  {layers}  from '../../../../assets/MaptheSecond.js';
+import  { layers }  from '../../../../assets/MaptheSecond.js';
 
 const tilesetImage = new Image();
 const tilesetImage2 = new Image();
-tilesetImage.src = '../../../../assets/SP-Overworld.png';
+tilesetImage.src = 'assets/SP-Overworld.png';
 tilesetImage2.src = '../../../../assets/Compilation-Building32x32.png';
 const tileSize = 16; // The size of a tile (32×32)
 const rowTileCount = 38; // The number of tiles in a row of our background
