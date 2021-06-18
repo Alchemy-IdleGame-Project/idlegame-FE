@@ -7,7 +7,7 @@ const Prestige = ({ user, prestige,  setPrestige, setUser, setGold, setGoldPerSe
 
   const bamooo = () => {
     incrementPrestige(user, setPrestige, setUser, setGold, setGoldPerSecond, setGametime, setNumClicks, setDetriment);
-  }
+  };
   let btnPrestige = prestige;
   btnPrestige++;
   const prestigeBtn = <button onClick={bamooo}>Prestige { btnPrestige} </button>;
@@ -22,9 +22,7 @@ const Prestige = ({ user, prestige,  setPrestige, setUser, setGold, setGoldPerSe
 };
 
 Prestige.propTypes = {
-  handlePrestige: PropTypes.func.isRequired,
   prestige: PropTypes.number.isRequired,
-  castle: PropTypes.bool.isRequired,
   user: PropTypes.shape({
     castle: PropTypes.bool.isRequired
   }).isRequired,
@@ -35,5 +33,5 @@ Prestige.propTypes = {
   setGametime: PropTypes.func.isRequired,
   setNumClicks: PropTypes.func.isRequired,
   setDetriment: PropTypes.func.isRequired,
-  };
+};
 export default Prestige;

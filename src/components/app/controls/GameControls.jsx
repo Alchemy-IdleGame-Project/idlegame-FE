@@ -2,14 +2,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
-import {unlockBuilding} from '../../../gameUtils/buildingUtils';
+import { unlockBuilding } from '../../../gameUtils/buildingUtils';
 
 const GameControls = ({
   gold,
-  detriment,
   revealPercent,
   goldRequired,
   user, 
+  detriment,
   setUser, 
   setGold, 
   setGoldPerSecond, 
@@ -17,7 +17,6 @@ const GameControls = ({
 }) => {
  
   const wahoo = (e) => {
-    console.log(e);
     unlockBuilding(e, gold, user, detriment, goldRequired, setUser, setGold, setGoldPerSecond, setDetriment);
   };
 
@@ -155,8 +154,12 @@ GameControls.propTypes = {
   gold: PropTypes.number.isRequired,
   clicks: PropTypes.number.isRequired,
   handleClicks: PropTypes.func.isRequired,
-  unlockBuilding: PropTypes.func.isRequired,
   revealPercent: PropTypes.number.isRequired,
+  detriment: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired, 
+  setGold: PropTypes.func.isRequired, 
+  setGoldPerSecond: PropTypes.func.isRequired, 
+  setDetriment: PropTypes.func.isRequired,
   goldRequired: PropTypes.shape({
     lumberyard: PropTypes.number.isRequired,
     windmill: PropTypes.number.isRequired,

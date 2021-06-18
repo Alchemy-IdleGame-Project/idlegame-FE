@@ -10,7 +10,6 @@ import Hud from '../components/app/hud/Hud';
 import UserControls from '../components/app/controls/UserControls';
 import Detriment from '../components/app/detriment/Detriment';
 import PropTypes from 'prop-types';
-// import { uploadSave, downloadSave } from '../gameUtils/userUtils'
 import { detrimentRoll, shutOffEffect } from '../gameUtils/detrimentUtils';
 import { loadBuilding } from '../gameUtils/buildingUtils';
 import { downloadSave } from '../gameUtils/userUtils';

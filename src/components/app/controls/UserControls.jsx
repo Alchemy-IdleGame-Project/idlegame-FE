@@ -87,8 +87,6 @@ const UserControls = ({
 UserControls.propTypes = {
   handleMineClick: PropTypes.func.isRequired,
   handleClicks: PropTypes.func.isRequired,
-  newGame: PropTypes.func.isRequired,
-  uploadSave: PropTypes.func.isRequired,
   setLoadUser: PropTypes.func.isRequired,
   gold: PropTypes.number.isRequired,
   prestige: PropTypes.number.isRequired,
