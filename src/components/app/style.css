@@ -135,12 +135,16 @@ input:focus{
     margin: auto;
 }
 .detDiv{
-    width: 25%;
+    width: 23.8%;
     position: relative;
     text-align: center;
     /* display:flex;
     flex-direction: column;
     align-items: center; */
+    border: 10px solid transparent;
+    border-style: solid;
+    border-image: url("~/assets/border2.png") 10 round;
+    background-color: rgba(78, 78, 78, 1);
 }
 .detDiv h2{
     width: 100%
@@ -155,11 +159,15 @@ input:focus{
 }
 .gameControls{
     text-align: center;
-    width: 25%;
+    width: 23.5%;
     display:flex;
     flex-direction: column;
     /* margin-left: 50px; */
     align-items: center;
+    border: 10px solid transparent;
+    border-style: solid;
+    border-image: url("~/assets/border2.png") 10 round;
+    background-color: rgba(78, 78, 78, 1);
 }
 
 .smallButton{

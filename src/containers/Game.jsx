@@ -13,7 +13,7 @@ import * as request from 'superagent';
 import PropTypes from 'prop-types';
 
 export default function Game(props) {
-  const [gold, setGold] = useState(50000000);
+  const [gold, setGold] = useState(0);
   const [goldPerSecond, setGoldPerSecond] = useState(1);
   const [active, setActive] = useState(false);
   const [numClicks, setNumClicks] = useState(0);
@@ -35,14 +35,14 @@ export default function Game(props) {
   });
 
   const [activeTime, setActiveTime] = useState({
-    termites: { lastActive: 0, duration: 2 },
-    failedCrops: { lastActive: 0, duration: 2 },
-    caveIn: { lastActive: 0, duration: 2 },
-    flood: { lastActive: 0, duration: 2 },
-    osha: { lastActive: 0, duration: 2 },
-    peta: { lastActive: 0, duration: 2 },
-    bandits: { lastActive: 0, duration: 30 },
-    arson: { lastActive: 0, duration: 2 },
+    termites: { lastActive: 0, duration: 19 },
+    failedCrops: { lastActive: 0, duration: 15 },
+    caveIn: { lastActive: 0, duration: 21 },
+    flood: { lastActive: 0, duration: 21 },
+    osha: { lastActive: 0, duration: 10 },
+    peta: { lastActive: 0, duration: 10 },
+    bandits: { lastActive: 0, duration: 41 },
+    arson: { lastActive: 0, duration: 5 },
   });
 
   const url = process.env.DATABASE_URL;
@@ -68,7 +68,6 @@ export default function Game(props) {
     if (!user || !prestige){
       return ;
     }
-    console.log(prestige, 'new effect');
     Object.keys(user).map(item => {
       if (user[item]){          
         loadBuilding(item);
@@ -229,8 +228,8 @@ export default function Game(props) {
     //if the prop is unlocked, roll for a chance to activate detriment
       if (detriment[item].unlocked && !detriment[item].active){
         
-        const roll = Math.ceil(Math.random() * 10);
-        if (roll >= 8) {
+        const roll = Math.ceil(Math.random() * 100);
+        if (roll >= 85) {
           detriment[item].active = true;
           //switch case to put into effect in state, our detriment values
           switch (item) {
@@ -316,7 +315,7 @@ export default function Game(props) {
                 return Math.floor(prevGold);
               });
               setGoldPerSecond((prevGoldPerSecond) => {
-                prevGoldPerSecond = prevGoldPerSecond * 0.8;
+                prevGoldPerSecond = prevGoldPerSecond * 0.75;
                 return prevGoldPerSecond;
               });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
@@ -334,7 +333,7 @@ export default function Game(props) {
               
               //detriment effect
               setGoldPerSecond((prevGold) => {
-                prevGold = prevGold * 0.9;
+                prevGold = prevGold * 0.80;
                 return prevGold;
               });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
@@ -352,7 +351,7 @@ export default function Game(props) {
               
               //detriment effect
               setGold((prevGold) => {
-                prevGold = prevGold * 0.25;
+                prevGold = prevGold * 0.75;
                 return Math.floor(prevGold);
               });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
@@ -367,7 +366,6 @@ export default function Game(props) {
             }
 
             case 'arson': {
-              
               //detriment effect
               setUser({ ...user, tavern: false });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
@@ -376,7 +374,11 @@ export default function Game(props) {
                 return {
                   ...prevActive
                 } ;
-              });              
+              });
+              setDetriment((prevDetriment) => {
+                prevDetriment.arson.unlocked = false;
+                return prevDetriment;
+              });       
               break;
             }
             default: {
@@ -413,7 +415,7 @@ export default function Game(props) {
               return prevDetriment;
             });
             setGoldPerSecond((prevGold) => {
-              prevGold++;
+              prevGold + 10;
               return prevGold;
             });
             break;
@@ -442,7 +444,7 @@ export default function Game(props) {
               return prevDetriment;
             });
             setGoldPerSecond((prevGold) => {
-              prevGold = prevGold * 1.25;
+              prevGold = prevGold / .75;
               return prevGold;
             });
             break;
@@ -453,7 +455,7 @@ export default function Game(props) {
               return prevDetriment;
             });
             setGoldPerSecond((prevGold) => {
-              prevGold = prevGold * 1.112;
+              prevGold = prevGold / .8;
               return Math.floor(prevGold);
             });
             break;
@@ -489,13 +491,30 @@ export default function Game(props) {
   }
 
   useEffect(() => {
-    if (gametime % 3 === 0) {
+    if (gametime % 20 === 0) {
       detrimentRoll();
     }
     shutOffEffect();
   }, [gametime]);
 
   function mineGold(prestige) {
+    console.log((goldPerSecond / 10));
+    setGold((prevGold) => {
+      //starts game if one is not going
+      if (active === false) {
+        setActive(true);
+      }
+      if (prestige > 0) {
+        prevGold += ((goldPerSecond / 10) < 1) ? 1 : (goldPerSecond / 10) ;
+        return Math.floor(prevGold);
+      } else {
+        prevGold += ((goldPerSecond / 10) < 1) ? 1 : (goldPerSecond / 10) ;
+        return Math.floor(prevGold);
+      }
+    });
+  }
+
+  function passiveGold(prestige) {
     setGold((prevGold) => {
       //starts game if one is not going
       if (active === false) {
@@ -519,7 +538,7 @@ export default function Game(props) {
   }
 
   //starts the mine gold per second loop on load
-  useInterval(mineGold, 1000);
+  useInterval(passiveGold, 1000);
 
   //starts the gameClock
   useInterval(gameClock, 1000);
@@ -752,7 +771,7 @@ export default function Game(props) {
   return (
     <div>
       <div className={style.overhead}>
-        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} downloadSave={downloadSave} user={user} setUser={setUser} gold={gold} auth={props.auth} setLoadUser={setLoadUser} prestige={prestige} gametime={gametime} numClicks={numClicks} newGame={newGame}/>
+        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} user={user} gold={gold} auth={props.auth} prestige={prestige} gametime={gametime} numClicks={numClicks} newGame={newGame}/>
         <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
         <h1 className={style.gameTitle}><img src="../../assets/gametitle.PNG" alt="idle isle" /></h1>
         <div className={style.hud}>
