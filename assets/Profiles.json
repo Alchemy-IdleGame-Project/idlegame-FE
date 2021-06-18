@@ -1,60 +1,60 @@
 {
     "profiles" : [
         {
-            "name" : "name 1 ",
+            "name" : "Minh Ngo ",
             "imgSrc" : "http://placekitten.com/100/100",
-            "bio" : "something aboutyoujjjjjjjjjjjjjjjjjjjjjjjj jjjjjjj jjjjjjjjjj jjjjjjjjjjj hhhhhhhhhhhhhhhhhhhhh hhhhhh hhhhh hhhhhhhhh hhhhhhhhhhh hhhhhhhhhhh hhhhhhhh hhhj",
+            "bio" : "Games have been a huge impact on my life. Growing up, Final Fantasy was one of my favorite series of RPG game. Working on this project has been a valuable experience in learning what really goes into developing a solid game!",
             "contact" : [
                 {
-                    "icon" : "./emailIcon.png",
+                    "icon" : "./profileIcons/emailIcon.png",
                     "contactType" : "Email",
-                    "address" : "email@email.com"
+                    "address" : "ngo.minh0224@gmail.com"
                 },
                 {
-                   
-                    "contactType" : "Resume",                    
-                    "link" : "link to resume"
+                    "icon" : "./profileIcons/resumeIcon.png",
+                    "contactType" : "Resume",
+                    "link" : "https://drive.google.com/file/d/1masMLbXzNdbbI6XXyU0CVwDkq5mR9Dab/view?usp=sharing"
                 },
                 {
                     "icon" : "./profileIcons/linkedInIcon.png",
                     "contactType" : "LinkedIn",
-                    "link" : "https://www.linkedin.com/in/dominique-sakrisson/",
-                    "linkDisplay" : "/in/your profile"
+                    "link" : "https://www.linkedin.com/in/minhnngo/",
+                    "linkDisplay" : "/in/minhnngo"
                 },
                 {
                     "icon" : "./profileIcons/githubIcon.png",
                     "contactType" : "Github",
-                    "link" : "https://github.com/your profile here",
-                    "linkDisplay" : "/in/your handle"
+                    "link" : "https://github.com/ngominh0224",
+                    "linkDisplay" : "/ngominh0224"
                 }
             ]
         },
         {
-            "name" : "name 2",
+            "name" : "Edmond Zhan",
             "imgSrc" : "http://placekitten.com/100/100",
             "bio" : "something about youfghh hhhhhhhhh hhhhhhhhhhh hhhhhhhhhhhhhhhhh hhhhhhhhhhh hhhhhhhhhhhh hhh",
             "contact" : [
                 {
                     "icon" : "./profileIcons/emailIcon.png",
                     "contactType" : "Email",
-                    "address" : "email@email.com"
+                    "address" : "zhanedmond@gmail.com"
                 },
                 {
                     "icon" : "./profileIcons/resumeIcon.png",
                     "contactType" : "Resume",                    
-                    "link" : "link to resume"
+                    "link" : "WIP"
                 },
                 {
                     "icon" : "./profileIcons/linkedInIcon.png",
                     "contactType" : "LinkedIn",
-                    "link" : "https://www.linkedin.com/in/dominique-sakrisson/",
-                    "linkDisplay" : "/in/your profile"
+                    "link" : "https://www.linkedin.com/in/edmondzhan/",
+                    "linkDisplay" : "/in/edmondzhan"
                 },
                 {
                     "icon" : "./profileIcons/githubIcon.png",
                     "contactType" : "Github",
-                    "link" : "https://github.com/your profile here",
-                    "linkDisplay" : "/in/your handle"
+                    "link" : "https://github.com/zhaned",
+                    "linkDisplay" : "/zhaned"
                 }
             ]
         },

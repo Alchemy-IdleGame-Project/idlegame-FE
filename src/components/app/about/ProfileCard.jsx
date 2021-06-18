@@ -27,7 +27,7 @@ const ProfileCard = () => {
                 height="35px"
                 src="../../../../assets/profileIcons/emailIcon.png"
               />
-              <span>{item.contact[0].contactType}:</span>
+              {/* <span>{item.contact[0].contactType}:</span> */}
               <span> {item.contact[0].address}</span>
             </div>
 
