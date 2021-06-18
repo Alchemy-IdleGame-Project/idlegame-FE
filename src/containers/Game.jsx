@@ -65,16 +65,17 @@ export default function Game(props) {
   const [loadUser, setLoadUser] = useState(false);
 
   useEffect(() => {
-    if (!user || !prestige){
+    if (!user){
       return ;
     }
+    console.log(user);
     Object.keys(user).map(item => {
       if (user[item]){          
         loadBuilding(item);
       }
     });
-  }, [user, prestige]);
 
+  }, [user, prestige]);
 
   useEffect(async () => {
     const saveData = await downloadSave(props.auth.auth.token);
@@ -107,6 +108,7 @@ export default function Game(props) {
         castle: saveData.castle,
       });
     }
+    setLoadUser(false);
   }, [loadUser]);
 
   const [detriment, setDetriment] = useState({
@@ -138,7 +140,6 @@ export default function Game(props) {
   function loadBuilding(item) {
     switch (item) {
       case 'lumberyard': {
-        if (gold < goldRequired.lumberyard) return;
         setGoldPerSecond(
           (prevGold) => Math.floor(prevGold + goldRequired.lumberyard * 0.1)
         );
@@ -149,7 +150,6 @@ export default function Game(props) {
         break;
       }
       case 'windmill': {
-        if (gold < goldRequired.windmill) return;
         setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.windmill * 0.06));
         setDetriment((prevDetriment) => {
           prevDetriment.failedCrops.unlocked = true;
@@ -747,7 +747,7 @@ export default function Game(props) {
         tavern: false,
         castle: false,
       };
-      setGold(0);
+      setGold(111111110);
       setGoldPerSecond(1);
       setGametime(0);
       setNumClicks(0);
@@ -769,7 +769,7 @@ export default function Game(props) {
   return (
     <div>
       <div className={style.overhead}>
-        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} user={user} gold={gold} auth={props.auth} prestige={prestige} gametime={gametime} numClicks={numClicks} newGame={newGame}/>
+        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} user={user} gold={gold} auth={props.auth} prestige={prestige} gametime={gametime} setLoadUser={setLoadUser}numClicks={numClicks} newGame={newGame}/>
         <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
         <h1 className={style.gameTitle}><img src="../../assets/gametitle.PNG" alt="idle isle" /></h1>
         <div className={style.hud}>
