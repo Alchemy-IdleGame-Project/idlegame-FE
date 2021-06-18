@@ -3,14 +3,22 @@ import React from 'react';
 import style from '../style.css';
 import { profiles } from '../../../../assets/Profiles.json';
 
+
 const ProfileCard = () => {
-  const array = profiles.map((item) => {
+
+  const profileImg = [
+    '../../../../assets/profileImg/minhProfile.jpg', 
+    '../../../../assets/profileImg/edmondProfile.png', 
+    '../../../../assets/profileImg/vanceProfile.jpg', 
+    '../../../../assets/profileImg/domProfile.jpg'];
+
+  const array = profiles.map((item, index) => {
     return (
       <li className={style.outerLi} key={item.name}>
         <div className={style.profileTop}>
           <h2>{item.name}</h2>
 
-          <img className={style.profImg} src={item.imgSrc} />
+          <img className={style.profImg} src={profileImg[index]} />
 
           <div className={style.socials}>
             <div className={style.email}>

@@ -382,8 +382,8 @@ input:focus {
   right: 1%;
   top: 14%;
   width: 38%;
-  max-width: 40%;
-  max-height: 185px;
+  /* max-width: 40%; */
+  height: 38%;
   margin: 0;
   padding: 0;
 }
