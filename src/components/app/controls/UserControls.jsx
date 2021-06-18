@@ -7,14 +7,14 @@ const UserControls = ({
   handleMineClick,
   handleClicks,
   uploadSave,
-  newGame,
   gold,
   user,
   auth,
   setLoadUser,
   prestige,
   gametime,
-  numClicks
+  numClicks,
+  newGame
 }) => {
   function handleMineButtonClick() {
     handleMineClick();
@@ -43,7 +43,7 @@ const UserControls = ({
   }
 
   async function handleLoadButton() {
-    setLoadUser(true);
+    window.location.reload();
   }
 
   function handleNewGame() {

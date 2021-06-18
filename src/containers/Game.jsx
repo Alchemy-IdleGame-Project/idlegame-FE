@@ -68,7 +68,6 @@ export default function Game(props) {
     if (!user || !prestige){
       return ;
     }
-    console.log(prestige, 'new effect');
     Object.keys(user).map(item => {
       if (user[item]){          
         loadBuilding(item);
@@ -123,7 +122,7 @@ export default function Game(props) {
 
   const goldRequired = {
     lumberyard: 25 * (prestige + 1),
-    windmill: 250 * (prestige + 1),
+    windmill: 50 * (prestige + 1), //IMPORTANT FIX
     mine: 2000 * (prestige + 1),
     watermill: 10000 * (prestige + 1),
     sawmill: 50000 * (prestige + 1),
@@ -753,7 +752,7 @@ export default function Game(props) {
   return (
     <div>
       <div className={style.overhead}>
-        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} downloadSave={downloadSave} user={user} setUser={setUser} gold={gold} auth={props.auth} setLoadUser={setLoadUser} prestige={prestige} gametime={gametime} numClicks={numClicks} newGame={newGame}/>
+        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} user={user} gold={gold} auth={props.auth} setLoadUser={setLoadUser} prestige={prestige} gametime={gametime} numClicks={numClicks} newGame={newGame}/>
         <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
         <h1 className={style.gameTitle}><img src="../../assets/gametitle.PNG" alt="idle isle" /></h1>
         <div className={style.hud}>
