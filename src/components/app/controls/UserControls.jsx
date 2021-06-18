@@ -2,18 +2,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
+import { uploadSave } from '../../../gameUtils/userUtils';
 
 const UserControls = ({
   handleMineClick,
   handleClicks,
-  uploadSave,
+  setLoadUser,
   gold,
   user,
   auth,
   prestige,
   gametime,
   numClicks,
-  newGame
+  // newGame
 }) => {
   function handleMineButtonClick() {
     handleMineClick();
@@ -43,6 +44,8 @@ const UserControls = ({
 
   async function handleLoadButton() {
     window.location.reload();
+    setLoadUser(true);
+    
   }
 
   function handleNewGame() {
@@ -69,7 +72,7 @@ const UserControls = ({
 UserControls.propTypes = {
   handleMineClick: PropTypes.func.isRequired,
   handleClicks: PropTypes.func.isRequired,
-  newGame: PropTypes.func.isRequired,
+  // newGame: PropTypes.func.isRequired,
   uploadSave: PropTypes.func.isRequired,
   setLoadUser: PropTypes.func.isRequired,
   gold: PropTypes.number.isRequired,

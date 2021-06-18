@@ -2,16 +2,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
+import {unlockBuilding} from '../../../gameUtils/buildingUtils';
 
 const GameControls = ({
   gold,
-  unlockBuilding, 
+  detriment,
   revealPercent,
   goldRequired,
-  user
+  user, 
+  setUser, 
+  setGold, 
+  setGoldPerSecond, 
+  setDetriment
 }) => {
-
-
+ 
+  const wahoo = (e) => {
+    console.log(e);
+    unlockBuilding(e, gold, user, detriment, goldRequired, setUser, setGold, setGoldPerSecond, setDetriment);
+  };
 
   return (
     <div className={style.gameControls}>
@@ -27,7 +35,7 @@ const GameControls = ({
               className={((gold < goldRequired.lumberyard && !user.lumberyard) ? style.almost : ''),
               style.bigButton
               }
-              onClick={unlockBuilding}
+              onClick={wahoo}
               disabled={((gold < goldRequired.lumberyard || user.lumberyard) ? true : false)}>Purchase Lumberyard ({`${goldRequired.lumberyard}`}g)
             </button>
             <img className={style.hovertest} src="../../../../assets/info-cards/lumberyard-info.png" alt="Lumberyard" />
@@ -42,7 +50,7 @@ const GameControls = ({
                 ((gold < goldRequired.windmill) ? style.almost : ''),
                 style.bigButton}
               value="windmill"
-              onClick={unlockBuilding}
+              onClick={wahoo}
               disabled={((gold < goldRequired.windmill || user.windmill) ? true : false)}>Purchase Windmill ({`${goldRequired.windmill}`}g)
             </button>
             <img className={style.hovertest} src="../../../../assets/info-cards/windmill-info.png" alt="windmill" />
@@ -55,7 +63,7 @@ const GameControls = ({
               className={((gold < goldRequired.mine) ? style.almost : ''),
               style.bigButton}
               value="mine"
-              onClick={unlockBuilding}
+              onClick={wahoo}
               disabled={((gold < goldRequired.mine || user.mine) ? true : false)}>Purchase Mine ({`${goldRequired.mine}`}g)
             </button>
             <img className={style.hovertest} src="../../../../assets/info-cards/mine-info.png" alt="mine" />
@@ -68,7 +76,7 @@ const GameControls = ({
               className={((gold < goldRequired.watermill) ? style.almost : ''),
               style.bigButton}
               value="watermill"
-              onClick={unlockBuilding}
+              onClick={wahoo}
               disabled={((gold < goldRequired.watermill || user.watermill) ? true : false)}>Purchase Watermill ({`${goldRequired.watermill}`}g)
             </button>
             <img className={style.hovertest} src="../../../../assets/info-cards/watermill-info.png" alt="watermill" />
@@ -81,7 +89,7 @@ const GameControls = ({
               className={((gold < goldRequired.sawmill) ? style.almost : ''),
               style.bigButton}
               value="sawmill"
-              onClick={unlockBuilding}
+              onClick={wahoo}
               disabled={((gold < goldRequired.sawmill || user.sawmill) ? true : false)}>Purchase Sawmill ({`${goldRequired.sawmill}`}g)
             </button>
             <img className={style.hovertest} src="../../../../assets/info-cards/sawmill-info.png" alt="sawmill" />
@@ -94,7 +102,7 @@ const GameControls = ({
               className={((gold < goldRequired.farm) ? style.almost : ''),
               style.bigButton}
               value="farm"
-              onClick={unlockBuilding}
+              onClick={wahoo}
               disabled={((gold < goldRequired.farm || user.farm) ? true : false)}>Purchase Farm ({`${goldRequired.farm}`}g)
             </button>
             <img className={style.hovertest} src="../../../../assets/info-cards/farm-info.png" alt="farm" />
@@ -107,7 +115,7 @@ const GameControls = ({
               className={((gold < goldRequired.blacksmith) ? style.almost : ''),
               style.bigButton}
               value="blacksmith"
-              onClick={unlockBuilding}
+              onClick={wahoo}
               disabled={((gold < goldRequired.blacksmith || user.blacksmith) ? true : false)}>Purchase Blacksmith ({`${goldRequired.blacksmith}`}g)
             </button>
             <img className={style.hovertest} src="../../../../assets/info-cards/blacksmith-info.png" alt="blacksmith" />
@@ -120,7 +128,7 @@ const GameControls = ({
               className={((gold < goldRequired.tavern) ? style.almost : ''),
               style.bigButton}
               value="tavern"
-              onClick={unlockBuilding}
+              onClick={wahoo}
               disabled={((gold < goldRequired.tavern || user.tavern) ? true : false)}>Purchase Tavern ({`${goldRequired.tavern}`}g)
             </button>
             <img className={style.hovertest} src="../../../../assets/info-cards/tavern-info.png" alt="tavern" />
@@ -133,7 +141,7 @@ const GameControls = ({
               className={((gold < goldRequired.castle) ? style.almost : ''),
               style.bigButton}
               value="castle"
-              onClick={unlockBuilding}
+              onClick={wahoo}
               disabled={((gold < goldRequired.castle || user.castle) ? true : false)}>Purchase Castle ({`${goldRequired.castle}`}g)
             </button>
             <img className={style.hovertest} src="../../../../assets/info-cards/castle-info.png" alt="castle" />
