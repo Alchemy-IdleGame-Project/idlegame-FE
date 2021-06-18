@@ -33,7 +33,7 @@ export default  [
   {
     name : 'Edmond Zhan',
     imgSrc : 'http://placekitten.com/100/100',
-    bio : 'something about youfghh hhhhhhhhh hhhhhhhhhhh hhhhhhhhhhhhhhhhh hhhhhhhhhhh hhhhhhhhhhhh hhh',
+    bio : 'Working on this project has taught me a lot of things about game development. There is a lot of work to do to get them to run correctly! It is made me appreciate the kinds of games I have played a whole lot more. My favorite type of games are the kind that allow the player a lot of freedom to explore the environment they are put in.',
     contact : [
       {
         icon : './profileIcons/emailIcon.png',

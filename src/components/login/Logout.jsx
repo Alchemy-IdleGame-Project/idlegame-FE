@@ -8,7 +8,6 @@ const Logout = (props) => {
   
   const handleLogout = (e) => {
     e.preventDefault();
-    console.log('you got here');
     localStorage.removeItem('AUTH');
     setLoggedOut(true);
   };

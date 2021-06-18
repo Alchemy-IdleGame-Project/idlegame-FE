@@ -2,15 +2,18 @@
 import React from 'react';
 import style from '../style.css';
 import profiles from '../../../../assets/Profiles.js';
-
+import minhImage from '../../../../assets/profileImg/minhProfile.jpg';
+import edmondImage from '../../../../assets/profileImg/edmondProfile.png';
+import vanceImage from '../../../../assets/profileImg/vanceProfile.jpg';
+import domImage from '../../../../assets/profileImg/domProfile.jpg';
 
 const ProfileCard = () => {
 
   const profileImg = [
-    '../../../../assets/profileImg/minhProfile.jpg', 
-    '../../../../assets/profileImg/edmondProfile.png', 
-    '../../../../assets/profileImg/vanceProfile.jpg', 
-    '../../../../assets/profileImg/domProfile.jpg'];
+    minhImage,
+    edmondImage,
+    vanceImage, 
+    domImage];
 
   const array = profiles.map((item, index) => {
     return (
