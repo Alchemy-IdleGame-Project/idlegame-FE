@@ -8,7 +8,7 @@ const Prestige = ({ handlePrestige, prestige, castle }) => {
   const prestigeBtn = <button onClick={handlePrestige}>Prestige { btnPrestige} </button>;
   return (
     <div>
-      <p>Prestige level: {prestige}</p>
+      <p>Prestige Level: {prestige}</p>
       {
         ((castle) ? prestigeBtn : '')
       }

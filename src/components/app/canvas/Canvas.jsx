@@ -87,7 +87,7 @@ const Canvas = (props) => {
               ctx.fillRect(building.x, building.y, building.w, building.h);
 
               // create a tool-tip instance:
-              const t1 = new ToolTip(canvas, building, buildingInfo, 150, 23500);
+              const t1 = new ToolTip(canvas, building, buildingInfo, 150, 2500);
               // The Tool-Tip instance:
               function ToolTip(canvas, building, img, width, timeout) {
                 const me = this, // self-reference for event handlers

@@ -10,7 +10,6 @@ const UserControls = ({
   gold,
   user,
   auth,
-  setLoadUser,
   prestige,
   gametime,
   numClicks,

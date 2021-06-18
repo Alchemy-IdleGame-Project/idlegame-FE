@@ -4,50 +4,53 @@ import PropTypes from 'prop-types';
 import style from '../style.css';
 
 const Detriment = ({ detriment }) => {
+  function capitalizer(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   return (
     <div className={style.detDiv}>
-      <h2>Current detrimental effects are:</h2>
+      <h2>Detrimental Effects:</h2>
       {Object.keys(detriment).map((item) => {
         if (detriment[item].active) {
           switch (item) {
             case 'termites': {
               return (
-                <p className={style.activeDetriment}> {item} -1 gold/s </p>
+                <p className={style.activeDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-1</span> gold/s </p>
               );
             }
             case 'failedCrops': {
               return (
-                <p className={style.activeDetriment}> {item}: -10 gold/s </p>
+                <p className={style.activeDetriment}> Failed Crops: <span style={{ color: 'gold' }}>-10</span> gold/s </p>
               );
             }
             case 'caveIn': {
               return (
-                <p className={style.activeDetriment}> {item}: -20 gold/s </p>
+                <p className={style.activeDetriment}> Cave-in: <span style={{ color: 'gold' }}>-20</span> gold/s </p>
               );
             }
             case 'flood': {
               return (
-                <p className={style.activeDetriment}> {item}: -10k gold </p>
+                <p className={style.activeDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-10k</span> gold </p>
               );
             }
             case 'osha': {
               return (
                 <p className={style.activeDetriment}>
                   {' '}
-                  {item}: -50k gold -20% gold/s{' '}
+                  {item.toUpperCase()}: <span style={{ color: 'gold' }}>-50k</span> gold <span style={{ color: 'gold' }}>-25%</span> gold/s{' '}
                 </p>
               );
             }
             case 'peta': {
               return (
-                <p className={style.activeDetriment}> {item}: -10% gold/s </p>
+                <p className={style.activeDetriment}> {item.toUpperCase()}: <span style={{ color: 'gold' }}>-20%</span> gold/s </p>
               );
             }
             case 'bandits': {
               return (
                 <p className={style.activeDetriment}>
                   {' '}
-                  {item}: -75% total gold{' '}
+                  {capitalizer(item)}: <span style={{ color: 'gold' }}>-25%</span> total gold{' '}
                 </p>
               );
             }
@@ -55,7 +58,7 @@ const Detriment = ({ detriment }) => {
               return (
                 <p className={style.activeDetriment}>
                   {' '}
-                  {item}: Burnt down tavern{' '}
+                  {capitalizer(item)}: <span style={{ color: 'red' }}>Burnt down tavern{' '}</span> 
                 </p>
               );
             }
@@ -64,42 +67,42 @@ const Detriment = ({ detriment }) => {
           switch (item) {
             case 'termites': {
               return (
-                <p className={style.inactiveDetriment}> {item} -1 gold/s </p>
+                <p className={style.inactiveDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-1</span> gold/s </p>
               );
             }
             case 'failedCrops': {
               return (
-                <p className={style.inactiveDetriment}> {item}: -10 gold/s </p>
+                <p className={style.inactiveDetriment}> Failed Crops: <span style={{ color: 'gold' }}>-10</span> gold/s </p>
               );
             }
             case 'caveIn': {
               return (
-                <p className={style.inactiveDetriment}> {item}: -20 gold/s </p>
+                <p className={style.inactiveDetriment}> Cave-in: <span style={{ color: 'gold' }}>-20</span> gold/s </p>
               );
             }
             case 'flood': {
               return (
-                <p className={style.inactiveDetriment}> {item}: -10k gold </p>
+                <p className={style.inactiveDetriment}> {capitalizer(item)}: <span style={{ color: 'gold' }}>-10k</span> gold </p>
               );
             }
             case 'osha': {
               return (
                 <p className={style.inactiveDetriment}>
                   {' '}
-                  {item}: -50k gold -20% gold/s{' '}
+                  {item.toUpperCase()}: <span style={{ color: 'gold' }}>-50k</span> gold <span style={{ color: 'gold' }}>-25% </span>gold/s{' '}
                 </p>
               );
             }
             case 'peta': {
               return (
-                <p className={style.inactiveDetriment}> {item}: -10% gold/s </p>
+                <p className={style.inactiveDetriment}> {item.toUpperCase()}: <span style={{ color: 'gold' }}>-20%</span> gold/s </p>
               );
             }
             case 'bandits': {
               return (
                 <p className={style.inactiveDetriment}>
                   {' '}
-                  {item}: -75% total gold{' '}
+                  {capitalizer(item)}: <span style={{ color: 'gold' }}>-25%</span> total gold{' '}
                 </p>
               );
             }
@@ -107,7 +110,7 @@ const Detriment = ({ detriment }) => {
               return (
                 <p className={style.inactiveDetriment}>
                   {' '}
-                  {item}: Burnt down tavern{' '}
+                  {capitalizer(item)}: Burnt down tavern{' '}
                 </p>
               );
             }
