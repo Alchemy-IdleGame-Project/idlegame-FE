@@ -7,15 +7,17 @@ import PropTypes from 'prop-types';
 const Hud = ({ gametime, gold, clicks, gPS }) => {
   const clock = <Clock gametime={gametime} />;
   const goldCount = <Gold gold={gold} />;
-  const clickCount =  <Clicks clicks={clicks} />;
-  const goldPerSecond =  <p>Gold/Sec: {Math.floor(gPS)} </p>;
-  
-  return <>
-    {clock}
-    {goldCount}
-    {clickCount}
-    {goldPerSecond}
-  </>; 
+  const clickCount = <Clicks clicks={clicks} />;
+  const goldPerSecond = <p>Gold/Sec: {Math.floor(gPS)} </p>;
+
+  return (
+    <>
+      {clock}
+      {goldCount}
+      {clickCount}
+      {goldPerSecond}
+    </>
+  );
 };
 
 Hud.propTypes = {
