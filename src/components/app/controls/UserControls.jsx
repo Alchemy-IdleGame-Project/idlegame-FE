@@ -2,25 +2,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from '../style.css';
+import { uploadSave, newGame } from '../../../gameUtils/userUtils';
 
 const UserControls = ({
   handleMineClick,
   handleClicks,
-  uploadSave,
+  setLoadUser,
   gold,
   user,
   auth,
   prestige,
   gametime,
   numClicks,
-  newGame
+  setUser,
+  setGold,
+  setGoldPerSecond,
+  setGametime,
+  setNumClicks,
+  setPrestige,
+  setDetriment,
 }) => {
   function handleMineButtonClick() {
     handleMineClick();
     handleClicks();
   }
   // you need to add gold, prestige, gametime, num clicks
-  function handleSaveButton() { 
+  function handleSaveButton() {
     uploadSave(
       {
         lumberyard: user.lumberyard,
@@ -35,7 +42,7 @@ const UserControls = ({
         gold,
         prestige,
         gametime,
-        clicks: numClicks
+        clicks: numClicks,
       },
       auth.auth.token
     );
@@ -43,15 +50,26 @@ const UserControls = ({
 
   async function handleLoadButton() {
     window.location.reload();
+    setLoadUser(true);
   }
 
   function handleNewGame() {
-    newGame();
+    newGame(
+      setUser,
+      setGold,
+      setGoldPerSecond,
+      setGametime,
+      setNumClicks,
+      setPrestige,
+      setDetriment
+    );
   }
 
   return (
     <div className={style.userControls}>
-      <button className={style.smallButton} onClick={handleNewGame}>New Game</button>
+      <button className={style.smallButton} onClick={handleNewGame}>
+        New Game
+      </button>
       <button className={style.smallButton} onClick={handleSaveButton}>
         Save Game
       </button>
@@ -76,6 +94,13 @@ UserControls.propTypes = {
   prestige: PropTypes.number.isRequired,
   gametime: PropTypes.number.isRequired,
   numClicks: PropTypes.number.isRequired,
+  setUser: PropTypes.func.isRequired,
+  setGoldPerSecond: PropTypes.func.isRequired,
+  setGametime: PropTypes.func.isRequired,
+  setNumClicks: PropTypes.func.isRequired,
+  setPrestige: PropTypes.func.isRequired,
+  setDetriment: PropTypes.func.isRequired,
+  setGold: PropTypes.func.isRequired,
   user: PropTypes.shape({
     house: PropTypes.bool.isRequired,
     lumberyard: PropTypes.bool.isRequired,

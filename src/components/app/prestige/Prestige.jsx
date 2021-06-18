@@ -1,16 +1,21 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { incrementPrestige } from '../../../gameUtils/prestigeUtils';
 
-const Prestige = ({ handlePrestige, prestige, castle }) => {
+const Prestige = ({ user, prestige,  setPrestige, setUser, setGold, setGoldPerSecond, setGametime, setNumClicks, setDetriment }) => {
+
+  const bamooo = () => {
+    incrementPrestige(user, setPrestige, setUser, setGold, setGoldPerSecond, setGametime, setNumClicks, setDetriment);
+  }
   let btnPrestige = prestige;
   btnPrestige++;
-  const prestigeBtn = <button onClick={handlePrestige}>Prestige { btnPrestige} </button>;
+  const prestigeBtn = <button onClick={bamooo}>Prestige { btnPrestige} </button>;
   return (
     <div>
       <p>Prestige Level: {prestige}</p>
       {
-        ((castle) ? prestigeBtn : '')
+        ((user.castle) ? prestigeBtn : '')
       }
     </div>
   );
@@ -19,6 +24,16 @@ const Prestige = ({ handlePrestige, prestige, castle }) => {
 Prestige.propTypes = {
   handlePrestige: PropTypes.func.isRequired,
   prestige: PropTypes.number.isRequired,
-  castle: PropTypes.bool.isRequired
-};
+  castle: PropTypes.bool.isRequired,
+  user: PropTypes.shape({
+    castle: PropTypes.bool.isRequired
+  }).isRequired,
+  setPrestige: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
+  setGold: PropTypes.func.isRequired,
+  setGoldPerSecond: PropTypes.func.isRequired,
+  setGametime: PropTypes.func.isRequired,
+  setNumClicks: PropTypes.func.isRequired,
+  setDetriment: PropTypes.func.isRequired,
+  };
 export default Prestige;
