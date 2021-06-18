@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import { detrimentRoll, shutOffEffect } from '../gameUtils/detrimentUtils';
 import { loadBuilding } from '../gameUtils/buildingUtils';
 import { downloadSave } from '../gameUtils/userUtils';
+import goldCoin from '../../assets/gold-coin.png';
 
 export default function Game(props) {
   const [gold, setGold] = useState(0);
@@ -269,31 +270,31 @@ export default function Game(props) {
         <ul className={style.circles}>
          
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+            <img width="100px" src={goldCoin} />
           </li>
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+            <img width="100px" src={goldCoin} />
           </li>
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+            <img width="100px" src={goldCoin} />
           </li>
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+            <img width="100px" src={goldCoin} />
           </li>
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+            <img width="100px" src={goldCoin} />
           </li>
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+            <img width="100px" src={goldCoin} />
           </li>
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+            <img width="100px" src={goldCoin} />
           </li>
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+            <img width="100px" src={goldCoin} />
           </li>
           <li>
-            <img width="100px" src="../../assets/gold-coin.png" />
+            <img width="100px" src={goldCoin} />
           </li>
         </ul>
       </div>

@@ -1,10 +1,11 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
+import goldCoin from '../../../../assets/coin-icon-3830.png';
 
 const Gold = ({ gold }) => {
   return (
-    <p><img width="40px" src="../../../assets/coin-icon-3830.png"/> Current Gold: {gold} </p>
+    <p><img width="40px" src={goldCoin}/> Current Gold: {gold} </p>
   );
 };
 
