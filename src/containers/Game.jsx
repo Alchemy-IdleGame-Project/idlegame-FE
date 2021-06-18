@@ -19,7 +19,7 @@ export default function Game(props) {
   const [numClicks, setNumClicks] = useState(0);
   const [gametime, setGametime] = useState(0);
   const [prestige, setPrestige] = useState(0);
-  
+
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({
     house: true,
@@ -41,7 +41,7 @@ export default function Game(props) {
     flood: { lastActive: 0, duration: 41 },
     osha: { lastActive: 0, duration: 10 },
     peta: { lastActive: 0, duration: 10 },
-    bandits: { lastActive: 0, duration: 41 },
+    bandits: { lastActive: 0, duration: 201 },
     arson: { lastActive: 0, duration: 5 },
   });
 
@@ -65,20 +65,19 @@ export default function Game(props) {
   const [loadUser, setLoadUser] = useState(false);
 
   useEffect(() => {
-    if (!user || !prestige){
-      return ;
+    if (!user || !prestige) {
+      return;
     }
-    Object.keys(user).map(item => {
-      if (user[item]){          
+    Object.keys(user).map((item) => {
+      if (user[item]) {
         loadBuilding(item);
       }
     });
   }, [user, prestige]);
 
-
   useEffect(async () => {
     const saveData = await downloadSave(props.auth.auth.token);
-    if (saveData){
+    if (saveData) {
       setDetriment({
         termites: { unlocked: false, active: false },
         failedCrops: { unlocked: false, active: false },
@@ -87,7 +86,7 @@ export default function Game(props) {
         osha: { unlocked: false, active: false },
         peta: { unlocked: false, active: false },
         bandits: { unlocked: false, active: false },
-        arson: { unlocked: false, active: false }
+        arson: { unlocked: false, active: false },
       });
       setGoldPerSecond(1);
       setGold(saveData.gold);
@@ -139,8 +138,8 @@ export default function Game(props) {
     switch (item) {
       case 'lumberyard': {
         if (gold < goldRequired.lumberyard) return;
-        setGoldPerSecond(
-          (prevGold) => Math.floor(prevGold + goldRequired.lumberyard * 0.1)
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.lumberyard * 0.1)
         );
         setDetriment((prevDetriment) => {
           prevDetriment.termites.unlocked = true;
@@ -150,7 +149,9 @@ export default function Game(props) {
       }
       case 'windmill': {
         if (gold < goldRequired.windmill) return;
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.windmill * 0.06));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.windmill * 0.06)
+        );
         setDetriment((prevDetriment) => {
           prevDetriment.failedCrops.unlocked = true;
           return prevDetriment;
@@ -159,59 +160,75 @@ export default function Game(props) {
       }
       case 'mine': {
         if (gold < goldRequired.mine) return;
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.mine * 0.01));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.mine * 0.01)
+        );
         setDetriment((prevDetriment) => {
           prevDetriment.caveIn.unlocked = true;
           return prevDetriment;
         });
-        break;      }
+        break;
+      }
       case 'watermill': {
         if (gold < goldRequired.watermill) return;
-        setGoldPerSecond(
-          (prevGold) => Math.floor(prevGold + goldRequired.watermill * 0.003)
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.watermill * 0.003)
         );
         setDetriment((prevDetriment) => {
           prevDetriment.flood.unlocked = true;
           return prevDetriment;
         });
-        break;      }
+        break;
+      }
       case 'sawmill': {
         if (gold < goldRequired.sawmill) return;
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.sawmill * 0.001));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.sawmill * 0.001)
+        );
         setDetriment((prevDetriment) => {
           prevDetriment.osha.unlocked = true;
           return prevDetriment;
         });
-        break;      }
+        break;
+      }
       case 'farm': {
         if (gold < goldRequired.farm) return;
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.farm * 0.002));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.farm * 0.002)
+        );
         setDetriment((prevDetriment) => {
           prevDetriment.peta.unlocked = true;
           return prevDetriment;
         });
-        break;      }
+        break;
+      }
       case 'blacksmith': {
         if (gold < goldRequired.blacksmith) return;
-        setGoldPerSecond(
-          (prevGold) => Math.floor(prevGold + goldRequired.blacksmith * 0.001)
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.blacksmith * 0.001)
         );
         setDetriment((prevDetriment) => {
           prevDetriment.bandits.unlocked = true;
           return prevDetriment;
         });
-        break;      }
+        break;
+      }
       case 'tavern': {
         if (gold < goldRequired.tavern) return;
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.tavern * 0.002));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.tavern * 0.002)
+        );
         setDetriment((prevDetriment) => {
           prevDetriment.arson.unlocked = true;
           return prevDetriment;
         });
-        break;      }
+        break;
+      }
       case 'castle': {
         if (gold < goldRequired.castle) return;
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.castle * 0.1));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.castle * 0.1)
+        );
         break;
       }
     }
@@ -223,10 +240,9 @@ export default function Game(props) {
 
   function detrimentRoll() {
     //maps over each key in the detriment object checking for an unlocked value
-    Object.keys(detriment).map(item => {
-    //if the prop is unlocked, roll for a chance to activate detriment
-      if (detriment[item].unlocked && !detriment[item].active){
-        
+    Object.keys(detriment).map((item) => {
+      //if the prop is unlocked, roll for a chance to activate detriment
+      if (detriment[item].unlocked && !detriment[item].active) {
         const roll = Math.ceil(Math.random() * 100);
         if (roll >= 85) {
           detriment[item].active = true;
@@ -234,7 +250,6 @@ export default function Game(props) {
           switch (item) {
             //name of detriment
             case 'termites': {
-              
               //detriment effect
               setGoldPerSecond((prevGold) => {
                 prevGold--;
@@ -247,13 +262,11 @@ export default function Game(props) {
                   ...prevActive,
                 };
               });
-              
+
               break;
             }
 
             case 'failedCrops': {
-
-              
               //detriment effect
               setGoldPerSecond((prevGold) => {
                 prevGold = prevGold - 9;
@@ -266,12 +279,11 @@ export default function Game(props) {
                   ...prevActive,
                 };
               });
-              
+
               break;
             }
 
             case 'caveIn': {
-              
               //detriment effect
               setGoldPerSecond((prevGold) => {
                 prevGold = prevGold - 18;
@@ -284,7 +296,7 @@ export default function Game(props) {
                   ...prevActive,
                 };
               });
-              
+
               break;
             }
 
@@ -301,15 +313,14 @@ export default function Game(props) {
                   ...prevActive,
                 };
               });
-              
+
               break;
             }
 
             case 'osha': {
-              
               //detriment effect
               setGold((prevGold) => {
-                prevGold = prevGold - 20000;
+                prevGold = prevGold - 12000;
                 prevGold < 0 ? (prevGold = 0) : (prevGold = prevGold);
                 return Math.floor(prevGold);
               });
@@ -324,15 +335,14 @@ export default function Game(props) {
                   ...prevActive,
                 };
               });
-              
+
               break;
             }
 
             case 'peta': {
-              
               //detriment effect
               setGoldPerSecond((prevGold) => {
-                prevGold = prevGold * 0.80;
+                prevGold = prevGold * 0.8;
                 return prevGold;
               });
               //grab current time to start detriment timer once it meets the detriment duration, it will shut off
@@ -342,12 +352,11 @@ export default function Game(props) {
                   ...prevActive,
                 };
               });
-              
+
               break;
             }
 
             case 'bandits': {
-              
               //detriment effect
               setGold((prevGold) => {
                 prevGold = prevGold * 0.75;
@@ -360,7 +369,7 @@ export default function Game(props) {
                   ...prevActive,
                 };
               });
-              
+
               break;
             }
 
@@ -371,13 +380,17 @@ export default function Game(props) {
               setActiveTime((prevActive) => {
                 prevActive.arson.lastActive = gametime;
                 return {
-                  ...prevActive
-                } ;
+                  ...prevActive,
+                };
               });
               setDetriment((prevDetriment) => {
                 prevDetriment.arson.unlocked = false;
                 return prevDetriment;
-              });       
+              });
+              setGoldPerSecond((prevGold) => {
+                prevGold = prevGold - 4000;
+                return prevGold;
+              });
               break;
             }
             default: {
@@ -389,16 +402,16 @@ export default function Game(props) {
     });
   }
   //if the prop is unlocked and detriment is active, set the detriment back to inactive and remove negative effects
-  function shutOffEffect(){
-    Object.keys(detriment).map(item => {
-      if (detriment[item].unlocked && 
-          detriment[item].active && 
-      gametime - activeTime[item].duration === activeTime[item].lastActive){
-        
-        switch (item){
-          case 'termites' :{
-            
-            setDetriment(prevDetriment => {
+  function shutOffEffect() {
+    Object.keys(detriment).map((item) => {
+      if (
+        detriment[item].unlocked &&
+        detriment[item].active &&
+        gametime - activeTime[item].duration === activeTime[item].lastActive
+      ) {
+        switch (item) {
+          case 'termites': {
+            setDetriment((prevDetriment) => {
               prevDetriment.termites.active = false;
               return prevDetriment;
             });
@@ -443,7 +456,7 @@ export default function Game(props) {
               return prevDetriment;
             });
             setGoldPerSecond((prevGold) => {
-              prevGold = prevGold / .75;
+              prevGold = prevGold / 0.75;
               return prevGold;
             });
             break;
@@ -454,7 +467,7 @@ export default function Game(props) {
               return prevDetriment;
             });
             setGoldPerSecond((prevGold) => {
-              prevGold = prevGold / .8;
+              prevGold = prevGold / 0.8;
               return Math.floor(prevGold);
             });
             break;
@@ -503,10 +516,10 @@ export default function Game(props) {
         setActive(true);
       }
       if (prestige > 0) {
-        prevGold += ((goldPerSecond / 3) < 1) ? 1 : (goldPerSecond / 3) ;
+        prevGold += goldPerSecond / 3 < 1 ? 1 : goldPerSecond / 3;
         return Math.floor(prevGold);
       } else {
-        prevGold += ((goldPerSecond / 3) < 1) ? 1 : (goldPerSecond / 3) ;
+        prevGold += goldPerSecond / 3 < 1 ? 1 : goldPerSecond / 3;
         return Math.floor(prevGold);
       }
     });
@@ -550,8 +563,8 @@ export default function Game(props) {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.lumberyard);
-        setGoldPerSecond(
-          (prevGold) => Math.floor(prevGold + goldRequired.lumberyard * 0.1)
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.lumberyard * 0.2)
         );
         setDetriment({
           ...detriment,
@@ -569,7 +582,9 @@ export default function Game(props) {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.windmill);
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.windmill * 0.06));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.windmill * 0.12)
+        );
         setDetriment({
           ...detriment,
           failedCrops: {
@@ -586,7 +601,9 @@ export default function Game(props) {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.mine);
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.mine * 0.01));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.mine * 0.02)
+        );
         setDetriment({
           ...detriment,
           caveIn: {
@@ -603,8 +620,8 @@ export default function Game(props) {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.watermill);
-        setGoldPerSecond(
-          (prevGold) => Math.floor(prevGold + goldRequired.watermill * 0.003)
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.watermill * 0.006)
         );
         setDetriment({
           ...detriment,
@@ -622,7 +639,9 @@ export default function Game(props) {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.sawmill);
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.sawmill * 0.001));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.sawmill * 0.002)
+        );
         setDetriment({
           ...detriment,
           osha: {
@@ -639,7 +658,9 @@ export default function Game(props) {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.farm);
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.farm * 0.002));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.farm * 0.004)
+        );
         setDetriment({
           ...detriment,
           peta: {
@@ -656,8 +677,8 @@ export default function Game(props) {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.blacksmith);
-        setGoldPerSecond(
-          (prevGold) => Math.floor(prevGold + goldRequired.blacksmith * 0.001)
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.blacksmith * 0.002)
         );
         setDetriment({
           ...detriment,
@@ -675,7 +696,9 @@ export default function Game(props) {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.tavern);
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.tavern * 0.002));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.tavern * 0.004)
+        );
         setDetriment({
           ...detriment,
           arson: {
@@ -692,7 +715,9 @@ export default function Game(props) {
           [target.value]: true,
         });
         setGold((prevGold) => prevGold - goldRequired.castle);
-        setGoldPerSecond((prevGold) => Math.floor(prevGold + goldRequired.castle * 0.1));
+        setGoldPerSecond((prevGold) =>
+          Math.floor(prevGold + goldRequired.castle * 0.2)
+        );
         break;
       }
     }
@@ -769,9 +794,26 @@ export default function Game(props) {
   return (
     <div>
       <div className={style.overhead}>
-        <UserControls handleMineClick={mineGold} handleClicks={addToClicks} uploadSave={uploadSave} user={user} gold={gold} auth={props.auth} prestige={prestige} gametime={gametime} numClicks={numClicks} newGame={newGame}/>
-        <Prestige handlePrestige={incrementPrestige} prestige={prestige} castle={user.castle}/>
-        <h1 className={style.gameTitle}><img src="../../assets/gametitle.PNG" alt="idle isle" /></h1>
+        <UserControls
+          handleMineClick={mineGold}
+          handleClicks={addToClicks}
+          uploadSave={uploadSave}
+          user={user}
+          gold={gold}
+          auth={props.auth}
+          prestige={prestige}
+          gametime={gametime}
+          numClicks={numClicks}
+          newGame={newGame}
+        />
+        <Prestige
+          handlePrestige={incrementPrestige}
+          prestige={prestige}
+          castle={user.castle}
+        />
+        <h1 className={style.gameTitle}>
+          <img src="../../assets/gametitle.PNG" alt="idle isle" />
+        </h1>
         <div className={style.hud}>
           <Hud
             gold={gold}
