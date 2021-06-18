@@ -41,7 +41,7 @@ export default function Game(props) {
   });
 
   const [activeTime, setActiveTime] = useState({
-    termites: { lastActive: 0, duration: 41 },
+    termites: { lastActive: 0, duration: 39 },
     failedCrops: { lastActive: 0, duration: 15 },
     caveIn: { lastActive: 0, duration: 15 },
     flood: { lastActive: 0, duration: 41 },
