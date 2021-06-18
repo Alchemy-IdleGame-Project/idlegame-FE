@@ -40,7 +40,7 @@ a {
   justify-content: center;
 }
 a:active {
-  background-image: url('~/assets/ui_button_pressed.png');
+  background-image: url('~/assets/buttons/ui_button_pressed.png');
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -82,7 +82,7 @@ input:focus {
   width: 35%;
 }
 .activeDetriment {
-  background-image: url('../../../assets/detrimental_button_V.png');
+  background-image: url('../../../assets/buttons/detrimental_button_V.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -98,7 +98,7 @@ input:focus {
   /* font-family: 'Kirang Haerang', cursive; */
 }
 .inactiveDetriment {
-  background-image: url('../../../assets/detrimental_button_X.png');
+  background-image: url('../../../assets/buttons/detrimental_button_X.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -169,7 +169,7 @@ input:focus {
   color: white;
   width: 100px;
   height: 50px;
-  background-image: url('~/assets/ui_button.png');
+  background-image: url('~/assets/buttons/ui_button.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -182,7 +182,7 @@ input:focus {
   color: white;
   width: 100px;
   height: 50px;
-  background-image: url('~/assets/ui_button.png');
+  background-image: url('~/assets/buttons/ui_button.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -211,7 +211,7 @@ input:focus {
   color: white;
   width: 206px;
   height: 62px;
-  background-image: url('~/assets/ui_button2xv1.png');
+  background-image: url('~/assets/buttons/ui_button2xv1.png');
   background-repeat: no-repeat;
   background-position: right;
   background-color: rgba(0, 0, 0, 0);
@@ -222,12 +222,12 @@ input:focus {
 .smallButton:active {
   position: relative;
   top: 1px;
-  background-image: url('~/assets/ui_button_pressed.png');
+  background-image: url('~/assets/buttons/ui_button_pressed.png');
 }
 .bigButton:active {
   position: relative;
   top: 1px;
-  background-image: url('~/assets/ui_button_pressed2xv1.png');
+  background-image: url('~/assets/buttons/ui_button_pressed2xv1.png');
 }
 
 .almost {
